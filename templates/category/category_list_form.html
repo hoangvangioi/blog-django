@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="content-section">
+        <a href="{% url 'create_category' %}" class="btn btn-outline-dark mb-4 mt-3" type="submit">Add New Category</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Category Name</th>
+                    <th scope="col" class="text-center">Edit Category</th>
+                    <th scope="col" class="text-center">Delete Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cat in category %}
+                <tr>
+                    <td>{{ cat }}</td>
+                    <td class="text-center"><a href="{% url 'update_category' cat.slug %}" class="btn btn-dark" role="button">Edit</a></td>
+                    <td class="text-center"><a href="{% url 'delete_category' cat.slug %}" class="btn btn-danger" role="button">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

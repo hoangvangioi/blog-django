@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Đăng ký {% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
+            <div class="bg-secondary badge-shadow rounded p-4 p-sm-5">
+                <h2>Create your free account </h2>
+                {% include 'includes/alerts.html' %}
+                <form class="mt-4 needs-validation" action="{% url 'register' %}" method="POST" novalidate>
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% endfor %}
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                        <label class="form-check-label" for="exampleCheck1">Yes i'd also like to sign up for additional subscription</label>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn btn-success">Sign me up</button>
+                        </div>
+                        <div class="col-sm-8 text-sm-end">
+                            <span>Have an account? <a href="{% url 'login' %}"><u>Sign in</u></a></span>
+                        </div>
+                    </div>
+                    {{ form.email.errors }} {{ form.non_field_errors }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

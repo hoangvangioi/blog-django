@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container">
+		<div class="content-section">
+			<a href="{% url 'create_post' %}" class="btn btn-outline-dark mb-4 mt-3" type="submit">Add New Post</a>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">Post Name</th>
+						<th scope="col" class="text-center">Edit Post</th>
+						<th scope="col" class="text-center">Delete Post</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in post %}
+					<tr>
+						<td><a href="{{i.get_absolute_url}}">{{ i }}</a></td>
+						{% comment %} <td class="text-center"><a href="{% url 'update_post' i.post %}" class="btn btn-dark" role="button">Edit</a></td>
+						<td class="text-center"><a href="{% url 'delete_post' i.post %}" class="btn btn-danger" role="button">Delete</a></td> {% endcomment %}
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

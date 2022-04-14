@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-8" style="margin-top: 3.1rem!important;">
+			<div class="content-section">
+				<form method="POST" action="">
+					{% csrf_token %}
+					<fieldset class="form-group">
+						<legend class="border-bottom mb-4">Delete Category</legend>
+						<h2>Are you sure, you want to delete "{{ object.title }}" category?</h2>
+					</fieldset>
+					<div class="form-group mb-5">
+						<button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+						{% comment %} <a class="btn btn-outline-secondary" type="submit" href="{% url 'post' %}">Cancel</a> {% endcomment %}
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile Page{% endblock title %}
+
+{% block content %} 
+
+
+<div class="container mb-5 pb-3 my-5">
+    <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+      <div class="row">
+        <!-- Sidebar-->
+        <aside class="col-lg-4 pe-xl-5">
+            <!-- Actual menu-->
+            <div class="h-100 border-end mb-2">
+                <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 align-items-center" style="width: 8rem;">
+                    <img class="rounded-circle" src="{{ profile.get_avatar }}" alt="@{{profile.user.username}}">
+                </div>
+                <div class="ps-3">
+                    <h3 class="h5 mb-2">@{{profile.user.username}}</h3><span class="d-block fs-sm opacity-60">Joined {{profile.created_at}}</span>
+                </div>
+                <h3>{{profile.user.get_full_name}}</h3>
+                <div class="network">
+                    <ul class="item">
+                        <li class="btn btn-social bs-youtube"><i class="ci-youtube"></i></li>
+                        <li class="btn btn-social bs-facebook"><i class="ci-facebook"></i></li>
+                        <li class="btn btn-social bs-instagram"><i class="ci-instagram"></i></li>
+                        <li class="btn btn-social bs-twitter"><i class="ci-twitter"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <!-- Content-->
+        <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
+          <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+            <h3 class="me-2">Tiểu sử</h3>
+            <div class="bg-secondary rounded-3 p-4 mb-4 text-center text-sm-start">
+                <div class="d-flex flex-sm-row flex-column align-items-sm-start align-items-center">
+                    <div class="ms-n2 ps-sm-4">
+                        <p>{{profile.biography}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <h6>Giới tính</h6>
+
+
+                    {% comment %} {{profile.gender}}<br>
+                    {% if profile.gender == 1 %}{% for key, value in profile.GENDER_CHOICES %}
+                    <option value="{{ key }}"
+                            >{{ value }}</option>
+                {% endfor %}111{% else %}{% for key, value in profile.GENDER_CHOICES %}
+                <option value="{{ key }}"
+                        >{{ value }}</option>
+            {% endfor %}{% endif %} {% endcomment %}
+                    {% comment %} {% if  %}{% endif %} {% endcomment %}
+
+                    {% for key, value in profile.GENDER_CHOICES %}
+
+                        {% if key == 1 %}{{ value }}{% else %}{{ value }}{% endif %}
+
+                    {% endfor %}
+
+
+
+
+                </div>
+                <div class="col-lg-4">
+                    <h6>Địa chỉ</h6>
+                    <p>{{profile.address}}</p>
+                </div>
+                <div class="col-lg-4">
+                    <h6>Ngày sinh</h6>
+                    <p>{{profile.birthday}}</p>
+                </div>
+            </div>
+            
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}

@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %} {% endblock %} | Shop Hoàng Giỏi</title>
+
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" color="#fe6a6a" href="{% static 'img/safari-pinned-tab.svg' %}">
+    <meta name="msapplication-TileColor" content="#ee2bdebb">
+    <meta name="theme-color" content="#ee2bdebb">
+
+    {% comment %} <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script> {% endcomment %}
+    
+    <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+    <link rel="stylesheet" media="screen" href="{% static 'css/simplebar.min.css' %}" />
+
+    <link rel="stylesheet" media="screen" href="{% static 'css/tiny-slider.css' %}" />
+
+    <link rel="stylesheet" media="screen" href="{% static 'css/nouislider.min.css' %}" />
+
+
+    <link rel="stylesheet" media="screen" href="{% static 'css/drift-basic.min.css' %}" />
+
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
+
+    <!-- Google Tag Manager -->
+    {% comment %} <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KLNMPRF');</script> {% endcomment %}
+    <!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+    
+    <!-- Page loading scripts -->
+    <script>
+        (function() {
+            window.onload = function() {
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function() {
+                        preloader.remove();
+                }, 1000);
+            };
+        })();
+    </script>
+
+    {% comment %} <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> {% endcomment %}
+</head>
+
+<body class="handheld-toolbar-enabled">
+
+    <!-- Page loading spinner -->
+    <div class="page-loading active">
+        <div class="page-loading-inner">
+            <div class="page-spinner"></div><span>Loading...</span>
+        </div>
+    </div>
+    
+    
+    {% include "includes/navbar.html" %}
+    <main class="page-wrapper">
+    {% block content %} {% endblock content %} 
+    </main>
+    {% include "includes/footer.html" %}
+    
+    <!-- Toolbar for handheld devices (Shop)-->
+    {% comment %} <div class="handheld-toolbar">
+        <div class="d-table table-layout-fixed w-100">
+            {% if '/blog/' == request.path or post.get_absolute_url == request.path %}
+            <a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#blog-sidebar"><span class="handheld-toolbar-icon"><i class="ci-sign-in"></i></span><span class="handheld-toolbar-label">Sidebar</span></a>
+            {% endif %}
+            <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span class="handheld-toolbar-label">Menu</span></a>
+            <a class="d-table-cell handheld-toolbar-item" href="{% url 'cart' %}"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span class="badge bg-primary rounded-pill ms-1">4</span></span><span class="handheld-toolbar-label">$265.00</span></a>
+        </div>
+    </div> {% endcomment %}
+    <!-- Back To Top Button-->
+    <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up"></i></a>
+
+
+    <!-- Toolbar for handheld devices (Blog)-->
+    <div class="handheld-toolbar">
+        <div class="d-table table-layout-fixed w-100"><a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#blog-sidebar">
+            <span class="handheld-toolbar-icon"><i class="ci-sign-in"></i></span>
+            <span class="handheld-toolbar-label">Sidebar</span></a>
+            
+            <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)">
+            <span class="handheld-toolbar-icon"><i class="ci-menu"></i></span>
+            <span class="handheld-toolbar-label">Menu</span></a>
+            
+            <a class="d-table-cell handheld-toolbar-item" href="
+            ">
+            <span class="handheld-toolbar-icon"><i class="ci-cart"></i>
+            <span class="badge bg-primary rounded-pill ms-1">4</span></span>
+            <span class="handheld-toolbar-label">$265.00</span></a>
+        </div>
+    </div>
+    <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
+        
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/simplebar.min.js' %}"></script>
+    <script src="{% static 'js/tiny-slider.js' %}"></script>
+    <script src="{% static 'js/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'js/nouislider.min.js' %}"></script>
+    <script src="{% static 'js/Drift.min.js' %}"></script>
+    <!-- Main theme script-->
+    <script src="{% static 'js/theme.min.js' %}"></script>
+
+    {% comment %} <script src="{% static 'js/lg-fullscreen.min.js' %}"></script>
+    <script src="{% static 'js/lg-zoom.min.js' %}"></script> {% endcomment %}
+
+
+</body>
+
+</html>
