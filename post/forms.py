@@ -23,16 +23,6 @@ class PostForm(forms.ModelForm):
             }
         )
     )
-    # featured_image = forms.ImageField(
-    #     # required=True,
-    #     widget=forms.FileInput(
-    #         attrs={'class': 'form-control mt-2 mb-4'
-    #         }
-    #     )
-    # )
-
-
-    # next_post
 
     class Meta:
         model = Post
@@ -51,7 +41,6 @@ class PostForm(forms.ModelForm):
 
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
-        self.fields['previous_post'].widget.attrs['class'] = 'form-control col-6'
 
 # class CommentForm(forms.ModelForm):
 #     parent = TreeNodeChoiceField(queryset=Comment.objects.all())
