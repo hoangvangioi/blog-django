@@ -398,3 +398,4 @@ MESSAGE_TAGS = {
 }
 
 CLOUDINARY_URL = config('CLOUDINARY_URL')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
