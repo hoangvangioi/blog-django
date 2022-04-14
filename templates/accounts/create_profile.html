@@ -28,7 +28,8 @@
                 <h1 class="h3 mb-4 pt-2 text-center text-sm-start">Profile Settings</h1>
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="row gy-3 mb-4 pb-md-3 mb-2">
+                    {{form}}
+                    {% comment %} <div class="row gy-3 mb-4 pb-md-3 mb-2">
                         <div class="col-sm-6">
                             <label class="form-label" for="profile-first_name">First name</label>
                             <input class="form-control" id="profile-first_name" name="first_name" maxlength="50" type="text" value="{{profile.user.first_name}}" required>
@@ -86,7 +87,7 @@
                         <div class="col-sm-6">
                             <label class="form-label" for="profile-instagram">Instagram</label>{{form.instagram_url}}
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                     <!-- Submit-->
                     <div class="d-flex flex-sm-row flex-column">
                         <button class="btn btn-accent" type="submit">Update profile</button>

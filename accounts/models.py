@@ -2,6 +2,13 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
+from django.templatetags.static import static
+# from django.conf.urls.static import static
+from .utils import unique_slug_generator
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 # Create your models here.
@@ -128,11 +135,6 @@ class Account(AbstractBaseUser):
         return True
 
 
-from django.utils.translation import gettext as _
-from django.templatetags.static import static
-# from django.conf.urls.static import static
-
-
 class Profile(models.Model):
 
     GENDER_MALE = 1
@@ -160,24 +162,53 @@ class Profile(models.Model):
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
 
-    def __unicode__(self):
-        return self.user.full_name
+    def __str__(self):
+        return f'{self.user}'
 
     def get_first_name(self):
         return f'{self.first_name}'
-
+            
     def get_last_name(self):
         return f'{self.last_name}'
     
     def get_absolute_url(self):
         return reverse("profile", args={self.slug})
 
+    # def save(self, *args, **kwargs):
+    #     self.slug= slugify(self.user)
+    #     super().save(*args, **kwargs)
+
+    @receiver(post_save, sender=Account)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=Account)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()
+
+    @classmethod
+    def search_profile(cls, user):
+        return cls.objects.filter(user__username__icontains=user).all()
+
     @property
     def get_avatar(self):
         return self.avatar.url if self.avatar else static('img/avatar.png')
 
-# @receiver(post_save, sender=User)
-# def update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Profile.objects.create(user=instance)
-#     instance.profile.save()
+    # @receiver(post_save, sender=Account)
+    # def update_user_profile(sender, instance, created, **kwargs):
+    #     if created:
+    #         Profile.objects.create(user=instance)
+    #     instance.profile.save()
+
+def pre_save_category_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(pre_save_category_receiver, sender=Profile)
