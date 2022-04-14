@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <form method="POST" class="row" novalidate>
+    <form method="POST" class="row" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form }}
         {{ form.media }}

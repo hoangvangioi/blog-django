@@ -119,6 +119,7 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'post.fields'
 
     def form_valid(self, form):
+        post_form = super(PostCreateView, self).form_valid(form)
         form.instance.author = self.request.user
         return super().form_valid(form)
         
@@ -132,6 +133,7 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         context['submit'] = 'Create Post'
         context['head_title'] = 'Create Post'
         return context
+
 
 class PostUpdateView(UpdateView):
     model = Post
@@ -156,6 +158,7 @@ class PostUpdateView(UpdateView):
         if self.request.user == post.author:
             return True
         return False
+
 
 class PostDeleteView(DeleteView):
     model = Post

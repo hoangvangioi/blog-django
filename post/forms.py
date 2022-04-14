@@ -16,13 +16,14 @@ class PostForm(forms.ModelForm):
     )
     body = forms.CharField(
         widget= CKEditorWidget(
-            attrs={'cols': 4,
-                'rows': 3,
-                'class': 'form-control',
-                'placeholder': 'Nhập tiêu đề bài viết'
-            }
+            
         )
     )
+
+    featured_image = forms.ImageField(required=True, 
+        widget=forms.FileInput(attrs={
+            'class': 'form-control'
+            }))
 
     class Meta:
         model = Post
@@ -36,11 +37,11 @@ class PostForm(forms.ModelForm):
                 'tags',
                 )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
 
-        for field in self.fields:
-            self.fields[field].widget.attrs['class'] = 'form-control'
+        # for field in self.fields:
+        #     self.fields[field].widget.attrs['class'] = 'form-control'
 
 # class CommentForm(forms.ModelForm):
 #     parent = TreeNodeChoiceField(queryset=Comment.objects.all())

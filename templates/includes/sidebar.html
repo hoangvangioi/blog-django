@@ -21,7 +21,10 @@
                 <h3 class="widget-title">Latest posts</h3>
                 {% if most_recent %}
                     {% for post in most_recent %}
-                    <div class="d-flex align-items-center mb-3"><a class="flex-shrink-0" href="{{ post.get_absolute_url }}"><img class="rounded" src="{{ post.featured_image.url }}" width="64" alt="Post image"></a>
+                    <div class="d-flex align-items-center mb-3">
+                    <a class="flex-shrink-0" href="{{ post.get_absolute_url }}">
+                        <img class="rounded" src="{{ post.featured_image.url }}" width="64" alt="Post image">
+                    </a>
                         <div class="ps-3">
                         <h6 class="blog-entry-title fs-sm mb-0"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h6><span class="fs-ms text-muted">by <a href='#' class='blog-entry-meta-link'>{{ post.author }}</a></span>
                         </div>
