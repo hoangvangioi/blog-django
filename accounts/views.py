@@ -106,37 +106,8 @@ class ProfileDetailView(DetailView):
     queryset = Profile.objects.all()
     context_object_name = 'profile'
     template_name = "accounts/profile.html"
+    slug_url_kwarg = 'slug'
 
-
-# class ProfileCreateView(CreateView):
-#     model = Profile
-#     form_class = ProfileForm
-#     template_name = "accounts/create_profile.html"
-#     permission_required = 'accounts.fields'
-#     success_url = reverse_lazy('store')
-#     # slug_url_kwarg = 'slug'
-
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         profile = form.save()
-#         profile.user.first_name = form.cleaned_data.get('first_name')
-#         profile.user.last_name = form.cleaned_data.get('last_name')
-#         profile.user.save()
-#         return super().form_valid(form)
-
-
-
-#     # def form_valid(self, form):
-#     #     profile_form = super(ProfileCreateView, self).form_valid(form)
-#     #     form.instance.author = self.request.user
-#     #     return super().form_valid(form)
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title'] = 'Add New profile'
-#         context['submit'] = 'Create profile'
-#         context['head_title'] = 'Add new profile'
-#         return context
 
 class ProfileUpdateView(UpdateView):
     model = Profile

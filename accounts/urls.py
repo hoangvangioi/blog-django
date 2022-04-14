@@ -61,9 +61,7 @@ urlpatterns = [
 
 
 
-    path('profile/<str:slug>/', ProfileDetailView.as_view(), name='profile'),
+    path('profile/<slug:slug>/', ProfileDetailView.as_view(), name='profile'),
 
-    # path('create/profile/', ProfileCreateView.as_view(), name='create_profile'),
-
-    path('edit-profile/<str:slug>/', ProfileUpdateView.as_view(), name='edit_profile')
+    path('edit-profile/<slug:slug>/', ProfileUpdateView.as_view(), name='edit_profile')
 ]
