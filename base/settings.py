@@ -56,12 +56,17 @@ INSTALLED_APPS = [
     'mptt',
 
     'tinymce',
+
+    # Cloud
+    'cloudinary_storage',
+    'cloudinary',
 ]
+
+LOGIN_URL = 'login'  # or actual url
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
     
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
@@ -167,9 +172,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CKEDITOR_UPLOAD_PATH="uploads/"
 
 TAGGIT_CASE_INSENSITIVE = True
-
-
-# AUTH_USER_MODEL = 'accounts.Account'
 
 
 TINYMCE_DEFAULT_CONFIG = {
@@ -394,3 +396,5 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',
 }
+
+CLOUDINARY_URL = config('CLOUDINARY_URL')
