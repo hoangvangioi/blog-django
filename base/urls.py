@@ -35,11 +35,9 @@ urlpatterns = [
 ]
 
 
-
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 
 handler403 = 'base.views.handler403'
@@ -47,6 +45,6 @@ handler404 = 'base.views.error'
 handler500 = 'base.views.handler500'
 
 
-admin.site.site_header="Shop Hoàng Giỏi Admin"
-admin.site.site_title="Shop Hoàng Giỏi Admin Panel"
-admin.site.index_title="Welcome to Shop Hoàng Giỏi Admin Panel"
+admin.site.site_header="Blog Hoàng Giỏi Admin"
+admin.site.site_title="Blog Hoàng Giỏi Admin Panel"
+admin.site.index_title="Welcome to Blog Hoàng Giỏi Admin Panel"
