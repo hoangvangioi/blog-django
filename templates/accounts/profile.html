@@ -12,20 +12,15 @@
             <aside class="col-lg-4 pe-xl-5">
                 <!-- Actual menu-->
                 <div class="h-100 border-end mb-2">
-                    <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 align-items-center" style="width: 8rem;">
-                        <img class="rounded-circle" src="{{ profile.get_avatar }}" alt="@{{profile.user.username}}">
-                    </div>
-                    <div class="ps-3">
-                        <h3 class="h5 mb-2">@{{profile.user.username}}</h3><span class="d-block fs-sm opacity-60">Joined {{profile.created_at}}</span>
-                    </div>
-                    <h3>{{profile.user.get_full_name}}</h3>
-                    <div class="network">
-                        <ul class="item">
-                            <li class="btn btn-social bs-youtube"><i class="ci-youtube"></i></li>
-                            <li class="btn btn-social bs-facebook"><i class="ci-facebook"></i></li>
-                            <li class="btn btn-social bs-instagram"><i class="ci-instagram"></i></li>
-                            <li class="btn btn-social bs-twitter"><i class="ci-twitter"></i></li>
-                        </ul>
+                    <div class="text-center">
+                        <img src="{{ profile.get_avatar }}" class="d-inline-block rounded-circle mb-3" width="55%" alt="{{profile.user.get_full_name}}">
+                        <h6 class="pt-1 mb-1">{{profile.user.get_full_name}}</h6>
+                        <p>@{{profile.user.username}}</p>
+                        <p class="fs-sm text-muted">Joined {{profile.created_at}}</p>
+                        <a href="{{profile.website_url}}" class="btn-social bs-youtube bs-outline bs-sm"><i class="ci-youtube"></i></a>
+                        <a href="{{profile.facebook_url}}" class="btn-social bs-facebook bs-outline bs-sm"><i class="ci-facebook"></i></a>
+                        <a href="{{profile.instagram_url}}" class="btn-social bs-instagram bs-outline bs-sm"><i class="ci-instagram"></i></a>
+                        <a href="{{profile.twitter_url}}" class="btn-social bs-twitter bs-outline bs-sm"><i class="ci-twitter"></i></a>
                     </div>
                 </div>
             </aside>
@@ -40,7 +35,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-lg-4">
                             <h6>Giới tính</h6>
@@ -55,7 +49,6 @@
                             <p>{{profile.birthday}}</p>
                         </div>
                     </div>
-                    
                 </div>
             </section>
         </div>
