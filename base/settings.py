@@ -229,8 +229,8 @@ TINYMCE_DEFAULT_CONFIG = {
 #         ],
 #         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
 #         # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-#         # 'height': 291,
-#         # 'width': '100%',
+#         'height': 291,
+#         'width': '100%',
 #         # 'filebrowserWindowHeight': 725,
 #         # 'filebrowserWindowWidth': 940,
 #         # 'toolbarCanCollapse': True,
@@ -273,7 +273,7 @@ TINYMCE_DEFAULT_CONFIG = {
 #             'embedsemantic', 
 #             'filetools', 
 #             'find', 
-#             'flash', 
+#             # 'flash', 
 #             'forms', 
 #             'iframe', 
 #             'iframedialog', 
@@ -295,6 +295,17 @@ TINYMCE_DEFAULT_CONFIG = {
 #     }
 # }
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono-lisa',
+        'toolbar_Basic': 'Full',
+        'toolbar_YourCustomToolbarConfig': 'Full',
+        'toolbar': 'Full',  # put selected toolbar config here
+        'toolbarGroups': 'Full',
+        'height': 291,
+        'width': '102%',
+    }
+}
 
 # from ckeditor.configs import DEFAULT_CONFIG  # noqa
 
