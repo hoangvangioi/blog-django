@@ -9,28 +9,28 @@
 				{% if user.id is None %}
                 <div class="navbar-tool dropdown ms-2">
                     <div class="navbar-tool-icon-box">
-                        <a class="navbar-tool-icon-box border dropdown-toggle" href="{% url 'logout' %}"><i class="navbar-tool-icon ci-user"></i></a>
+                        <a class="navbar-tool-icon-box border dropdown-toggle" href="{% url 'login' %}"><i class="navbar-tool-icon ci-user"></i></a>
                     </div>
-					<a class="navbar-tool-text ms-n1" href=""><small>Hello, Guest!</small>Account</a>
+					<a class="navbar-tool-text ms-n1" href="{% url 'login' %}"><small>Hello, Guest!</small>Account</a>
 					<div class="dropdown-menu dropdown-menu-end">
                         <div style="min-width: 14rem;">
                             <h6 class="dropdown-header">Account</h6>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}"><i class="ci-sign-in opacity-60 me-2"></i>Log in</a>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}"><i class="ci-sign-in opacity-60 me-2"></i>Log in</a>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'register' %}"><i class="ci-add-user opacity-60 me-2"></i>Sign up</a>
                             <div class="dropdown-divider"></div>
                         </div>
 					</div>
 				</div>
 				{% else %}
-				<div class="navbar-tool dropdown ms-2"><a class="navbar-tool-icon-box border dropdown-toggle" href="{% url 'profile' profile.slug %}">
+				<div class="navbar-tool dropdown ms-2"><a class="navbar-tool-icon-box border dropdown-toggle" href="{% url 'profile' user.profile.slug %}">
 					<img src="" width="32" alt="{{ user.first_name }}"></a>
-					<a class="navbar-tool-text ms-n1" href=""><small>Hello {{ user.first_name }}!</small>My Account</a>
+					<a class="navbar-tool-text ms-n1" href="{% url 'profile' user.profile.slug %}"><small>Hello {{ user.first_name }}!</small>My Account</a>
 					<div class="dropdown-menu dropdown-menu-end">
                         <div style="min-width: 14rem;">
                             <h6 class="dropdown-header">Account</h6>
                             {% comment %} <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' profile.slug %}"><i class="ci-settings opacity-60 me-2"></i>Settings</a> {% endcomment %}
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Profile</a>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'edit_profile' profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Edit Profile</a>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' user.profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Profile</a>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'edit_profile' user.profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Edit Profile</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}"><i class="ci-sign-out opacity-60 me-2"></i>Sign Out</a>
                         </div>

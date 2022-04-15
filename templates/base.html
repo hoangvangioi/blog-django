@@ -95,15 +95,21 @@
 
     <!-- Toolbar for handheld devices (Blog)-->
     <div class="handheld-toolbar">
-        <div class="d-table table-layout-fixed w-100"><a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#blog-sidebar">
+        <div class="d-table table-layout-fixed w-100">
+            {% if '/blog/' == request.path or post.get_absolute_url == request.path %}
+            <a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#blog-sidebar">
             <span class="handheld-toolbar-icon"><i class="ci-sign-in"></i></span>
             <span class="handheld-toolbar-label">Sidebar</span></a>
-            
+            {% endif %}
             <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)">
             <span class="handheld-toolbar-icon"><i class="ci-menu"></i></span>
             <span class="handheld-toolbar-label">Menu</span></a>
-            
-            <a class="d-table-cell handheld-toolbar-item" href="{% url 'profile' profile.slug %}">
+
+            {% if user.id is None %}
+            <a class="d-table-cell handheld-toolbar-item" href="{% url 'login' %}">
+            {% else %}
+            <a class="d-table-cell handheld-toolbar-item" href="{% url 'profile' user.profile.slug %}">
+            {% endif %}
             <span class="handheld-toolbar-icon"><i class="ci-user"></i></span>
             <span class="handheld-toolbar-label">Account</span></a>
         </div>
