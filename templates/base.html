@@ -72,34 +72,25 @@
         </div>
     </div>
     
-    
     {% include "includes/navbar.html" %}
     <main class="page-wrapper">
     {% block content %} {% endblock content %} 
     </main>
     {% include "includes/footer.html" %}
-    
-    <!-- Toolbar for handheld devices (Shop)-->
-    {% comment %} <div class="handheld-toolbar">
-        <div class="d-table table-layout-fixed w-100">
-            {% if '/blog/' == request.path or post.get_absolute_url == request.path %}
-            <a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#blog-sidebar"><span class="handheld-toolbar-icon"><i class="ci-sign-in"></i></span><span class="handheld-toolbar-label">Sidebar</span></a>
-            {% endif %}
-            <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span class="handheld-toolbar-label">Menu</span></a>
-            <a class="d-table-cell handheld-toolbar-item" href="{% url 'cart' %}"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span class="badge bg-primary rounded-pill ms-1">4</span></span><span class="handheld-toolbar-label">$265.00</span></a>
-        </div>
-    </div> {% endcomment %}
     <!-- Back To Top Button-->
     <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up"></i></a>
-
 
     <!-- Toolbar for handheld devices (Blog)-->
     <div class="handheld-toolbar">
         <div class="d-table table-layout-fixed w-100">
-            {% if '/blog/' == request.path or post.get_absolute_url == request.path %}
+            {% if '/' == request.path or post.get_absolute_url == request.path %}
             <a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#blog-sidebar">
             <span class="handheld-toolbar-icon"><i class="ci-sign-in"></i></span>
             <span class="handheld-toolbar-label">Sidebar</span></a>
+            {% else %}
+            <a class="d-table-cell handheld-toolbar-item" href="https://www.facebook.com/hoanggioi.2803">
+            <span class="handheld-toolbar-icon"><i class="ci-chat"></i></span>
+            <span class="handheld-toolbar-label">Contact</span></a>
             {% endif %}
             <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)">
             <span class="handheld-toolbar-icon"><i class="ci-menu"></i></span>
