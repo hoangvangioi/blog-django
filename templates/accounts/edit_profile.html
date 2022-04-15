@@ -32,12 +32,10 @@
                         <div class="col-sm-6">
                             <label class="form-label" for="profile-first_name">First name</label>
                             <input class="form-control" id="profile-first_name" name="first_name" maxlength="50" type="text" value="{{profile.user.first_name}}" required>
-                            <!-- {{form.first_name}} -->
                         </div>
                         <div class="col-sm-6">
                             <label class="form-label" for="profile-last_name">Last name</label>
                             <input class="form-control" id="profile-last_name" name="last_name" maxlength="50" type="text" value="{{profile.user.last_name}}" required>
-                            <!-- {{form.last_name}} -->
                         </div>
                         <div class="col-sm-6">
                             <label class="form-label" for="profile-username">Username</label>
@@ -50,13 +48,11 @@
                             <label class="form-label" for="profile-email">Email</label>
                             <input class="form-control" id="profile-email" type="email" value="{{profile.user.email}}" readonly>
                         </div>
-
                         <div>
                             <label class="form-label" for="id_avatar">Avatar</label>
                             <br>
                             {{form.avatar}}
                         </div>
-
                         <div class="col-sm-6">
                             <label class="form-label" for="profile-gender">Gender</label>{{form.gender}}
                         </div>
@@ -96,6 +92,5 @@
         </section>
     </div>
 </div>
-
 
 {% endblock content %}

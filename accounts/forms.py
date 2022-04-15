@@ -141,13 +141,13 @@ class ProfileForm(forms.ModelForm):
                                 max_length=50,
                                 widget=forms.TextInput(
                                     attrs={'class': "form-control col-sm-6",
-                                    },
-                                    
-                                ))
+                                    }))
 
-    last_name = forms.CharField(
-        required=False,
-        max_length=255)
+    last_name = forms.CharField(required=False,
+                                max_length=50,
+                                widget=forms.TextInput(
+                                    attrs={'class': "form-control col-sm-6",
+                                    }))
 
 
     biography = forms.CharField(
@@ -157,14 +157,10 @@ class ProfileForm(forms.ModelForm):
         ),
         required=True,
         label = 'Lay bồ',
-        initial="11111111111111111111111111111",
         help_text="hép",
         localize=False,
         # disabled=True,
     )
-
-    avatar = forms.ImageField()
-
 
     birthday = forms.DateField(
         widget = forms.DateInput(
@@ -182,7 +178,7 @@ class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        url = {'address', 'gender', 'website_url', 'facebook_url', 'instagram_url', 'twitter_url'}
+        url = {'avatar', 'address', 'gender', 'website_url', 'facebook_url', 'instagram_url', 'twitter_url'}
         for i in url:
             self.fields[i].widget.attrs['class'] = 'form-control'
         self.fields['twitter_url'].required = True
