@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'accounts',
     'category',
     'post',
+    'search',
     # CKeditor
     'ckeditor_uploader',
     'ckeditor',

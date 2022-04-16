@@ -26,6 +26,7 @@ urlpatterns = [
     # App
     path('', include('post.urls')),
     path('', include('category.urls')),
+    path('', include('search.urls')),
     path('accounts/', include('accounts.urls')),
 
     # CKeditor
