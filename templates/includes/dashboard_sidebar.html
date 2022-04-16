@@ -4,9 +4,9 @@
     <div class="bg-white rounded-3 shadow-lg pt-1 mb-5 mb-lg-0">
         <div class="d-md-flex justify-content-between align-items-center text-center text-md-start p-4">
             <div class="d-md-flex align-items-center">
-                <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;"><span class="badge bg-warning position-absolute end-0 mt-n2" data-bs-toggle="tooltip" title="Reward points">384</span><img class="rounded-circle" style="border-radius: 50%;" src="{% static 'img/avatar.png' %}" alt="..."></div>
+                <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;"><img class="rounded-circle" style="border-radius: 50%;" src="{{ profile.get_avatar }}" alt="..."></div>
                 <div class="ps-md-3">
-                    <h3 class="fs-base mb-0">Susan Gardner</h3><span class="text-accent fs-sm">s.gardner@example.com</span>
+                    <h3 class="fs-base mb-0">{{user.get_full_name}}</h3><span class="text-accent fs-sm">@{{user.username}}</span>
                 </div>
             </div><a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="#account-menu" data-bs-toggle="collapse" aria-expanded="false"><i class="ci-menu me-2"></i>Account menu</a>
         </div>
@@ -15,10 +15,9 @@
                 <h3 class="fs-sm mb-0 text-muted">Account settings</h3>
             </div>
             <ul class="list-unstyled mb-0">
-                {% comment %} <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 {% if '/accounts/' == request.path %}active{% endif %}" href="{% url 'dashboard' %}"><i class="ci-heart opacity-60 me-2"></i>Dashboard<span class="fs-sm text-muted ms-auto">3</span></a></li> {% endcomment %}
-                {% comment %} <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 {% if '/edit_profile/' in request.path %}active{% endif %}" href="{% url 'edit_profile' %}"><i class="ci-heart opacity-60 me-2"></i>Edit Profile<span class="fs-sm text-muted ms-auto">3</span></a></li> {% endcomment %}
-                {% comment %} <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 {% if '/my_orders/' in request.path %}active{% endif %}" href="{% url 'my_orders' %}"><i class="ci-bag opacity-60 me-2"></i>My Orders<span class="fs-sm text-muted ms-auto">1</span></a></li> {% endcomment %}
-                <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 {% if '/change_password/' in request.path %}active{% endif %}" href="{% url 'change_password' %}"><i class="ci-heart opacity-60 me-2"></i>Change Password<span class="fs-sm text-muted ms-auto">3</span></a></li>
+                <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 {% if '/accounts/edit-profile/' in request.path %}active{% endif %}" href="{% url 'edit_profile' user.profile.slug %}"><i class="ci-heart opacity-60 me-2"></i>Edit Profile</a></li>
+                <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 {% if '/accounts/change-password/' in request.path %}active{% endif %}" href="{% url 'change_password' %}"><i class="ci-heart opacity-60 me-2"></i>Change Password</a></li>
+                <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 {% if '/change_password/' in request.path %}active{% endif %}" href="{% url 'change_password' %}"><i class="ci-heart opacity-60 me-2"></i>Log Out</a></li>
             </ul>
         </div>
     </div>

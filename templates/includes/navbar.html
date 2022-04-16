@@ -24,7 +24,7 @@
 				</div>
 				{% else %}
 				<div class="navbar-tool dropdown ms-2"><a class="navbar-tool-icon-box border dropdown-toggle" href="{% url 'profile' user.profile.slug %}">
-					<img src="" width="32" alt="{{ user.first_name }}"></a>
+					<img src="{{ user.profile.get_avatar }}" width="32" alt="{{ user.first_name }}"></a>
 					<a class="navbar-tool-text ms-n1" href="{% url 'profile' user.profile.slug %}"><small>Hello {{ user.first_name }}!</small>My Account</a>
 					<div class="dropdown-menu dropdown-menu-end">
                         <div style="min-width: 14rem;">
