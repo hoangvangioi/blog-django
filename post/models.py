@@ -1,4 +1,3 @@
-from email.policy import default
 from category.models import Category
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField

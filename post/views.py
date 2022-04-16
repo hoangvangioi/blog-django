@@ -1,26 +1,25 @@
-from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse_lazy
-from .models import Post
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import PostForm
-from django.utils.translation import gettext as _
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.utils.decorators import method_decorator
-# from .decorators import superuser_required
-from django.db.models import Count
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Count
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.utils.translation import gettext as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from taggit.models import Tag
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.models import User
-from .forms import CommentForm
+
 from .decorators import superuser_required
+from .forms import CommentForm, PostForm
+from .models import Post
 
 
 # Create your views here.
 
 
-class PostListView(ListView):
+@method_decorator(superuser_required, name='dispatch')
+class PostListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 	model = Post
 	template_name = 'post/post_list_form.html'
 	context_object_name = 'post'
@@ -59,7 +58,6 @@ def post_list(request, tag_slug=None):
                 }
 
     return render(request, 'post/post_list.html', context)
-from django.contrib import messages
 
 
 def post_detail(request, year, month, day, post):
@@ -112,7 +110,6 @@ def post_detail(request, year, month, day, post):
 
 @method_decorator(superuser_required, name='dispatch')
 class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-# class PostCreateView(CreateView):
     model = Post
     form_class = PostForm
     template_name = "post/create_post.html"
@@ -135,7 +132,8 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         return context
 
 
-class PostUpdateView(UpdateView):
+@method_decorator(superuser_required, name='dispatch')
+class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Post
     template_name = "post/update_post.html"
     form_class = PostForm
@@ -160,7 +158,8 @@ class PostUpdateView(UpdateView):
         return False
 
 
-class PostDeleteView(DeleteView):
+@method_decorator(superuser_required, name='dispatch')
+class PostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Post
     template_name = "post/delete_post.html"
     success_url = reverse_lazy('post')

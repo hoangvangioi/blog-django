@@ -1,15 +1,21 @@
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from post.models import Post
 
+from .decorators import superuser_required
 from .forms import CategoryForm
 from .models import Category
+
 
 # Create your views here.
 
 
-class CategoryListView(ListView):
+@method_decorator(superuser_required, name='dispatch')
+class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 	model = Category
 	template_name = 'category/category_list_form.html'
 	context_object_name = 'category'
@@ -40,7 +46,8 @@ class PostCategoryView(ListView):
 		return context
 
 
-class CategoryCreateView(CreateView):
+@method_decorator(superuser_required, name='dispatch')
+class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Category
     template_name = "category/create_category.html"
     form_class = CategoryForm
@@ -50,7 +57,8 @@ class CategoryCreateView(CreateView):
         return super().form_valid(form)
 
 
-class CategoryUpdateView(UpdateView):
+@method_decorator(superuser_required, name='dispatch')
+class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Category
     template_name = "category/update_category.html"
     form_class = CategoryForm
@@ -60,13 +68,15 @@ class CategoryUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class CategoryDeleteView(DeleteView):
+@method_decorator(superuser_required, name='dispatch')
+class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Category
     template_name = "category/delete_category.html"
     success_url = reverse_lazy('post')
 
 
-class ListCategoryView(ListView):
+@method_decorator(superuser_required, name='dispatch')
+class ListCategoryView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 	model = Category
 	template_name = 'category/list_category.html'
 	context_object_name = 'list_category'

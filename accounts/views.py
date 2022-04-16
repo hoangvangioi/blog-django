@@ -1,13 +1,13 @@
 import requests
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import (LoginRequiredMixin)
 from django.contrib.auth.tokens import default_token_generator
 # Verification email
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
-from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views.generic import DetailView, UpdateView
@@ -109,7 +109,7 @@ class ProfileDetailView(DetailView):
     # slug_url_kwarg = 'slug'
 
 
-class ProfileUpdateView(UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = ProfileForm
     template_name = "accounts/edit_profile.html"

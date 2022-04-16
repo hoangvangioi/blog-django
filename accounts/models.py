@@ -1,15 +1,14 @@
-from django.db import models
-from django.urls import reverse
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth import get_user_model
-from django.utils.translation import gettext as _
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db import models
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
 from django.templatetags.static import static
+from django.urls import reverse
+from django.utils.translation import gettext as _
+
 # from django.conf.urls.static import static
 from .utils import unique_slug_generator
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from django.db.models.signals import post_save
-
 
 # Create your models here.
 
