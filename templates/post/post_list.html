@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Danh sách bài đăng{% endblock %}
-{% comment %} {% load post_tags %} {% endcomment %}
 
 {% block content %}
 
@@ -41,6 +40,11 @@
                     <h2 class="h5 blog-entry-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
                     {% for tag in post.tags.all %}
                     <a class="btn-tag me-2 my-2 bg-accent text-white" href="{% url 'post_tag' tag.slug %}"># {{ tag.name }}</a> {% if not forloop.last %} {% endif %} {% endfor %}
+                    {% if user.is_superuser %}
+                    <br>
+                    <a class="btn btn-warning btn-sm" href="{{ post.get_absolute_url }}update/">Update</a>
+                    <a class="btn btn-warning btn-sm" href="{{ post.get_absolute_url }}delete/">Delete</a>
+                    {% endif %}
                 </div>
                 <div class="blog-end-column"><a class="blog-entry-thumb mb-3" href="{{ post.get_absolute_url }}"><img src="{{ post.featured_image.url }}" alt="Post"></a>
                     <div class="d-flex justify-content-between mb-1">
