@@ -19,7 +19,7 @@ from .models import Post
 
 
 @method_decorator(superuser_required, name='dispatch')
-class PostListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class PostListView(LoginRequiredMixin, ListView):
 	model = Post
 	template_name = 'post/post_list_form.html'
 	context_object_name = 'post'
@@ -133,7 +133,7 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
 
 @method_decorator(superuser_required, name='dispatch')
-class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = "post/update_post.html"
     form_class = PostForm
@@ -159,7 +159,7 @@ class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 
 @method_decorator(superuser_required, name='dispatch')
-class PostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = "post/delete_post.html"
     success_url = reverse_lazy('post')

@@ -15,7 +15,7 @@ from .models import Category
 
 
 @method_decorator(superuser_required, name='dispatch')
-class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class CategoryListView(LoginRequiredMixin, ListView):
 	model = Category
 	template_name = 'category/category_list_form.html'
 	context_object_name = 'category'
@@ -47,7 +47,7 @@ class PostCategoryView(ListView):
 
 
 @method_decorator(superuser_required, name='dispatch')
-class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = Category
     template_name = "category/create_category.html"
     form_class = CategoryForm
@@ -58,7 +58,7 @@ class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
 
 
 @method_decorator(superuser_required, name='dispatch')
-class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = Category
     template_name = "category/update_category.html"
     form_class = CategoryForm
@@ -69,14 +69,14 @@ class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
 
 
 @method_decorator(superuser_required, name='dispatch')
-class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = Category
     template_name = "category/delete_category.html"
     success_url = reverse_lazy('post')
 
 
 @method_decorator(superuser_required, name='dispatch')
-class ListCategoryView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class ListCategoryView(LoginRequiredMixin, ListView):
 	model = Category
 	template_name = 'category/list_category.html'
 	context_object_name = 'list_category'
