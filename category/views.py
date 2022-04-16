@@ -73,11 +73,3 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = Category
     template_name = "category/delete_category.html"
     success_url = reverse_lazy('post')
-
-
-@method_decorator(superuser_required, name='dispatch')
-class ListCategoryView(LoginRequiredMixin, ListView):
-	model = Category
-	template_name = 'category/list_category.html'
-	context_object_name = 'list_category'
-	queryset = Category.objects.all()
