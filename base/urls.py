@@ -19,6 +19,8 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import handler403, handler404, handler500
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
@@ -33,6 +35,7 @@ urlpatterns = [
     re_path(r'^ckeditor/',include('ckeditor_uploader.urls')),
 
     path('tinymce/', include('tinymce.urls')),
+    path('favicon.png', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.png')))
 ]
 
 
