@@ -24,6 +24,7 @@ from django.views.generic.base import RedirectView
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import PostSitemap, StaticViewSitemap, CategorySitemap
 
+
 sitemaps = {
     'static': StaticViewSitemap,
     'post': PostSitemap,
