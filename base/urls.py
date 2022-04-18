@@ -22,11 +22,12 @@ from django.conf.urls import handler403, handler404, handler500
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import StaticViewSitemap, PostSitemap
+from .sitemaps import PostSitemap, StaticViewSitemap, CategorySitemap
 
 sitemaps = {
     'static': StaticViewSitemap,
     'post': PostSitemap,
+    'category': CategorySitemap,
 }
 
 urlpatterns = [
