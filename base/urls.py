@@ -21,7 +21,13 @@ from django.conf.urls.static import static
 from django.conf.urls import handler403, handler404, handler500
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, PostSitemap
 
+sitemaps = {
+    'static': StaticViewSitemap,
+    'post': PostSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +41,8 @@ urlpatterns = [
     re_path(r'^ckeditor/',include('ckeditor_uploader.urls')),
 
     path('tinymce/', include('tinymce.urls')),
-    path('favicon.png', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.png')))
+    path('favicon.png', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.png'))),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 
