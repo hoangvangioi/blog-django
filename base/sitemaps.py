@@ -7,7 +7,7 @@ from accounts.models import Profile
 
 
 class StaticViewSitemap(Sitemap):
-    priority = 0.5
+    priority = 0.9
     changefreq = 'daily'
 
     def items(self):
@@ -21,7 +21,7 @@ class StaticViewSitemap(Sitemap):
 
 class PostSitemap(Sitemap):
     changefreq = "daily"
-    priority = 0.5
+    priority = 0.9
 
     def items(self):
         return Post.published.all()
@@ -32,7 +32,7 @@ class PostSitemap(Sitemap):
 
 class CategorySitemap(Sitemap):
     changefreq = "daily"
-    priority = 0.5
+    priority = 0.9
 
     def items(self):
         return Category.objects.all()
