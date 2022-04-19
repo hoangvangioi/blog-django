@@ -65,7 +65,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 ]
 
-PREPEND_WWW = True
+PREPEND_WWW = config('PREPEND_WWW', default=False, cast=bool)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
