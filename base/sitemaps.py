@@ -1,8 +1,9 @@
+from django.utils import timezone
 from category.models import Category
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from post.models import Post, Comment
-from accounts.models import Profile, Account
+from post.models import Post
+from accounts.models import Profile
 
 
 class StaticViewSitemap(Sitemap):
@@ -15,6 +16,8 @@ class StaticViewSitemap(Sitemap):
     def location(self, item):
         return reverse(item)
 
+    def lastmod(self, obj):
+        return timezone.now()
 
 class PostSitemap(Sitemap):
     changefreq = "daily"
@@ -24,7 +27,7 @@ class PostSitemap(Sitemap):
         return Post.published.all()
 
     def lastmod(self, obj):
-        return obj.updated
+        return obj.publish
 
 
 class CategorySitemap(Sitemap):
@@ -35,7 +38,7 @@ class CategorySitemap(Sitemap):
         return Category.objects.all()
 
     def lastmod(self, obj):
-        return obj.id
+        return timezone.now()
 
 
 class ProfileSitemap(Sitemap):
@@ -46,4 +49,4 @@ class ProfileSitemap(Sitemap):
         return Profile.objects.all()
 
     def lastmod(self, obj):
-        return obj.id
+        return timezone.now()
