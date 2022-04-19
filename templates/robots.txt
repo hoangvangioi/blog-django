@@ -2,3 +2,5 @@ User-agent: *
 
 Disallow: /admin/
 Allow: /
+
+Sitemap: https://{{ request.get_host }}/sitemap.xml
