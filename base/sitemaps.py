@@ -49,4 +49,4 @@ class ProfileSitemap(Sitemap):
         return Profile.objects.all()
 
     def lastmod(self, obj):
-        return timezone.now()
+        return obj.updated_at
