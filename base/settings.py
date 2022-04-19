@@ -66,7 +66,7 @@ INSTALLED_APPS = [
 ]
 
 PREPEND_WWW = config('PREPEND_WWW', default=False, cast=bool)
-
+APPEND_SLASH = config('APPEND_SLASH', default=True, cast=bool)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
