@@ -7,29 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="keywords" content="Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django">
     <meta name="description" content="Chia sẻ tài liệu, khóa học và tất cả mọi thứ Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django">
     <meta name="author" content="Hoang Van Gioi">
     <meta name="googlebot" content="notranslate" />
 
     <meta property="og:error" content="Add title here">
-
     <meta property="og:title" content="Add title here">
-
     <meta property="og:description" content="Add description here">
-
     <meta property="og:image" content="https://your-website.com/og-image.png">
-
     <meta property="og:url" content="https://{{ request.get_host }}{{ request.get_full_path }}">
 
-
     <meta name="twitter:title" content="Add title here">
-
     <meta name="twitter:description" content="Add description here">
-
     <meta name="twitter:url" content="https://your-website.com/twitter-image.png">
-
     <meta name="twitter:card" content="summary">
 
     <link rel="canonical" href="https://{{ request.get_host }}{{ request.get_full_path }}">
@@ -48,14 +39,11 @@
     
     <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
     <link rel="stylesheet" media="screen" href="{% static 'css/simplebar.min.css' %}" />
-
     <link rel="stylesheet" media="screen" href="{% static 'css/tiny-slider.css' %}" />
-
+    <link rel="stylesheet" media="screen" href="{% static 'css/lightgallery.min.css' %}" />
     <link rel="stylesheet" media="screen" href="{% static 'css/nouislider.min.css' %}" />
-
-
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
     <link rel="stylesheet" media="screen" href="{% static 'css/drift-basic.min.css' %}" />
-
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
 
@@ -66,8 +54,6 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-KLNMPRF');</script>
     <!-- End Google Tag Manager -->
-
-    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
     
     <!-- Page loading scripts -->
     <script>
@@ -130,7 +116,8 @@
             <span class="handheld-toolbar-label">Account</span></a>
         </div>
     </div>
-    <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
+    <!-- Back To Top Button-->
+    <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
         
     <!-- Vendor scrits: js libraries and plugins-->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
@@ -139,13 +126,12 @@
     <script src="{% static 'js/smooth-scroll.polyfills.min.js' %}"></script>
     <script src="{% static 'js/nouislider.min.js' %}"></script>
     <script src="{% static 'js/Drift.min.js' %}"></script>
+    <script src="{% static 'js/lightgallery.min.js' %}"></script>
+    <script src="{% static 'js/lg-fullscreen.min.js' %}"></script>
+    <script src="{% static 'js/lg-zoom.min.js' %}"></script>
+    <script src="{% static 'js/lg-video.min.js' %}"></script>
     <!-- Main theme script-->
     <script src="{% static 'js/theme.min.js' %}"></script>
-
-    {% comment %} <script src="{% static 'js/lg-fullscreen.min.js' %}"></script>
-    <script src="{% static 'js/lg-zoom.min.js' %}"></script> {% endcomment %}
-
-
 </body>
 
 </html>
