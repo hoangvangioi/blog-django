@@ -7,15 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
     <meta name="keywords" content="Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django">
     <meta name="description" content="Chia sẻ tài liệu, khóa học và tất cả mọi thứ Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django">
     <meta name="author" content="Hoang Van Gioi">
     <meta name="googlebot" content="notranslate" />
 
-    <meta http-equiv="refresh" content="1;url=https://{{ request.get_host }}">
-    
     <meta property="og:error" content="Add title here">
 
     <meta property="og:title" content="Add title here">
@@ -48,8 +45,6 @@
     <link rel="mask-icon" color="#fe6a6a" href="{% static 'img/safari-pinned-tab.svg' %}">
     <meta name="msapplication-TileColor" content="#ee2bdebb">
     <meta name="theme-color" content="#ee2bdebb">
-
-    {% comment %} <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script> {% endcomment %}
     
     <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
     <link rel="stylesheet" media="screen" href="{% static 'css/simplebar.min.css' %}" />
@@ -87,7 +82,6 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% if '/' == request.path or post.get_absolute_url == request.path %}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308"
     crossorigin="anonymous"></script>
