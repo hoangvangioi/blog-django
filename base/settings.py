@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 ]
 
-PREPEND_WWW = False
+PREPEND_WWW = True
 # APPEND_SLASH = True
 
 MIDDLEWARE = [
