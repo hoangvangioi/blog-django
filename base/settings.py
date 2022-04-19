@@ -66,7 +66,6 @@ INSTALLED_APPS = [
 ]
 
 PREPEND_WWW = True
-# APPEND_SLASH = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

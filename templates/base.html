@@ -20,7 +20,7 @@
 
     <meta property="og:image" content="https://your-website.com/og-image.png">
 
-    <meta property="og:url" content="https://your-website.com">
+    <meta property="og:url" content="https://{{ request.get_host }}{{ request.get_full_path }}">
 
 
     <meta name="twitter:title" content="Add title here">
@@ -31,6 +31,8 @@
 
     <meta name="twitter:card" content="summary">
 
+    <link rel="canonical" href="https://{{ request.get_host }}{{ request.get_full_path }}">
+    
     <title>{% block title %} {% endblock %} | Shop Hoàng Giỏi</title>
 
     <!-- Favicon and Touch Icons-->
