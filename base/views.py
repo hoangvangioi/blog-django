@@ -13,4 +13,4 @@ def handler403(request, *args, **argv):
 
 
 def csrf_failure(request, reason=""):
-    return render(request, '404.html')
+    return render(request, '404.html', status=403)

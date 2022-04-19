@@ -23,6 +23,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import PostSitemap, StaticViewSitemap, CategorySitemap
+from django.views.generic import TemplateView
 
 
 sitemaps = {
@@ -45,6 +46,8 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('favicon.png', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.png'))),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('ads.txt', TemplateView.as_view(template_name='ads.txt'), name='ads_file'),
+    path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_file'),
 ]
 
 
@@ -56,6 +59,7 @@ if settings.DEBUG:
 handler403 = 'base.views.handler403'
 handler404 = 'base.views.error'
 handler500 = 'base.views.handler500'
+handler403 = 'base.views.csrf_failure'
 
 
 admin.site.site_header="Blog Hoàng Giỏi Admin"
