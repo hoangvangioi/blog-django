@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+{% block og %} {{post.title}} {% endblock og %}
+{% block twitter %} {{post.title}} {% endblock twitter %}
+{% block description_og %} {{ post.body|truncatechars:200 }} {% endblock description_og %}
+{% block description_twitter %} {{ post.body|truncatechars:200 }} {% endblock description_twitter %}
+{% block keywords %} {{ post.body|truncatechars:80 }} {% endblock keywords %}
+{% block description %} {{ post.body|truncatechars:160 }} {% endblock description %}
 {% block title %}{{post.title}}{% endblock title %} 
 {% block content %}
 
