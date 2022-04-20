@@ -64,6 +64,8 @@ handler403 = 'base.views.handler403'
 handler404 = 'base.views.error'
 handler500 = 'base.views.handler500'
 handler403 = 'base.views.csrf_failure'
+handler404 = 'base.views.error_404'
+handler500 = 'base.views.error_500'
 
 
 admin.site.site_header="Blog Hoàng Giỏi Admin"
