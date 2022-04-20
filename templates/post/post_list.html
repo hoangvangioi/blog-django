@@ -42,8 +42,8 @@
                     <a class="btn-tag me-2 my-2 bg-accent text-white" href="{% url 'post_tag' tag.slug %}"># {{ tag.name }}</a> {% if not forloop.last %} {% endif %} {% endfor %}
                     {% if user.is_superuser %}
                     <br>
-                    <a class="btn btn-warning btn-sm" href="{{ post.get_absolute_url }}update/">Update</a>
-                    <a class="btn btn-warning btn-sm" href="{{ post.get_absolute_url }}delete/">Delete</a>
+                    <a class="btn btn-warning btn-sm mb-2" href="{{ post.get_absolute_url }}update/">Update</a>
+                    <a class="btn btn-warning btn-sm mb-2" href="{{ post.get_absolute_url }}delete/">Delete</a>
                     {% endif %}
                 </div>
                 <div class="blog-end-column"><a class="blog-entry-thumb mb-3" href="{{ post.get_absolute_url }}"><img src="{{ post.featured_image.url }}" alt="Post"></a>
