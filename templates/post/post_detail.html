@@ -68,12 +68,12 @@
             <!-- comment-->
             {% load mptt_tags %}
             {% recursetree comments %}
-            <div id="{{ node.id }}" class="d-flex align-items-start py-4 border-bottom"><img class="rounded-circle" src="{{ user.profile.get_avatar }}" width="50" alt="{{ node.user }}">
+            <div id="{{ node.id }}" class="d-flex align-items-start py-4 border-bottom"><img class="rounded-circle" src="{{ user.profile.get_avatar }}" width="50" alt="{{ node.user.get_full_name }}">
                 <div class="ps-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         {% if node.level < 8 %}
                         {% if user.id %}
-                        <h6 class="fs-md mb-0">{{ node.user }}</h6><a class="nav-link-style fs-sm fw-medium" onclick="myFunction({{ node.id }})"><i class="ci-reply me-2"></i>Reply</a>
+                        <h6 class="fs-md mb-0">{{ node.user.get_full_name }}</h6><a class="nav-link-style fs-sm fw-medium" onclick="myFunction({{ node.id }})"><i class="ci-reply me-2"></i>Reply</a>
                         {% else %}
                         <a class="nav-link-style fs-sm fw-medium" href="{% url 'login' %}"><i class="ci-reply me-2"></i>Login to Reply</a>
                         {% endif %}
