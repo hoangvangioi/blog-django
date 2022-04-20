@@ -1,0 +1,2 @@
+RewriteCond %{HTTP_HOST} !^{{ request.get_host }}m$ [NC]
+RewriteRule ^(.*)$ https://{{ request.get_host }}/$1 [L,R=301]
