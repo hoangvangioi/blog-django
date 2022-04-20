@@ -25,6 +25,10 @@
 
     <link rel="canonical" href="https://{{ request.get_host }}{{ request.get_full_path }}">
     
+    {% if object_list.count < 5 %}
+    <meta name="ROBOTS" content="NOINDEX, FOLLOW" />
+    {% endif %}
+
     <title>{% block title %} {% endblock %} | Shop Hoàng Giỏi</title>
 
     <!-- Favicon and Touch Icons-->

@@ -14,3 +14,12 @@ def handler403(request, *args, **argv):
 
 def csrf_failure(request, reason=""):
     return render(request, '404.html', status=403)
+
+
+# def error_404(request):
+#         data = {}
+#         return render(request,'myapp/error_404.html', data)
+
+# def error_500(request):
+#         data = {}
+#         return render(request,'myapp/error_500.html', data)

@@ -63,6 +63,9 @@ INSTALLED_APPS = [
     'cloudinary',
 
     'django.contrib.sitemaps',
+
+    'django.contrib.sites',
+    'django.contrib.redirects',
 ]
 
 
@@ -72,6 +75,7 @@ MIDDLEWARE = [
     
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -79,6 +83,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'base.urls'
 

@@ -50,3 +50,15 @@ class ProfileSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.updated_at
+
+
+
+
+
+# class PostSitemap(Sitemap):
+
+#     def items(self):
+#         return Post.objects.all()
+
+#     def location(self, item):
+#         return reverse('product', args=[item.product_id])

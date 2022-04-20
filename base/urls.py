@@ -24,6 +24,7 @@ from django.views.generic.base import RedirectView
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import PostSitemap, StaticViewSitemap, CategorySitemap, ProfileSitemap
 from django.views.generic import TemplateView
+from .feeds import LatestEntriesFeed
 
 
 sitemaps = {
@@ -49,6 +50,8 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('ads.txt', TemplateView.as_view(template_name='ads.txt', content_type='text/plain'), name='ads_file'),
     path('robots.txt', TemplateView.as_view(template_name='Robots.txt', content_type='text/plain'), name='robots_file'),
+
+    path('feed/', LatestEntriesFeed()),
 ]
 
 
