@@ -66,6 +66,9 @@ INSTALLED_APPS = [
 ]
 
 
+PREPEND_WWW = config('PREPEND_WWW', default=False, cast=bool)
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
