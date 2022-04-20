@@ -150,7 +150,7 @@
             {% for post in similar_posts %}
             <!-- article-->
             <article><a class="blog-entry-thumb mb-3" href="{{ post.get_absolute_url }}"><img src="{{ post.featured_image.url }}" alt="Post"></a>
-                <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#">by {{post.author}}</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#"> {{ post.publish }}</a></div>
+                <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#">by Hoàng Giỏi</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#"> {{ post.publish }}</a></div>
                 <h3 class="h6 blog-entry-title"><a href="{{ post.get_absolute_url }}">{{post.title}}</a></h3>
             </article>
             {% empty %}
@@ -160,9 +160,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 
@@ -185,8 +182,6 @@
 				</select> \
 				<label for="id_content">Content:</label> \
 				<textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
-                {{ id.content }} \
-                {{ id.media }} \
 				{% csrf_token %} \
 				<button type="submit" class="btn btn-success btn-block mt-2 btn-sm">Submit</button> \
 			</form>');

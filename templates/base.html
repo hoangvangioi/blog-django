@@ -12,7 +12,7 @@
     <meta name="author" content="Hoang Van Gioi">
     <meta name="googlebot" content="notranslate" />
 
-    <meta property="og:error" content="Add title here">
+
     <meta property="og:title" content="Add title here">
     <meta property="og:description" content="Add description here">
     <meta property="og:image" content="https://your-website.com/og-image.png">
@@ -24,10 +24,7 @@
     <meta name="twitter:card" content="summary">
 
     <link rel="canonical" href="http://{{ request.get_host }}{{ request.get_full_path }}">
-    
-    {% if object_list.count < 5 %}
-    <meta name="ROBOTS" content="NOINDEX, FOLLOW" />
-    {% endif %}
+
 
     <title>{% block title %} {% endblock %} | Shop Hoàng Giỏi</title>
 
