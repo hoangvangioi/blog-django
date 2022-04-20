@@ -12,11 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 
 import os
-import django_heroku
-import dj_database_url
-from decouple import config, Csv
-from django.contrib.messages import constants as messages
 
+import dj_database_url
+import django_heroku
+from decouple import Csv, config
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -63,12 +63,8 @@ INSTALLED_APPS = [
     'cloudinary',
 
     'django.contrib.sitemaps',
-
-    'django.contrib.sites',
-    'django.contrib.redirects',
 ]
 
-SiTE_ID = config('DEBUG', default=1)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,7 +72,6 @@ MIDDLEWARE = [
     
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

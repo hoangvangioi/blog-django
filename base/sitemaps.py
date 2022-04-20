@@ -1,9 +1,9 @@
-from django.utils import timezone
+from accounts.models import Profile
 from category.models import Category
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
+from django.utils import timezone
 from post.models import Post
-from accounts.models import Profile
 
 
 class StaticViewSitemap(Sitemap):
@@ -11,13 +11,14 @@ class StaticViewSitemap(Sitemap):
     changefreq = 'daily'
 
     def items(self):
-        return ['post', 'login', 'register']
+        return ['post', 'login', 'register', 'logout']
 
     def location(self, item):
         return reverse(item)
 
     def lastmod(self, obj):
         return timezone.now()
+
 
 class PostSitemap(Sitemap):
     changefreq = "daily"
@@ -28,6 +29,12 @@ class PostSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.publish
+
+    def location(self, item):
+        return reverse('post_detail', args=[item.publish.year,
+							item.publish.month,
+							item.publish.day,
+							item.slug])
 
 
 class CategorySitemap(Sitemap):
@@ -40,6 +47,9 @@ class CategorySitemap(Sitemap):
     def lastmod(self, obj):
         return timezone.now()
 
+    def location(self, item):
+        return reverse('post_by_category', args=[item.slug])
+
 
 class ProfileSitemap(Sitemap):
     changefreq = "daily"
@@ -51,14 +61,5 @@ class ProfileSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.updated_at
 
-
-
-
-
-# class PostSitemap(Sitemap):
-
-#     def items(self):
-#         return Post.objects.all()
-
-#     def location(self, item):
-#         return reverse('product', args=[item.product_id])
+    def location(self, item):
+        return reverse('profile', args=[item.slug])
