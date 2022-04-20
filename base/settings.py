@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.redirects',
 ]
 
+SiTE_ID = config('DEBUG', default=1)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
