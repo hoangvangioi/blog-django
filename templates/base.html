@@ -12,6 +12,7 @@
     <meta name="author" content="Hoang Van Gioi">
     <meta name="googlebot" content="notranslate" />
 
+    {% if post.get_absolute_url == request.path %}    
     <meta property="og:title" content="{% block og %}{% endblock og %}">
     <meta property="og:description" content="{% block description_og %}{% endblock description_og %}">
     <meta property="og:image" content="{{ post.featured_image.url }}">
@@ -20,7 +21,7 @@
     <meta name="twitter:description" content="{% block description_twitter %}{% endblock description_twitter %}">
     <meta name="twitter:image" content="{{ post.featured_image.url }}" />
     <meta name="twitter:card" content="summary">
-
+    {% endif %}
     <link rel="canonical" href="http://{{ request.get_host }}{{ request.get_full_path }}">
 
     <title>{% block title %} {% endblock %} | Hoàng Giỏi Blog</title>
