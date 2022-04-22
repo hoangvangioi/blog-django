@@ -170,9 +170,9 @@ class Profile(models.Model):
     def get_last_name(self):
         return f'{self.last_name}'
     
-    def get_absolute_url(self):
+    def get_absolute_url(self, request):
         return reverse("profile", args={self.slug})
-
+            
     # def save(self, *args, **kwargs):
     #     self.slug= slugify(self.user)
     #     super().save(*args, **kwargs)

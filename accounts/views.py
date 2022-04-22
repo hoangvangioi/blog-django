@@ -106,7 +106,6 @@ class ProfileDetailView(DetailView):
     queryset = Profile.objects.all()
     context_object_name = 'profile'
     template_name = "accounts/profile.html"
-    # slug_url_kwarg = 'slug'
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
