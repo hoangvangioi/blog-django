@@ -13450,7 +13450,9 @@ dd {
 
 @font-face {
     font-family: "cartzilla-icons";
-    src: url("../fonts/cartzilla-icons.ttf?ufvuz0") format("truetype"), url("../fonts/cartzilla-icons.woff?ufvuz0") format("woff"), url("../fonts/cartzilla-icons.svg?ufvuz0#cartzilla-icons") format("svg");
+    src: url("../fonts/cartzilla-icons.ttf?ufvuz0") format("truetype"), 
+        url("../fonts/cartzilla-icons.woff?ufvuz0") format("woff"), 
+        url("../fonts/cartzilla-icons.svg?ufvuz0#cartzilla-icons") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block
@@ -15550,6 +15552,15 @@ input[type=search]::-webkit-search-results-decoration {
 
 .bs-whatsapp:hover.bs-light {
     color: #25d366
+}
+
+.bs-github:hover {
+    background-color: #000;
+    box-shadow: 0 .5rem 1.125rem -0.5rem #000
+}
+
+.bs-github:hover.bs-light {
+    color: #000
 }
 
 .btn-share {
