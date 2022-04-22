@@ -16,8 +16,8 @@
 					{% for i in post %}
 					<tr>
 						<td><a href="{{i.get_absolute_url}}">{{ i }}</a></td>
-						{% comment %} <td class="text-center"><a href="{% url 'update_post' i.post %}" class="btn btn-dark" role="button">Edit</a></td>
-						<td class="text-center"><a href="{% url 'delete_post' i.post %}" class="btn btn-danger" role="button">Delete</a></td> {% endcomment %}
+						<td class="text-center"><a href="{{i.get_absolute_url}}update/" class="btn btn-dark" role="button">Edit</a></td>
+						<td class="text-center"><a href="{{i.get_absolute_url}}delete/" class="btn btn-danger" role="button">Delete</a></td>
 					</tr>
 					{% endfor %}
 				</tbody>
