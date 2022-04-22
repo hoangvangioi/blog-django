@@ -136,18 +136,18 @@ class Account(AbstractBaseUser):
 
 class Profile(models.Model):
 
-    GENDER_MALE = 1
-    GENDER_FEMALE = 2
     GENDER_CHOICES = [
-        (GENDER_MALE, _("Male")),
-        (GENDER_FEMALE, _("Female")),
+        (_("Male"), _("Male")),
+        (_("Female"), _("Female")),
+        (_("Other"), _("Other")),
+
     ]
 
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="profile")
     slug = models.SlugField(max_length=200)
     avatar = models.ImageField(blank=True, upload_to='profile/avatars/')
     birthday = models.DateField(null=True, blank=True)
-    gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, null=True, blank=True)
+    gender = models.CharField(max_length=15, choices=GENDER_CHOICES, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     website_url = models.URLField()
     facebook_url = models.URLField()
@@ -170,7 +170,7 @@ class Profile(models.Model):
     def get_last_name(self):
         return f'{self.last_name}'
     
-    def get_absolute_url(self, request):
+    def get_absolute_url(self):
         return reverse("profile", args={self.slug})
             
     # def save(self, *args, **kwargs):

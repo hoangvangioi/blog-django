@@ -169,6 +169,17 @@ class ProfileForm(forms.ModelForm):
             format='%Y-%m-%d',
         )
     )
+#     GENDER_CHOICES = [
+#     (_("Male"), _("Male")),
+#     (_("Female"), _("Female")),
+#     (_("Other"), _("Other")),
+# ]
+#     gender = forms.ChoiceField(
+#         widget=forms.Select(
+#             attrs={'class': 'form-control'},
+#         ),
+#         choices=GENDER_CHOICES,
+#         )
 
     class Meta:
         model = Profile
