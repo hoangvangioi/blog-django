@@ -3,13 +3,12 @@
 {% block content %}
 
 <div class="container">
-
     <form method="POST" class="row" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form }}
         {{ form.media }}
       <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary my-3" type="submit">Submit form</button>
       </div>
     </form>
 </div>

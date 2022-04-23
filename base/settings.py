@@ -182,144 +182,128 @@ TAGGIT_CASE_INSENSITIVE = True
 
 
 TINYMCE_DEFAULT_CONFIG = {
-    # "height": "320px",
-    # "width": "960px",
-    # "menubar": "file edit view insert format tools table help",
-    # "plugins": "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code "
-    # "fullscreen insertdatetime media table paste code help wordcount spellchecker",
-    # "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
-    # "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
-    # "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
-    # "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
-    # "a11ycheck ltr rtl | showcomments addcomment code",
-    # "custom_undo_redo_levels": 10,
+    "height": "320px",
     "language": "en",  # To force a specific language instead of the Django current language.
 }
 
 
-
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'skin': 'moono-lisa',
-#         'toolbar_Basic': [
-#             ['Source', '-', 'Bold', 'Italic']
-#         ],
-#         'toolbar_YourCustomToolbarConfig': [
-#             {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
-#             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-#             {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
-#             {'name': 'forms',
-#              'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
-#                        'HiddenField']},
-#             '/',
-#             {'name': 'basicstyles',
-#              'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-#             {'name': 'paragraph',
-#              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
-#                        'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
-#                        'Language']},
-#             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
-#             {'name': 'insert',
-#              'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
-#             '/',
-#             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-#             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-#             {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-#             {'name': 'about', 'items': ['About']},
-#             '/',  # put this to force next toolbar on new line
-#             {'name': 'yourcustomtools', 'items': [
-#                 # put the name of your editor.ui.addButton here
-#                 'Preview',
-#                 'Maximize',
-
-#             ]},
-#         ],
-#         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
-#         # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-#         'height': 291,
-#         'width': '100%',
-#         # 'filebrowserWindowHeight': 725,
-#         # 'filebrowserWindowWidth': 940,
-#         # 'toolbarCanCollapse': True,
-#         # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-#         'tabSpaces': 4,
-#         'extraPlugins': ','.join([
-#             'uploadimage', # the upload image feature
-#             # your extra plugins here
-#             'div',
-#             'autolink',
-#             'autoembed',
-#             'embedsemantic',
-#             'autogrow',
-#             # 'devtools',
-#             'widget',
-#             'lineutils',
-#             'clipboard',
-#             'dialog',
-#             'dialogui',
-#             'elementspath',
-#             # 'a11yhelp, 
-#             # 'about, 
-#             # 'adobeair, 
-#             # 'ajax, 
-#             # 'autoembed, 
-#             # 'autogrow, 
-#             # 'autolink, 
-#             # 'bbcode, 
-#             # 'clipboard, 
-#             # 'codesnippet,
-#             'codesnippetgeshi', 
-#             'colordialog', 
-#             'devtools', 
-#             'dialog', 
-#             'div', 
-#             'divarea', 
-#             'docprops', 
-#             'embed', 
-#             'embedbase',
-#             'embedsemantic', 
-#             'filetools', 
-#             'find', 
-#             # 'flash', 
-#             'forms', 
-#             'iframe', 
-#             'iframedialog', 
-#             'image', 
-#             'image2', 
-#             'language',
-#             'lineutils', 
-#             'link', 
-#             'liststyle', 
-#             'magicline', 
-#             'mathjax', 
-#             'menubutton', 
-#             'notification', 
-#             'notificationaggregator',
-# # pagebreak, pastefromword, placeholder, preview, scayt, sharedspace, showblocks, smiley,
-# # sourcedialog, specialchar, stylesheetparser, table, tableresize, tabletools, templates, uicolor,
-# # uploadimage, uploadwidget, widget, wsc, xml
-#         ]),
-#     }
-# }
-
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'skin': 'moono-lisa',
-#         'toolbar_Basic': 'Full',
-#         'toolbar_YourCustomToolbarConfig': 'Full',
-#         'toolbar': 'Full',  # put selected toolbar config here
-#         'toolbarGroups': 'Full',
-#         'height': 291,
-#         'width': '102%',
-#     }
-# }
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'
 
 
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono-lisa',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_Custom': [
+            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'forms',
+             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+                       'HiddenField']},
+            '/',
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+                       'Language']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'insert',
+             'items': ['Image', 'Youtube', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            {'name': 'about', 'items': ['CodeSnippet']},
+            {'name': 'about', 'items': ['About']},
+            '/',  # put this to force next toolbar on new line
+            {'name': 'yourcustomtools', 'items': [
+                # put the name of your editor.ui.addButton here
+                'Preview',
+                'Maximize',
+            ]},
+        ],
+        'toolbar': 'Custom',  # put selected toolbar config here
+        'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+        'height': 500,
+        'width': '100%',
+        'filebrowserWindowHeight': 725,
+        'filebrowserWindowWidth': 940,
+        'toolbarCanCollapse': True,
+        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.7-latest/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath',
+            'a11yhelp', 
+            'about', 
+            'adobeair', 
+            'ajax', 
+            'bbcode', 
+            'codesnippet',
+            'codesnippetgeshi', 
+            'colordialog', 
+            'divarea', 
+            'docprops', 
+            'embed', 
+            'embedbase',
+            'filetools', 
+            'find', 
+            'forms', 
+            'iframe', 
+            'iframedialog', 
+            'image', 
+            'image2', 
+            'language',
+            'link', 
+            'liststyle', 
+            'magicline', 
+            'mathjax', 
+            'menubutton', 
+            'notification', 
+            'notificationaggregator',
+            'pagebreak',
+            'pastefromword', 
+            'placeholder', 
+            'preview', 
+            'scayt', 
+            'sharedspace', 
+            'showblocks', 
+            'smiley',
+            'sourcedialog', 
+            'specialchar', 
+            'stylesheetparser', 
+            'table', 
+            'tableresize', 
+            'tabletools', 
+            'templates', 
+            'uicolor',
+            'uploadimage', 
+            'uploadwidget', 
+            'widget', 
+            'wsc', 
+            'xml'
+        ]),
+    }
+}
 
 LOGIN_URL = '/accounts/login/'
-
-USERNAME_FIELD = 'email'
-REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
