@@ -74,15 +74,14 @@
                     <li class="nav-item dropdown navbar-nav"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tài khoản</a>
                         <ul class="dropdown-menu">
                             {% if user.id is None %}
-                            <li><a class="dropdown-item" href="">Sign In</a></li>
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Sign In</a></li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="">Sign Up</a></li>
+                            <li><a class="dropdown-item" href="{% url 'register' %}">Sign Up</a></li>
                             {% else %}
-                            <li><a class="dropdown-item" href="">Profile</a></li>
-                            <li><a class="dropdown-item" href="">Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="">Change Password</a></li>
+                            <li><a class="dropdown-item" href="{% url 'edit_profile' user.profile.slug %}">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="">Log Out</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                             {% endif %}
                         </ul>
                     </li>
