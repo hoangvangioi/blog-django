@@ -8,13 +8,16 @@
         <div class="offcanvas-body py-grid-gutter py-lg-1 px-lg-4" data-simplebar data-simplebar-auto-hide="true">
             <!-- Categories-->
             <div class="widget widget-links mb-grid-gutter pb-grid-gutter border-bottom mx-lg-2">
-            <h3 class="widget-title">Blog categories</h3>
-            <ul class="widget-list">
-                {% for link in links %}
-                <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="{% url 'post_by_category' link.slug %}"><span>{{ link.category }}</span><span class="fs-xs text-muted ms-3">18</span></a></li>                
-                {{ link.category_count }}
-                {% endfor %}
-            </ul>
+                <h3 class="widget-title">Blog categories</h3>
+                <ul class="widget-list">
+                    {% for link in links %}
+                    <li class="widget-list-item">
+                        <a class="widget-list-link d-flex justify-content-between align-items-center" href="{% url 'post_by_category' link.slug %}">
+                            <span>{{ link.category }}</span>
+                        </a>
+                    </li>                
+                    {% endfor %}
+                </ul>
             </div>
             <!-- Latest posts-->
             <div class="widget mb-grid-gutter pb-grid-gutter border-bottom mx-lg-2">
@@ -38,7 +41,8 @@
             <div class="widget pb-grid-gutter mx-lg-2">
                 <h3 class="widget-title">Popular tags</h3>
                 {% for tag in all_tag %}
-                <a class="btn-tag me-2 mb-2" href="#"># {{ tag }}</a>
+                <a class="btn-tag me-2 mb-2" href="{% url 'post_tag' tag.slug %}"># {{ tag }}</a>
+                {% if not forloop.last %} {% endif %}
                 {% endfor %}
             </div>
             <!-- Promo banner-->
