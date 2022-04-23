@@ -34,6 +34,7 @@
                             {% comment %} <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' profile.slug %}"><i class="ci-settings opacity-60 me-2"></i>Settings</a> {% endcomment %}
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' user.profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Profile</a>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'edit_profile' user.profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Edit Profile</a>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'change_password' %}"><i class="ci-key opacity-60 me-2"></i>Change password</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}"><i class="ci-sign-out opacity-60 me-2"></i>Sign Out</a>
                         </div>
@@ -60,13 +61,31 @@
 				</ul>
 				<!-- Primary menu-->
 				<ul class="navbar-nav navbar-expand-lg">
-					{% comment %} <li class="nav-item dropdown"><a class="nav-link dropdown-item" href="">Home</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-item" href="">Shop</a></li> {% endcomment %}
+					{% comment %} <li class="nav-item dropdown"><a class="nav-link dropdown-item" href="">Home</a></li>{% endcomment %}
 					<li class="nav-item"><a class="nav-link" href="{% url 'post' %}">Blog</a></li>
                     {% if user.is_superuser %}
-                        <li class="nav-item active"><a class="nav-link" href="{% url 'category_list' %}">Quản lý danh mục</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'list_post' %}">Quản lý bài đăng</a></li>
+                        <li class="nav-item dropdown navbar-nav"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Admin</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="{% url 'category_list' %}">Quản lý danh mục</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'list_post' %}">Quản lý bài đăng</a></li>
+                            </ul>
+                        </li>
                     {% endif %}
+                    <li class="nav-item dropdown navbar-nav"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tài khoản</a>
+                        <ul class="dropdown-menu">
+                            {% if user.id is None %}
+                            <li><a class="dropdown-item" href="">Sign In</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="">Sign Up</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="">Profile</a></li>
+                            <li><a class="dropdown-item" href="">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="">Change Password</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="">Log Out</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
 				</ul>
 			</div>
 		</div>
