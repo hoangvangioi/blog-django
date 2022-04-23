@@ -95,7 +95,7 @@
     <!-- Toolbar for handheld devices (Blog)-->
     <div class="handheld-toolbar">
         <div class="d-table table-layout-fixed w-100">
-            {% if '/' == request.path or post.get_absolute_url == request.path %}
+            {% if '/' or 'category' or 'tag' or post.get_absolute_url == request.path %}
             <a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#blog-sidebar">
             <span class="handheld-toolbar-icon"><i class="ci-sign-in"></i></span>
             <span class="handheld-toolbar-label">Sidebar</span></a>
