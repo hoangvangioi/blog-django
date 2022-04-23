@@ -26,12 +26,11 @@
 				</div>
 				{% else %}
 				<div class="navbar-tool dropdown ms-2"><a class="navbar-tool-icon-box border dropdown-toggle" href="{% url 'profile' user.profile.slug %}">
-					<img src="{{ user.profile.get_avatar }}" width="32" alt="{{ user.first_name }}"></a>
+					<img src="{{ user.profile.get_avatar }}" width="36" alt="{{ user.first_name }}"></a>
 					<a class="navbar-tool-text ms-n1" href="{% url 'profile' user.profile.slug %}"><small>Hello {{ user.first_name }}!</small>My Account</a>
 					<div class="dropdown-menu dropdown-menu-end">
                         <div style="min-width: 14rem;">
                             <h6 class="dropdown-header">Account</h6>
-                            {% comment %} <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' profile.slug %}"><i class="ci-settings opacity-60 me-2"></i>Settings</a> {% endcomment %}
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' user.profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Profile</a>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'edit_profile' user.profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Edit Profile</a>
                             <a class="dropdown-item d-flex align-items-center" href="{% url 'change_password' %}"><i class="ci-key opacity-60 me-2"></i>Change password</a>
@@ -61,7 +60,6 @@
 				</ul>
 				<!-- Primary menu-->
 				<ul class="navbar-nav navbar-expand-lg">
-					{% comment %} <li class="nav-item dropdown"><a class="nav-link dropdown-item" href="">Home</a></li>{% endcomment %}
 					<li class="nav-item"><a class="nav-link" href="{% url 'post' %}">Blog</a></li>
                     {% if user.is_superuser %}
                         <li class="nav-item dropdown navbar-nav"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Admin</a>

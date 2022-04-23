@@ -16,7 +16,6 @@
             <div class="p-4 p-sm-5 bg-secondary badge-shadow rounded">
                 <h2>Log in to your account</h2>
                 {% include 'includes/alerts.html' %}
-                {% comment %} class="needs-validation mb-2" action="{% url 'login' %}" method="POST" novalidate {% endcomment %}
                 <form class="needs-validation mt-4" action="{% url 'login' %}" method="POST" novalidate>
                     {% csrf_token %}
                     {% for field in form %}
