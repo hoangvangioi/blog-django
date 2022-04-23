@@ -89,13 +89,11 @@
     {% block content %} {% endblock content %} 
     </main>
     {% include "includes/footer.html" %}
-    <!-- Back To Top Button-->
-    <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up"></i></a>
 
     <!-- Toolbar for handheld devices (Blog)-->
     <div class="handheld-toolbar">
         <div class="d-table table-layout-fixed w-100">
-            {% if '/' or 'category' or 'tag' or post.get_absolute_url == request.path %}
+            {% if '/' == request.path or post.get_absolute_url == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %}
             <a class="d-table-cell handheld-toolbar-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#blog-sidebar">
             <span class="handheld-toolbar-icon"><i class="ci-sign-in"></i></span>
             <span class="handheld-toolbar-label">Sidebar</span></a>
@@ -118,8 +116,8 @@
         </div>
     </div>
     <!-- Back To Top Button-->
-    <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
-        
+    <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up"></i></a>
+
     <!-- Vendor scrits: js libraries and plugins-->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/simplebar.min.js' %}"></script>

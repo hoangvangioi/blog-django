@@ -42,7 +42,6 @@
                 <h3 class="widget-title">Popular tags</h3>
                 {% for tag in all_tag %}
                 <a class="btn-tag me-2 mb-2" href="{% url 'post_tag' tag.slug %}"># {{ tag }}</a>
-                {% if not forloop.last %} {% endif %}
                 {% endfor %}
             </div>
             <!-- Promo banner-->

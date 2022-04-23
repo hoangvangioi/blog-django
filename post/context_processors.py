@@ -1,5 +1,4 @@
 from .models import Post
-from django.db.models import Count
 from taggit.models import Tag
 
 
