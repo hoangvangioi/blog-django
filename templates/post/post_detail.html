@@ -34,7 +34,7 @@
             <div class="d-flex align-items-center fs-sm mb-2">
                 <a class="blog-entry-meta-link" href="{% url 'profile' post.author.profile.slug %}">
                     <div class="blog-entry-author-ava"><img src="{% static 'img/avatar.png' %}" alt="{{post.author.get_full_name}}"></div>{{post.author.get_full_name}}</a>
-                <span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">{{ post.publish|date:"l, j F Y" }}</a></div>
+                <span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">{{ post.publish }}</a></div>
             <div class="fs-sm mb-2"><a class="blog-entry-meta-link text-nowrap" href="#comments" data-scroll><i class="ci-message"></i>{{ comments_count }}</a></div>
         </div>
         <!-- Gallery-->
@@ -59,7 +59,7 @@
         <!-- Post navigation-->
         <nav class="entry-navigation" aria-label="Post navigation">
             {% if post.previous_post %}
-            <a class="entry-navigation-link" href="{{ post.next_post.get_absolute_url }}" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex align-items-center&quot;&gt;&lt;img src=&quot;{{ post.previous_post.featured_image.url }}&quot; width=&quot;60&quot; class=&quot;rounded&quot; alt=&quot;Post thumb&quot;&gt;&lt;div class=&quot;ps-3&quot;&gt;&lt;h6 class=&quot;fs-sm fw-semibold mb-0&quot;&gt;{{ post.previous_post.title }}&lt;/h6&gt;&lt;span class=&quot;d-block fs-xs text-muted&quot;&gt;by {{ post.previous_post.author }}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><i class="ci-arrow-left me-2"></i><span class="d-none d-sm-inline">Prev post</span></a>
+            <a class="entry-navigation-link" href="{{ post.previous_post.get_absolute_url }}" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex align-items-center&quot;&gt;&lt;img src=&quot;{{ post.previous_post.featured_image.url }}&quot; width=&quot;60&quot; class=&quot;rounded&quot; alt=&quot;Post thumb&quot;&gt;&lt;div class=&quot;ps-3&quot;&gt;&lt;h6 class=&quot;fs-sm fw-semibold mb-0&quot;&gt;{{ post.previous_post.title }}&lt;/h6&gt;&lt;span class=&quot;d-block fs-xs text-muted&quot;&gt;by {{ post.previous_post.author }}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><i class="ci-arrow-left me-2"></i><span class="d-none d-sm-inline">Prev post</span></a>
             {% endif %}
             <a class="entry-navigation-link" href="{% url 'post' %}"><i class="ci-view-list me-2"></i><span class="d-none d-sm-inline">All posts</span></a>
             {% if post.next_post %}
@@ -74,14 +74,14 @@
             <!-- comment-->
             {% load mptt_tags %}
             {% recursetree comments %}
-            <div id="{{ node.id }}" class="d-flex align-items-start py-4 border-bottom"><img class="rounded-circle" src="{{ user.profile.get_avatar }}" width="50" alt="{{ node.user.get_full_name }}">
+            <div id="{{ node.id }}" class="d-flex align-items-start py-4 border-bottom"><img class="rounded-circle" src="{{ node.user.profile.get_avatar }}" width="50" alt="{{ node.user.get_full_name }}">
                 <div class="ps-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         {% if node.level < 8 %}
                         {% if user.id %}
                         <h6 class="fs-md mb-0">{{ node.user.get_full_name }}</h6><a class="nav-link-style fs-sm fw-medium" onclick="myFunction({{ node.id }})"><i class="ci-reply me-2"></i>Reply</a>
                         {% else %}
-                        <a class="nav-link-style fs-sm fw-medium" href="{% url 'login' %}"><i class="ci-reply me-2"></i>Login to Reply</a>
+                        <h6 class="fs-md mb-0">{{ node.user.get_full_name }}</h6><a class="nav-link-style fs-sm fw-medium" href="{% url 'login' %}"><i class="ci-reply me-2"></i>Reply</a>
                         {% endif %}
                         {% endif %}
                     </div>
@@ -124,11 +124,11 @@
             <!-- Post comment form-->
             <div class="card border-0 shadow mt-2 mb-4">
                 <div class="card-body" id="myDIV">
-                    <div class="d-flex align-items-start"><img class="rounded-circle" src="{{ user.profile.get_avatar }}" width="50" alt="...">
-                        <form id="myForm" method="post" class="w-100 needs-validation ms-3" novalidate>
+                    <div class="d-flex align-items-start">
+                        <form id="myForm" method="post" action="#comments" class="w-100 needs-validation" novalidate>
                             {% if user.id %}
                             <div class="mb-3">
-                                <h4>Để lại một bình luận:</h4>
+                                <h5>Để lại một bình luận:</h5>
                                 {% csrf_token %}
                                 {{ comment_form.content }}
                                 {{ comment_form.media }}
@@ -168,7 +168,6 @@
 </div>
 
 
-
 <script>
 	function formExit() {
 		document.getElementById("newForm").remove();
@@ -182,7 +181,7 @@
 		var d1 = document.getElementById(id);
 		d1.insertAdjacentHTML('afterend',
 			'<form id="newForm" class="form-insert py-2" method="post"> \
-				<div class="d-flex justify-content-between"><h4>Reply:</h4><div><button type="button" class="btn btn-outline-secondary btn-sm" onclick="formExit()"">Close</button></div></div> \
+				<div class="d-flex justify-content-between"><h5>Reply:</h5><div><button type="button" class="btn btn-outline-secondary btn-sm" onclick="formExit()"">Close</button></div></div> \
 				<select name="parent" class="d-none" id="id_parentt"> \
 				<option value="' + id + '" selected="' + id + '"></option> \
 				</select> \
