@@ -35,7 +35,7 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('hvg/', admin.site.urls),
     # App
     path('', include('post.urls')),
     path('', include('category.urls')),
@@ -51,7 +51,7 @@ urlpatterns = [
     path('ads.txt', TemplateView.as_view(template_name='ads.txt', content_type='text/plain'), name='ads_file'),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_file'),
 
-    path('feed/', LatestEntriesFeed()),
+    path('feed', LatestEntriesFeed()),
 ]
 
 
