@@ -12,18 +12,18 @@ class RegisterForm(forms.ModelForm):
     # fields we want to include and customize in our form
     first_name = forms.CharField(max_length=50,
                                 required=True,
-                                widget=forms.TextInput(attrs={'placeholder': 'First Name',
+                                widget=forms.TextInput(attrs={'placeholder': _('First Name'),
                                                             'class': 'form-control mb-2',
                                                             }))
 
     last_name = forms.CharField(max_length=50,
                                 required=True,
-                                widget=forms.TextInput(attrs={'placeholder': 'Last Name',
+                                widget=forms.TextInput(attrs={'placeholder': _('Last Name'),
                                                               'class': 'form-control mb-2',
                                                               }))
 
     email = forms.EmailField(required=True,
-                             widget=forms.TextInput(attrs={'placeholder': 'Email',
+                             widget=forms.TextInput(attrs={'placeholder': _('Email'),
                                                            'class': 'form-control mb-2',
                                                            }))
     password = forms.CharField(max_length=50,
@@ -51,9 +51,9 @@ class RegisterForm(forms.ModelForm):
         confirm_password = cleaned_data.get('confirm_password')
 
         if password != confirm_password:
-            raise forms.ValidationError(
+            raise forms.ValidationError(_(
                 "Password does not match!"
-            )
+            ))
         
     
 class LoginForm(forms.ModelForm):

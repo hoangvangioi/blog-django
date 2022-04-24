@@ -14,6 +14,7 @@ from django.views.generic import DetailView, UpdateView
 
 from accounts.forms import LoginForm, ProfileForm, RegisterForm
 from accounts.models import Account, Profile
+from django.utils.translation import gettext_lazy as _
 
 
 def register(request):
@@ -30,7 +31,7 @@ def register(request):
 
             # USER ACTIVATION
             current_site = get_current_site(request)
-            mail_subject = 'Please activate your account'
+            mail_subject = _('Please activate your account')
             message = render_to_string('accounts/account_verification_email.html', {
                 'user': user,
                 'domain': current_site,
@@ -57,7 +58,7 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
         if user is not None:
             auth.login(request, user)
-            messages.success(request, 'You are now logged in.')
+            messages.success(request, _('You are now logged in.'))
             url = request.META.get('HTTP_REFERER')
             try:
                 query = requests.utils.urlparse(url).query
@@ -68,7 +69,7 @@ def login(request):
             except:
                 return redirect('post')
         else:
-            messages.error(request, 'Thông tin đăng nhập không hợp lệ!')
+            messages.error(request, _('Invalid credentials!'))
             return redirect('login')
     form = LoginForm()
     context = {
@@ -80,7 +81,7 @@ def login(request):
 @login_required(login_url = 'login')
 def logout(request):
     auth.logout(request)
-    messages.success(request, 'You are logged out.')
+    messages.success(request, _('You are logged out.'))
     return redirect('login')
 
 
@@ -94,10 +95,10 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        messages.success(request, 'Congratulations! Your account is activated.')
+        messages.success(request, _('Congratulations! Your account is activated.'))
         return redirect('login')
     else:
-        messages.error(request, 'Invalid activation link!')
+        messages.error(request, _('Invalid activation link!'))
         return redirect('register')
     
 
