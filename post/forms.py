@@ -27,13 +27,13 @@ class PostForm(forms.ModelForm):
             }
         )
     )
-    previous_post = forms.ModelChoiceField(
-            queryset=Post.published.all(),
-            label='Bài trước')
+    # previous_post = forms.ModelChoiceField(
+    #         queryset=Post.published.all(),
+    #         label='Bài trước')
 
-    next_post = forms.ModelChoiceField(
-            queryset=Post.published.all(),
-            label='Bài sau')
+    # next_post = forms.ModelChoiceField(
+    #         queryset=Post.published.all(),
+    #         label='Bài sau')
 
     featured_image = forms.ImageField(required=True, 
         widget=forms.FileInput(attrs={
