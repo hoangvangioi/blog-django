@@ -255,7 +255,6 @@ CKEDITOR_CONFIGS = {
             'about', 
             'adobeair', 
             'ajax', 
-            'bbcode', 
             'codesnippet',
             'codesnippetgeshi', 
             'colordialog', 
