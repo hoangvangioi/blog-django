@@ -201,7 +201,7 @@ class Profile(models.Model):
 
     @property
     def get_avatar(self):
-        return self.avatar.url if self.avatar else static('img/avatar.png')
+        return self.avatar.url if self.avatar else static('img/avatar.webp')
 
     # @receiver(post_save, sender=Account)
     # def update_user_profile(sender, instance, created, **kwargs):

@@ -1,10 +1,3 @@
-/*!
- * Bootstrap v5.1.3 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 @import"https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap";
 :root {
     --bs-blue: #0d6efd;
@@ -13470,24 +13463,8 @@ dd {
     line-height: 1
 }
 
-.ci-add-circle:before {
-    content: ""
-}
-
-.ci-add-document:before {
-    content: ""
-}
-
-.ci-add-location:before {
-    content: ""
-}
-
 .ci-add:before {
     content: ""
-}
-
-.ci-announcement:before {
-    content: ""
 }
 
 .ci-arrow-down-circle:before {
@@ -13530,44 +13507,8 @@ dd {
     content: ""
 }
 
-.ci-bag:before {
-    content: ""
-}
-
-.ci-basket:before {
-    content: ""
-}
-
-.ci-behance:before {
-    content: ""
-}
-
-.ci-bell:before {
-    content: ""
-}
-
-.ci-bluetooth:before {
-    content: ""
-}
-
 .ci-book:before {
     content: ""
-}
-
-.ci-bookmark:before {
-    content: ""
-}
-
-.ci-briefcase:before {
-    content: ""
-}
-
-.ci-calculator:before {
-    content: ""
-}
-
-.ci-camera:before {
-    content: ""
 }
 
 .ci-card:before {
@@ -13638,36 +13579,12 @@ dd {
     content: ""
 }
 
-.ci-delete-location:before {
-    content: ""
-}
-
-.ci-diamond:before {
-    content: ""
-}
-
 .ci-document-alt:before {
     content: ""
 }
 
 .ci-document:before {
     content: ""
-}
-
-.ci-dollar-circle:before {
-    content: ""
-}
-
-.ci-dollar:before {
-    content: ""
-}
-
-.ci-dribbble:before {
-    content: ""
-}
-
-.ci-earphones:before {
-    content: ""
 }
 
 .ci-edit-alt:before {
@@ -13734,10 +13651,6 @@ dd {
     content: ""
 }
 
-.ci-hangouts:before {
-    content: ""
-}
-
 .ci-heart-circle:before {
     content: ""
 }
@@ -13770,24 +13683,12 @@ dd {
     content: ""
 }
 
-.ci-joystick:before {
-    content: ""
-}
-
 .ci-key:before {
     content: ""
 }
 
 .ci-lable:before {
     content: ""
-}
-
-.ci-laptop:before {
-    content: ""
-}
-
-.ci-lightning:before {
-    content: ""
 }
 
 .ci-link:before {
@@ -13804,10 +13705,6 @@ dd {
 
 .ci-loading:before {
     content: ""
-}
-
-.ci-location:before {
-    content: ""
 }
 
 .ci-locked:before {
@@ -13842,10 +13739,6 @@ dd {
     content: ""
 }
 
-.ci-money-bag:before {
-    content: ""
-}
-
 .ci-money-box:before {
     content: ""
 }
@@ -13860,10 +13753,6 @@ dd {
 
 .ci-navigation:before {
     content: ""
-}
-
-.ci-odnoklassniki:before {
-    content: ""
 }
 
 .ci-package:before {
@@ -13928,10 +13817,6 @@ dd {
 
 .ci-search:before {
     content: ""
-}
-
-.ci-security-announcement:before {
-    content: ""
 }
 
 .ci-security-check:before {
@@ -14098,10 +13983,6 @@ dd {
     content: ""
 }
 
-.ci-loudspeaker:before {
-    content: ""
-}
-
 .ci-sign-in:before {
     content: ""
 }
@@ -14114,40 +13995,8 @@ dd {
     content: ""
 }
 
-.ci-bleach:before {
-    content: ""
-}
-
-.ci-hand-wash:before {
-    content: ""
-}
-
-.ci-ironing:before {
-    content: ""
-}
-
-.ci-dry-clean:before {
-    content: ""
-}
-
 .ci-add-user:before {
     content: ""
-}
-
-.ci-compare:before {
-    content: ""
-}
-
-.ci-monitor:before {
-    content: ""
-}
-
-.ci-printer:before {
-    content: ""
-}
-
-.ci-speaker:before {
-    content: ""
 }
 
 .ci-download:before {
@@ -14156,38 +14005,6 @@ dd {
 
 .ci-upload:before {
     content: ""
-}
-
-.ci-bluetooth-circle:before {
-    content: ""
-}
-
-.ci-battery:before {
-    content: ""
-}
-
-.ci-sound-waves:before {
-    content: ""
-}
-
-.ci-paprika:before {
-    content: ""
-}
-
-.ci-chili:before {
-    content: ""
-}
-
-.ci-canned-food:before {
-    content: ""
-}
-
-.ci-toothbrush:before {
-    content: ""
-}
-
-.ci-pumpkin:before {
-    content: ""
 }
 
 .ci-orange:before {
@@ -14302,10 +14119,6 @@ dd {
     content: ""
 }
 
-.ci-basket-alt:before {
-    content: ""
-}
-
 .ci-corn:before {
     content: ""
 }
@@ -14346,33 +14159,6 @@ dd {
     content: ""
 }
 
-.ci-whatsapp:before {
-    content: ""
-}
-
-.ci-rupee:before {
-    content: ""
-}
-
-.ci-auction:before {
-    content: ""
-}
-
-.ci-calendar:before {
-    content: ""
-}
-
-.ci-external-link:before {
-    content: ""
-}
-
-.ci-copy:before {
-    content: ""
-}
-
-.ci-heart-filled:before {
-    content: ""
-}
 
 :not(pre)>code[class*=language-],
 pre[class*=language-],
@@ -15446,15 +15232,6 @@ input[type=search]::-webkit-search-results-decoration {
     color: #45668e
 }
 
-.bs-odnoklassniki:hover {
-    background-color: #ed812b;
-    box-shadow: 0 .5rem 1.125rem -0.5rem rgba(237, 129, 43, .9)
-}
-
-.bs-odnoklassniki:hover.bs-light {
-    color: #ed812b
-}
-
 .bs-skype:hover {
     background-color: #00aff0;
     box-shadow: 0 .5rem 1.125rem -0.5rem rgba(0, 175, 240, .9)
@@ -15462,15 +15239,6 @@ input[type=search]::-webkit-search-results-decoration {
 
 .bs-skype:hover.bs-light {
     color: #00aff0
-}
-
-.bs-hangouts:hover {
-    background-color: #0f9d58;
-    box-shadow: 0 .5rem 1.125rem -0.5rem rgba(15, 157, 88, .9)
-}
-
-.bs-hangouts:hover.bs-light {
-    color: #0f9d58
 }
 
 .bs-messenger:hover {
@@ -15543,15 +15311,6 @@ input[type=search]::-webkit-search-results-decoration {
 
 .bs-tiktok:hover.bs-light {
     color: #25f4ee
-}
-
-.bs-whatsapp:hover {
-    background-color: #25d366;
-    box-shadow: 0 .5rem 1.125rem -0.5rem #25d366
-}
-
-.bs-whatsapp:hover.bs-light {
-    color: #25d366
 }
 
 .bs-github:hover {

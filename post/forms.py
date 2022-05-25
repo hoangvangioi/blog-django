@@ -1,4 +1,4 @@
-from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 from mptt.forms import TreeNodeChoiceField
 from tinymce.widgets import TinyMCE
@@ -19,9 +19,10 @@ class PostForm(forms.ModelForm):
         # widget= CKEditorWidget(
 
         # )
+        required=False,
 
 
-        widget=CKEditorWidget(
+        widget=CKEditorUploadingWidget(
             attrs={
                 'class': 'form-control'
             }
@@ -57,10 +58,10 @@ class PostForm(forms.ModelForm):
 
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
-        self.fields['previous_post'].widget.attrs['class'] = 'col-6 row form-control'
-        self.fields['next_post'].widget.attrs['class'] = 'col-6 row form-control'
-        self.fields['status'].widget.attrs['class'] = 'col-6 form-control'
-        self.fields['tags'].widget.attrs['class'] = 'col-6 form-control'
+        self.fields['previous_post'].widget.attrs['class'] = 'form-control'
+        self.fields['next_post'].widget.attrs['class'] = 'form-control'
+        self.fields['status'].widget.attrs['class'] = 'form-control'
+        self.fields['tags'].widget.attrs['class'] = 'form-control'
 
 
 

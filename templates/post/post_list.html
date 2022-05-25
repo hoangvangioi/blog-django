@@ -2,6 +2,13 @@
 {% load static %}
 {% block title %}Danh sách bài đăng{% endblock %}
 
+{% block og %} Danh sách bài đăng {% endblock og %}
+{% block twitter %} Danh sách bài đăng {% endblock twitter %}
+{% block description_og %} Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django {% endblock description_og %}
+{% block description_twitter %} Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django {% endblock description_twitter %}
+{% block keywords %} Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django {% endblock keywords %}
+{% block description %} Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django {% endblock description %}
+
 {% block content %}
 
 <!-- Page Title (Light)-->
@@ -17,7 +24,7 @@
         </div>
         <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
             {% if tag %}
-            <h1 class="h3 mb-0">Bài viết được gắn thẻ <span style="color: rgb(39, 228, 96);">"{{ tag.name }}"</span></h1>
+            <h1 class="h3 mb-0">Bài viết được gắn thẻ <span class="text-success">"{{ tag.name }}"</span></h1>
             {% else %}
             <h1 class="h3 mb-0">List of our posts</h1>
             {% endif %}
@@ -34,7 +41,7 @@
             <article class="blog-list border-bottom pb-4 mb-5">
                 <div class="blog-start-column">
                     <div class="d-flex align-items-center fs-sm pb-2 mb-1">
-                        <a class="blog-entry-meta-link" href="{% url 'profile' post.author.profile.slug %}"><div class="blog-entry-author-ava"><img src="{% static 'img/avatar.png' %}" alt="{{post.author.get_full_name}}"></div>{{post.author.get_full_name}}</a>
+                        <a class="blog-entry-meta-link" href="{% url 'profile' post.author.profile.slug %}"><div class="blog-entry-author-ava"><img src="{% static 'img/avatar.webp' %}" alt="{{post.author.get_full_name}}"></div>{{post.author.get_full_name}}</a>
                         <span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#!"><i class="ci-time"></i>{{ post.publish }}</a>
                     </div>
                     <h2 class="h5 blog-entry-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
@@ -50,7 +57,7 @@
                     <div class="d-flex justify-content-between mb-1">
                     {% comment %} <div class="fs-sm text-muted pe-2 mb-2">in <a href='#' class='blog-entry-meta-link'>Shopping</a>, <a href='#' class='blog-entry-meta-link'>Personal finance</a></div> {% endcomment %}
                     </div>
-                    <p class="fs-sm">{{ post.body|safe|truncatechars:200 }}<a href="{{ post.get_absolute_url }}" class='blog-entry-meta-link fw-medium'>[Read more]</a></p>
+                    <p class="fs-sm">{{ post.body|safe|striptags|truncatechars:200 }}<a href="{{ post.get_absolute_url }}" class='blog-entry-meta-link fw-medium'>[Read more]</a></p>
                 </div>
             </article>
             {% endfor %}

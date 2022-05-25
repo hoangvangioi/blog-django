@@ -1,2 +1,9 @@
-RewriteCond %{HTTP_HOST} !^{{ request.get_host }}$ [NC]
-RewriteRule ^(.*)$ https://{{ request.get_host }}/$1 [L,R=301]
+# ------------------------------------------------------------------------------
+# | Suppressing / Forcing the "www." at the beginning of URLs                  |
+# ------------------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+   RewriteCond %{HTTPS} !=on
+   RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+   RewriteRule ^ http://www.%{HTTP_HOST}%{request.get_host} [R=301,L]
+</IfModule>

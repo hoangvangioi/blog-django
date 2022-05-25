@@ -18,26 +18,9 @@
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/loading.css' %}">
-    <!-- Page loading scripts -->
-    <script>
-        (function() {
-            window.onload = function() {
-                const preloader = document.querySelector('.page-loading');
-                preloader.classList.remove('active');
-                setTimeout(function() {
-                        preloader.remove();
-                }, 200);
-            };
-        })();
-    </script>
+
 </head>
 <body class="handheld-toolbar-enabled">
-    <!-- Page loading spinner -->
-    <div class="page-loading active">
-        <div class="page-loading-inner">
-            <div class="page-spinner"></div><span>Loading...</span>
-        </div>
-    </div>
     {% include "includes/navbar.html" %}
     <main class="page-wrapper">
         <div class="container py-5 mb-lg-3">

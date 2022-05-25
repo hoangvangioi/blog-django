@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Viewport-->
@@ -12,7 +12,8 @@
     <meta name="author" content="Hoang Van Gioi">
     <meta name="googlebot" content="notranslate" />
 
-    {% if post.get_absolute_url == request.path %}    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://{{ request.get_host }}{{ request.get_full_path }}" />
     <meta property="og:title" content="{% block og %}{% endblock og %}">
     <meta property="og:description" content="{% block description_og %}{% endblock description_og %}">
     <meta property="og:image" content="{{ post.featured_image.url }}">
@@ -21,7 +22,7 @@
     <meta name="twitter:description" content="{% block description_twitter %}{% endblock description_twitter %}">
     <meta name="twitter:image" content="{{ post.featured_image.url }}" />
     <meta name="twitter:card" content="summary">
-    {% endif %}
+
     <link rel="canonical" href="http://{{ request.get_host }}{{ request.get_full_path }}">
 
     <title>{% block title %} {% endblock %} | Hoàng Giỏi Blog</title>
@@ -37,15 +38,19 @@
     <meta name="theme-color" content="#ee2bdebb">
     
     <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
-    <link rel="stylesheet" media="screen" href="{% static 'css/simplebar.min.css' %}" />
-    <link rel="stylesheet" media="screen" href="{% static 'css/tiny-slider.css' %}" />
-    <link rel="stylesheet" media="screen" href="{% static 'css/lightgallery.min.css' %}" />
-    <link rel="stylesheet" media="screen" href="{% static 'css/nouislider.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
-    <link rel="stylesheet" media="screen" href="{% static 'css/drift-basic.min.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drift-zoom/1.5.0/drift-basic.min.css" integrity="sha512-9D75l4nxyof5Ccfvcwu2pY6fV7WGu0/1JbeQfNghR0hwqh5wpyY/UdkYEMgwfbKyG1jOEwyj7amW5nTMx43lEA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" integrity="sha512-eMxdaSf5XW3ZW1wZCrWItO2jZ7A9FhuZfjVdztr7ZsKNOmt6TUMTQgfpNoVRyfPE5S9BC0A4suXzsGSrAOWcoQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.6/simplebar.min.css" integrity="sha512-uZTwaYYhJLFXaXYm1jdNiH6JZ1wLCTVnarJza7iZ1OKQmvi6prtk85NMvicoSobylP5K4FCdGEc4vk1AYT8b9Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.css" integrity="sha512-qveKnGrvOChbSzAdtSs8p69eoLegyh+1hwOMbmpCViIwj7rn4oJjdmMvWOuyQlTOZgTlZA0N2PXA7iA8/2TUYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.5/css/lightgallery.min.css" integrity="sha512-Szyqrwc8kFyWMllOpTgYCMaNNm/Kl8Fz0jJoksPZAWUqhE60VRHiLLJVcIQKi+bOMffjvrPCxtwfL+/3NPh/ag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/icon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+
+    <link rel="stylesheet" href="{% static 'budget.json' %}">
+
+    {% block style %}{% endblock style %}
 
     <!-- Google Tag Manager -->
     <script>
@@ -56,19 +61,7 @@
         })(window,document,'script','dataLayer','GTM-KLNMPRF');
     </script>
     <!-- End Google Tag Manager -->
-    
-    <!-- Page loading scripts -->
-    <script>
-        (function() {
-            window.onload = function() {
-                const preloader = document.querySelector('.page-loading');
-                preloader.classList.remove('active');
-                setTimeout(function() {
-                        preloader.remove();
-                }, 200);
-            };
-        })();
-    </script>
+
 
     {% if '/' == request.path or post.get_absolute_url == request.path %}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308"
@@ -83,12 +76,6 @@
     </noscript>
     
     <!-- End Google Tag Manager (noscript) -->
-    <!-- Page loading spinner -->
-    <div class="page-loading active">
-        <div class="page-loading-inner">
-            <div class="page-spinner"></div><span>Loading...</span>
-        </div>
-    </div>
     
     {% include "includes/navbar.html" %}
     <main class="page-wrapper">
@@ -126,17 +113,18 @@
 
     <!-- Vendor scrits: js libraries and plugins-->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/simplebar.min.js' %}"></script>
-    <script src="{% static 'js/tiny-slider.js' %}"></script>
-    <script src="{% static 'js/smooth-scroll.polyfills.min.js' %}"></script>
-    <script src="{% static 'js/nouislider.min.js' %}"></script>
-    <script src="{% static 'js/Drift.min.js' %}"></script>
-    <script src="{% static 'js/lightgallery.min.js' %}"></script>
-    <script src="{% static 'js/lg-fullscreen.min.js' %}"></script>
-    <script src="{% static 'js/lg-zoom.min.js' %}"></script>
-    <script src="{% static 'js/lg-video.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@16.1.2/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/drift-zoom/1.5.0/Drift.min.js" integrity="sha512-xt5TrjCv2USp6a8RBH0z9m29ePEO6msfsDI+GBamNF0iNbadH1ea6pZoy9gMnsxwLCdd5SlfCKggvqdGURQVJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" integrity="sha512-j+F4W//4Pu39at5I8HC8q2l1BNz4OF3ju39HyWeqKQagW6ww3ZF9gFcu8rzUbyTDY7gEo/vqqzGte0UPpo65QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.6/simplebar.min.js" integrity="sha512-rn0CaCtyheymRT43p0ZuFH0SvNriLU5cuJpY2f4IcyLrbHzJdsIF1dygi9oNha1BhHagO8U+h2xRWCosYf9gCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js" integrity="sha512-1mDhG//LAjM3pLXCJyaA+4c+h5qmMoTc7IuJyuNNPaakrWT9rVTxICK4tIizf7YwJsXgDC2JP74PGCc7qxLAHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.5/lightgallery.min.js" integrity="sha512-+cRLP8t0rsqPalRf//6kfVwRVPzxvwtgLOm8XoSw+M/ND6/0aODP3WFs8m4EPtqsJ9aurqbYq4q/0u8lRJSldA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Main theme script-->
     <script src="{% static 'js/theme.min.js' %}"></script>
+
+    {% block script %}{% endblock script %}
+
 </body>
 
 </html>
