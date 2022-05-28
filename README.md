@@ -58,11 +58,8 @@
 
     SECRET_KEY = qf&^m(ttxc+updmfl&p49@l+u-b^jx96f57zvi3xf#c*mftuwm
 
-    EMAIL_USE_TLS = True
-    EMAIL_HOST = "smtp.gmail.com"
     EMAIL_HOST_USER = "email"
     EMAIL_HOST_PASSWORD = "password"
-    EMAIL_PORT = 587
 
     CSRF_TRUSTED_ORIGINS = 'http://127.0.0.1'
     CSRF_COOKIE_DOMAIN = '127.0.0.1'
