@@ -21,7 +21,7 @@
     Di chuyển đến thư mục dự án
 
     ```
-    cd shop-ecommerce-django
+    cd blog-django
     ```
 
     Tạo môi trường ảo
