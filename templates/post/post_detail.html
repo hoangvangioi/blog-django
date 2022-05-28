@@ -183,6 +183,34 @@
 {% endblock content %}
 
 {% block script %}
+
+<script>
+    function formExit() {
+        document.getElementById("newForm").remove();
+    }
+
+    function myFunction(id) {
+        if (document.contains(document.getElementById("newForm"))) {
+            document.getElementById("newForm").remove();
+        }
+        
+        var d1 = document.getElementById(id);
+        d1.insertAdjacentHTML('afterend',
+            '<form id="newForm" class="form-insert py-2" method="post"> \
+                <div class="d-flex justify-content-between"><h5>Reply:</h5><div><button type="button" class="btn btn-outline-secondary btn-sm" onclick="formExit()"">Close</button></div></div> \
+                <select name="parent" class="d-none" id="id_parentt"> \
+                <option value="' + id + '" selected="' + id + '"></option> \
+                </select> \
+                <label for="id_content">Content:</label> \
+                <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
+                {% csrf_token %} \
+                <button type="submit" class="btn btn-success btn-block mt-2 btn-sm">Submit</button> \
+            </form>');
+    }
+
+    // $('#myForm').trigger("reset");
+</script>
+
 <script src="{% static 'js/reply.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-fullscreen/1.2.1/lg-fullscreen.min.js" integrity="sha512-GvMYZx1AUxtd+OYSc33H9DYX9qeT/OY90+O8kJ65cLXvSelNSgeytaxDV8bY58TeoZxz1HiqgAfpchczH7S8qA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-zoom/1.3.0/lg-zoom.min.js" integrity="sha512-gYZM0XVEGQBwwqTrHxB3Qc1pmJ6huBfAZyMZtRpHzfs2BSxv/AGzzUaFhQwWtWQf/Qf+/bXP4xr4HIoVzJTV0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

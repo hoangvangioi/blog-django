@@ -19,7 +19,6 @@ function myFunction(id) {
             {% csrf_token %} \
             <button type="submit" class="btn btn-success btn-block mt-2 btn-sm">Submit</button> \
         </form>');
-        
 }
 
 // $('#myForm').trigger("reset");
