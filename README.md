@@ -13,7 +13,7 @@
     Mở cửa sổ dòng lệnh, đi tới thư mục lưu dự án và nhập lệnh sau: 
 
    ```
-   git clone https://github.com/gioitube/shop-ecommerce-django.git
+   git clone https://github.com/gioitube/blog-django.git
    ```
 
 2. Tạo và kích hoạt môi trường ảo
