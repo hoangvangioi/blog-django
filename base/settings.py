@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 
 import os
-
 import dj_database_url
-import django_heroku
+import django_on_heroku
 from decouple import Csv, config
 from django.contrib.messages import constants as messages
 
@@ -37,7 +36,6 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-    'django_admin_tailwind',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -160,14 +158,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Media files
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
@@ -318,7 +315,7 @@ AUTH_USER_MODEL = 'accounts.Account'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'info',
