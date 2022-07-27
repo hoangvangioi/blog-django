@@ -7,6 +7,7 @@ from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
+from base.fields import WEBPField
 # from django.conf.urls.static import static
 from .utils import unique_slug_generator
 
@@ -148,7 +149,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="profile")
     slug = models.SlugField(max_length=200)
-    avatar = models.ImageField(blank=True, upload_to='profile/avatars/')
+    avatar = WEBPField(blank=True, upload_to='profile/avatars/')
     birthday = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=15, choices=GENDER_CHOICES, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)

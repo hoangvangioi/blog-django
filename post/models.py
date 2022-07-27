@@ -9,6 +9,7 @@ from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
 from taggit.managers import TaggableManager
 from .utils import unique_slug_generator
+from base.fields import WEBPField
 
 
 # Create your models here.
@@ -34,7 +35,7 @@ class Post(models.Model):
 	created 		= models.DateTimeField(auto_now_add=True)
 	updated 		= models.DateTimeField(auto_now=True)
 	status 			= models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-	featured_image	= models.ImageField(upload_to='images/%Y/%m/%d/', blank=True, null=True)
+	featured_image	= WEBPField(upload_to='images/%Y/%m/%d/', blank=True, null=True)
 	category		= models.ManyToManyField(Category)
 	tags 			= TaggableManager()
 	objects = models.Manager()  # The default manager.
