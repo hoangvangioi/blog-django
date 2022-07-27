@@ -46,16 +46,6 @@
 
     {% block style %}{% endblock style %}
 
-    <!-- Google Tag Manager -->
-    <script>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KLNMPRF');
-    </script>
-    <!-- End Google Tag Manager -->
-
     {% if '/' == request.path or post.get_absolute_url == request.path %}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308"
     crossorigin="anonymous"></script>
@@ -63,13 +53,6 @@
 </head>
 
 <body class="handheld-toolbar-enabled">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLNMPRF" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    
-    <!-- End Google Tag Manager (noscript) -->
-    
     {% include "includes/navbar.html" %}
     <main class="page-wrapper">
     {% block content %} {% endblock content %} 
@@ -113,7 +96,5 @@
     <script src="{% static 'js/theme.min.js' %}"></script>
 
     {% block script %}{% endblock script %}
-
 </body>
-
 </html>
