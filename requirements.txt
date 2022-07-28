@@ -5,6 +5,7 @@ cloudinary==1.29.0
 dj-database-url==0.5.0
 Django==4.0.6
 django-ckeditor==6.4.1
+django-clearcache==1.2.1
 django-cloudinary-storage==0.3.0
 django-js-asset==2.0.0
 django-mptt==0.13.4
