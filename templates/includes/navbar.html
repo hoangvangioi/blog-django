@@ -6,13 +6,13 @@
             <a class="navbar-brand d-sm-none me-2 order-lg-1" href="{% url 'post' %}"><img src="{% static 'img/logo-dark.png' %}" width="70" alt="Hoang Gioi"></a>
 			<!-- Toolbar-->
 			<div class="navbar-toolbar d-flex align-items-center order-lg-3">
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
+				<button class="navbar-toggler" title="Menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
 				<a class="navbar-tool d-none d-lg-flex" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#searchBox" role="button" aria-expanded="false" aria-controls="searchBox"><span class="navbar-tool-tooltip">Search</span>
 					<div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-search"></i></div></a>
 				{% if user.id is None %}
                 <div class="navbar-tool dropdown ms-2">
                     <div class="navbar-tool-icon-box">
-                        <a class="navbar-tool-icon-box border dropdown-toggle" href="{% url 'login' %}"><i class="navbar-tool-icon ci-user"></i></a>
+                        <a class="navbar-tool-icon-box border dropdown-toggle" title="Login" href="{% url 'login' %}"><i class="navbar-tool-icon ci-user"></i></a>
                     </div>
 					<a class="navbar-tool-text ms-n1" href="{% url 'login' %}"><small>Hello, Guest!</small>Account</a>
 					<div class="dropdown-menu dropdown-menu-end">
