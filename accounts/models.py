@@ -1,5 +1,7 @@
+from base.fields import WEBPField
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        PermissionsMixin)
 from django.db import models
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
@@ -7,24 +9,18 @@ from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
-from base.fields import WEBPField
-# from django.conf.urls.static import static
 from .utils import unique_slug_generator
 
 # Create your models here.
 
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self, first_name, last_name, username, email, password=None):
+    def create_user(self, first_name, last_name, email, password=None):
         if not email:
             raise ValueError(_('User must have an email address'))
 
-        if not username:
-            raise ValueError(_('User must have an username'))
-
         user = self.model(
             email = self.normalize_email(email),
-            username = username,
             first_name = first_name,
             last_name = last_name,
         )
@@ -33,10 +29,9 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, first_name, last_name, email, username, password):
+    def create_superuser(self, first_name, last_name, email, password):
         user = self.create_user(
             email = self.normalize_email(email),
-            username = username,
             password = password,
             first_name = first_name,
             last_name = last_name,
@@ -48,10 +43,9 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, first_name, last_name, email, username, password=None):
+    def create_staffuser(self, first_name, last_name, email, password=None):
         user = self.create_user(
                 email = self.normalize_email(email),
-                username = username,
                 first_name = first_name,
                 last_name = last_name,
                 password=password,
@@ -65,12 +59,10 @@ class MyAccountManager(BaseUserManager):
         return user
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, PermissionsMixin):
     first_name      = models.CharField(max_length=50)
     last_name       = models.CharField(max_length=50)
-    username        = models.CharField(max_length=50, unique=True)
     email           = models.EmailField(max_length=100, unique=True)
-
     # required
     date_joined     = models.DateTimeField(auto_now_add=True)
     last_login      = models.DateTimeField(auto_now_add=True)
@@ -80,7 +72,7 @@ class Account(AbstractBaseUser):
     is_superuser        = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = MyAccountManager()
 
@@ -102,21 +94,6 @@ class Account(AbstractBaseUser):
 
     def has_perms(self, perm, obj=None):
         return self.is_admin
-
-
-    # def get_full_name(self):
-    #     if self.full_name:
-    #         return self.full_name
-    #     return self.email
-
-    # def get_short_name(self):
-    #     return self.email
-
-    # def has_perm(self, perm, obj=None):
-    #     return True
-
-    # def has_module_perms(self, app_label):
-    #     return True
 
     # @property
     # def is_staff(self):

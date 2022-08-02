@@ -6,12 +6,19 @@ from .forms import PasswordChangeForm, SetPasswordForm
 
 urlpatterns = [
     # Register, Login and Logout
-    path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
-
+    path('register/', views.SignUpView.as_view(), name='register'),
+    # path('login/', views.LogInView.as_view(), name='login'),
+    path('login/', auth_views.LoginView.as_view(
+        template_name = 'accounts/login.html',
+        next_page='post',
+    ), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(
+            template_name='registration/logged_out.html',
+            next_page=None
+        ),
+        name = 'logout'),
     # Activate
-    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('activate/<uidb64>/<token>/', views.ActivateView.as_view(), name='activate'),
 
     # Change Password
     path('change-password/',

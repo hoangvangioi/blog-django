@@ -8,16 +8,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 class AccountAdmin(UserAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'username', 'last_login', 'date_joined', 'is_active')
+    list_display = ('email', 'first_name', 'last_name', 'last_login', 'date_joined', 'is_active')
     list_display_links = ('email', 'first_name', 'last_name')
     readonly_fields = ('last_login', 'date_joined')
     ordering = ('-date_joined',)
     search_fields = ('email', 'first_name', 'last_name')
 
-    # fieldsets = (
-    #     (None, {'fields': ('email', 'password')}),
-    #     ('Permissions', {'fields': ('is_staff', 'is_active')}),
-    # )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -28,13 +24,6 @@ class AccountAdmin(UserAdmin):
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()
-
-    # list_filter = ("is_staff", "is_superuser", "is_active", "groups")
-    # filter_horizontal = (
-    #     "groups",
-    #     "user_permissions",
-    # )
-
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'slug',)
