@@ -13,8 +13,7 @@ urlpatterns = [
         next_page='post',
     ), name='login'),
     path('logout/', auth_views.LogoutView.as_view(
-            template_name='registration/logged_out.html',
-            next_page=None
+            next_page='post'
         ),
         name = 'logout'),
     # Activate

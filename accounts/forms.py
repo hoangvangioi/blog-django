@@ -7,6 +7,52 @@ from django.utils.translation import gettext_lazy as _
 from accounts.models import Account, Profile
 
 
+class SignUpForm(forms.ModelForm):
+    # fields we want to include and customize in our form
+    first_name = forms.CharField(max_length=50,
+                                required=True,
+                                widget=forms.TextInput(attrs={'placeholder': _('First Name'),
+                                                            'class': 'form-control mb-2',
+                                                            }))
+    last_name = forms.CharField(max_length=50,
+                                required=True,
+                                widget=forms.TextInput(attrs={'placeholder': _('Last Name'),
+                                                              'class': 'form-control mb-2',
+                                                              }))
+    email = forms.EmailField(required=True,
+                             widget=forms.TextInput(attrs={'placeholder': _('Email'),
+                                                           'class': 'form-control mb-2',
+                                                           }))
+    password = forms.CharField(max_length=50,
+                                required=True,
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Password',
+                                                                  'class': 'form-control mb-2',
+                                                                  'data-toggle': 'password',
+                                                                  'id': 'password',
+                                                                  }))
+    confirm_password = forms.CharField(max_length=50,
+                                required=True,
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password',
+                                                                  'class': 'form-control mb-2',
+                                                                  'data-toggle': 'password',
+                                                                  'id': 'password',
+                                                                  }))
+
+    class Meta:
+        model = Account
+        fields = ['first_name', 'last_name', 'email', 'password', 'confirm_password']
+
+    def clean(self):
+        cleaned_data = super(SignUpForm, self).clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+
+        if password != confirm_password:
+            raise forms.ValidationError(_(
+                "Password does not match!"
+            ))
+
+
 # class LoginForm(forms.ModelForm):
 #     email = forms.EmailField(required=True,
 #                              widget=forms.TextInput(attrs={'placeholder': 'Email',
@@ -133,47 +179,3 @@ class ProfileForm(forms.ModelForm):
             self.fields[i].widget.attrs['class'] = 'form-control'
 
 
-class SignUpForm(forms.ModelForm):
-    # fields we want to include and customize in our form
-    first_name = forms.CharField(max_length=50,
-                                required=True,
-                                widget=forms.TextInput(attrs={'placeholder': _('First Name'),
-                                                            'class': 'form-control mb-2',
-                                                            }))
-    last_name = forms.CharField(max_length=50,
-                                required=True,
-                                widget=forms.TextInput(attrs={'placeholder': _('Last Name'),
-                                                              'class': 'form-control mb-2',
-                                                              }))
-    email = forms.EmailField(required=True,
-                             widget=forms.TextInput(attrs={'placeholder': _('Email'),
-                                                           'class': 'form-control mb-2',
-                                                           }))
-    password = forms.CharField(max_length=50,
-                                required=True,
-                                widget=forms.PasswordInput(attrs={'placeholder': 'Password',
-                                                                  'class': 'form-control mb-2',
-                                                                  'data-toggle': 'password',
-                                                                  'id': 'password',
-                                                                  }))
-    confirm_password = forms.CharField(max_length=50,
-                                required=True,
-                                widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password',
-                                                                  'class': 'form-control mb-2',
-                                                                  'data-toggle': 'password',
-                                                                  'id': 'password',
-                                                                  }))
-
-    class Meta:
-        model = Account
-        fields = ['first_name', 'last_name', 'email', 'password', 'confirm_password']
-
-    def clean(self):
-        cleaned_data = super(SignUpForm, self).clean()
-        password = cleaned_data.get('password')
-        confirm_password = cleaned_data.get('confirm_password')
-
-        if password != confirm_password:
-            raise forms.ValidationError(_(
-                "Password does not match!"
-            ))
