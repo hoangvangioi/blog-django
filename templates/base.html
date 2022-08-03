@@ -35,14 +35,14 @@
     <link rel="mask-icon" color="#5bbad5" href="{% static 'img/safari-pinned-tab.svg' %}">
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
     <meta name="theme-color" content="#ffffff">
-
+    
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% if '/' == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %}
     <link rel="stylesheet" href="{% static 'css/theme.list.css' %}">
-    {% if post.get_absolute_url == request.path %}
+    {% elif post.get_absolute_url == request.path %}
     <link rel="stylesheet" href="{% static 'css/theme.detail.css' %}">
-    {% elif %}
+    {% else %}
     <link rel="stylesheet" href="{% static 'css/theme.min.css' %}">
     {% endif %}
     <link type="application/json" href="{% static 'budget.json' %}">
