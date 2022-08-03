@@ -57,6 +57,9 @@ class SignUpView(FormView):
 
             messages.success(request, f'A user verification link has been send to confirm your registration.')
             return render(request, 'accounts/register.html')
+        # else:
+        #     user_form = UserForm()
+        #     profile_form = UserProfileInfoForm()
 
         return render(request, self.template_name, {'form': form})
 

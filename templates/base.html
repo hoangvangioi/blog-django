@@ -36,16 +36,14 @@
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
-    <link rel="stylesheet" href="{% static 'css/tiny-slider.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/lightgallery.min.css' %}"/>
     <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/theme.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
     <link type="application/json" href="{% static 'budget.json' %}">
     {% block style %}{% endblock style %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap">
     {% if '/' == request.path or post.get_absolute_url == request.path %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308"
     crossorigin="anonymous"></script>
     {% endif %}
@@ -88,9 +86,7 @@
 
     <!-- Vendor scrits: js libraries and plugins-->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/tiny-slider.js' %}"></script>
-    <script src="{% static 'js/smooth-scroll.polyfills.min.js' %}"></script>
-    <script src="{% static 'js/lightgallery.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
     <!-- Main theme script-->
     <script src="{% static 'js/theme.min.js' %}"></script>
 
