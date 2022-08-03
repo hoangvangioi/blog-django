@@ -3,7 +3,7 @@ from taggit.models import Tag
 
 
 def sidebar(request):
-    most_recent = Post.published.order_by('-created')[:5]
+    most_recent = Post.published.order_by('-created')[:10]
     all_tag = Tag.objects.all()
     context = {
         'most_recent': most_recent,
