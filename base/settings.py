@@ -14,23 +14,40 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 import dj_database_url
 import django_on_heroku
-from decouple import Csv, config
 from django.contrib.messages import constants as messages
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+# Code of your application, which uses environment variables (e.g. from `os.environ` or
+# `os.getenv`) as if they came from the actual environment.
+
+# from dotenv import dotenv_values
+
+# config = dotenv_values(".env")  # config = {"USER": "foo", "EMAIL": "foo@example.org"}
+
+# config = {
+#     **dotenv_values(".env.shared"),  # load shared development variables
+#     **dotenv_values(".env.secret"),  # load sensitive variables
+#     **os.environ,  # override loaded values with environment variables
+# }
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = os.getenv('DEBUG', default=True)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS', default='127.0.0.1')]
 
 
 # Application definition
@@ -44,7 +61,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # App
-    'accounts',
     'category',
     'post',
     'search',
@@ -66,8 +82,9 @@ INSTALLED_APPS = [
 ]
 
 
-PREPEND_WWW = config('PREPEND_WWW', default=False, cast=bool)
-
+PREPEND_WWW = os.getenv('PREPEND_WWW', default=False)
+# print(os.getenv)
+# print(os.environ)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -153,7 +170,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -185,7 +201,6 @@ TINYMCE_DEFAULT_CONFIG = {
 
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'
-
 
 
 CKEDITOR_CONFIGS = {
@@ -297,19 +312,14 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-LOGIN_URL = '/accounts/login/'
-
-
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
-
-AUTH_USER_MODEL = 'accounts.Account'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -323,7 +333,9 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',
 }
-CLOUDINARY_URL = config('CLOUDINARY_URL')
+
+CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
+
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
@@ -336,8 +348,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_REPLACE_HTTPS_REFERER = True
 
-CSRF_TRUSTED_ORIGINS = [config('CSRF_TRUSTED_ORIGINS')]
 
-CSRF_COOKIE_DOMAIN = config('CSRF_COOKIE_DOMAIN')
+CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
 
-CORS_ORIGIN_WHITELIST = config('CORS_ORIGIN_WHITELIST', cast=Csv())
+CSRF_COOKIE_DOMAIN = os.getenv('CSRF_COOKIE_DOMAIN')
+
+CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST')

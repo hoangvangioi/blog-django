@@ -1,84 +1,41 @@
-<!DOCTYPE html>
 {% load static %}
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lỗi | Hoàng Giỏi Blog</title>
-    
-    <!-- Favicon and Touch Icons-->
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/ico" sizes="64x64" href="{% static 'favicon.ico' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
-    <link rel="mask-icon" color="#5bbad5" href="{% static 'img/safari-pinned-tab.svg' %}">
-    <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
-    <meta name="theme-color" content="#ffffff">
-    <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+<link rel="stylesheet" href="{% static 'css/animate.css' %}" />
 
-</head>
-<body class="handheld-toolbar-enabled">
-    {% include "includes/navbar.html" %}
-    <main class="page-wrapper">
-        <div class="container py-5 mb-lg-3">
-            <div class="row justify-content-center pt-lg-4 text-center">
-                <div class="col-lg-5 col-md-7 col-sm-9">
-                    <h1 class="display-404 py-lg-3">404</h1>
-                    <h2 class="h3 mb-4">We can't seem to find the page you are looking for.</h2>
-                    <p class="fs-md mb-4">
-                        <u>Here are some helpful links instead:</u>
-                    </p>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-xl-8 col-lg-10">
-                    <div class="row">
-                        <div class="col-sm-4 mb-3">
-                            <a class="card h-100 border-0 shadow-sm" href="/">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center"><i class="ci-home text-primary h4 mb-0"></i>
-                                        <div class="ps-3">
-                                            <h5 class="fs-sm mb-0">Homepage</h5><span class="text-muted fs-ms">Return to homepage</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-4 mb-3">
-                            <a class="card h-100 border-0 shadow-sm" href="mailto:gioitube2k2@gmail.com">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center"><i class="ci-mail text-success h4 mb-0"></i>
-                                        <div class="ps-3">
-                                            <h5 class="fs-sm mb-0">Help &amp; Support</h5><span class="text-muted fs-ms">Visit our help center</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-4 mb-3">
-                            <a class="card h-100 border-0 shadow-sm" href="https://www.facebook.com/hoanggioi.2803">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center"><i class="ci-help text-info h4 mb-0"></i>
-                                        <div class="ps-3">
-                                            <h5 class="fs-sm mb-0">Help &amp; Support</h5><span class="text-muted fs-ms">Visit our help center</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+<!-- ==== WOW JS ==== -->
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script>
+	new WOW().init();
+</script>
+
+<section class="bg-primary py-14 lg:py-20">
+    <div class="container">
+        <div class="flex flex-wrap -mx-4">
+            <div class="w-full px-4">
+                <div class="max-w-[850px] mx-auto text-center bg-white rounded-lg relative overflow-hidden py-20 px-8 sm:px-12 md:px-[60px] shadow-lg wow fadeInUp" data-wow-delay=".2s">
+                    <h2 class="font-bold mb-8 text-dark text-3xl sm:text-4xl lg:text-[40px] xl:text-[42px]">404 - We couldn't find that page.</h2>
+                    <h3 class="font-normal mb-8 text-xl md:text-2xl text-dark-700">Maybe you can find what you need here?</h3>
+                    <ul class="flex flex-wrap justify-center">
+                        <li>
+                            <a href="{% url 'index' %}" class="text-base font-medium py-3 px-6 text-dark rounded-md mx-2 my-1 inline-block bg-[#f5f8ff] hover:bg-primary hover:text-white"> Home </a>
+                        </li>
+                        <li>
+                            <a href="/" class="text-base font-medium py-3 px-6 text-dark rounded-md mx-2 my-1 inline-block bg-[#f5f8ff] hover:bg-primary hover:text-white"> Support </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </main>
-    {% include "includes/footer.html" %}
-    <!-- Vendor scrits: js libraries and plugins -->
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <!-- Main theme script-->
-    <script src="{% static 'js/theme.min.js' %}"></script>
-</body>
-</html>
+    </div>
+
+    <div class="absolute top-0 left-0 -z-10 flex h-full w-full items-center justify-between space-x-5 md:space-x-8 lg:space-x-14">
+        <div class="h-full w-1/3 bg-gradient-to-t from-[#FFFFFF14] to-[#C4C4C400]"></div>
+        <div class="flex h-full w-1/3">
+            <div class="h-full w-1/2 bg-gradient-to-b from-[#FFFFFF14] to-[#C4C4C400]"></div>
+            <div class="h-full w-1/2 bg-gradient-to-t from-[#FFFFFF14] to-[#C4C4C400]"></div>
+        </div>
+        <div class="h-full w-1/3 bg-gradient-to-b from-[#FFFFFF14] to-[#C4C4C400]"></div>
+    </div>
+</section>
+
+<script src="{% static 'js/main.js' %}"></script>

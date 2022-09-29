@@ -1,4 +1,3 @@
-from accounts.models import Profile
 from category.models import Category
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
@@ -11,7 +10,8 @@ class StaticViewSitemap(Sitemap):
     changefreq = 'daily'
 
     def items(self):
-        return ['post', 'login', 'register', 'logout']
+        # return ['post', 'login', 'register', 'logout']
+        return ['post', ]
 
     def location(self, item):
         return reverse(item)

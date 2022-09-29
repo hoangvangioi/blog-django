@@ -1,104 +1,64 @@
-{% load static %}
-<header class="bg-light shadow-sm navbar-sticky">
-	<div class="navbar navbar-expand-lg navbar-light">
-		<div class="container">
-            <a class="navbar-brand d-none d-sm-block flex-shrink-0 me-4 order-lg-1" href="{% url 'post' %}"><img src="{% static 'img/logo-dark.png' %}" width="100" alt="Hoang Gioi"></a>
-            <a class="navbar-brand d-sm-none me-2 order-lg-1" href="{% url 'post' %}"><img src="{% static 'img/logo-dark.png' %}" width="70" alt="Hoang Gioi"></a>
-			<!-- Toolbar-->
-			<div class="navbar-toolbar d-flex align-items-center order-lg-3">
-				<button class="navbar-toggler" title="Menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
-				<a class="navbar-tool d-none d-lg-flex" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#searchBox" role="button" aria-expanded="false" aria-controls="searchBox"><span class="navbar-tool-tooltip">Search</span>
-					<div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-search"></i></div></a>
-				{% if user.id is None %}
-                <div class="navbar-tool dropdown ms-2">
-                    <div class="navbar-tool-icon-box">
-                        <a class="navbar-tool-icon-box border dropdown-toggle" title="Login" href="{% url 'login' %}"><i class="navbar-tool-icon ci-user"></i></a>
-                    </div>
-					<a class="navbar-tool-text ms-n1" href="{% url 'login' %}"><small>Hello, Guest!</small>Account</a>
-					<div class="dropdown-menu dropdown-menu-end">
-                        <div style="min-width: 14rem;">
-                            <h6 class="dropdown-header">Account</h6>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}"><i class="ci-sign-in opacity-60 me-2"></i>Log in</a>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'register' %}"><i class="ci-add-user opacity-60 me-2"></i>Sign up</a>
-                            <div class="dropdown-divider"></div>
-                        </div>
-					</div>
-				</div>
-				{% else %}
-				<div class="navbar-tool dropdown ms-2"><a class="navbar-tool-icon-box border dropdown-toggle" href="{% url 'profile' user.profile.slug %}">
-					<img src="{{ user.profile.get_avatar }}" width="36" alt="{{ user.first_name }}"></a>
-					<a class="navbar-tool-text ms-n1" href="{% url 'profile' user.profile.slug %}"><small>Hello {{ user.first_name }}!</small>My Account</a>
-					<div class="dropdown-menu dropdown-menu-end">
-                        <div style="min-width: 14rem;">
-                            <h6 class="dropdown-header">Account</h6>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' user.profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Profile</a>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'edit_profile' user.profile.slug %}"><i class="ci-user opacity-60 me-2"></i>Edit Profile</a>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'change_password' %}"><i class="ci-key opacity-60 me-2"></i>Change password</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}"><i class="ci-sign-out opacity-60 me-2"></i>Sign Out</a>
-                        </div>
-					</div>
-				</div>
-				{% endif %}
-			</div>
-			<div class="collapse navbar-collapse me-auto order-lg-2" id="navbarCollapse">
-				<!-- Search-->
-                <form action="{% url 'search_post' %}">
-                    <div class="input-group d-lg-none my-3"><i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
-                        <input class="form-control rounded-start" type="text" name='keyword' placeholder="Search posts">
-                    </div>
-                </form>
-				<!-- Categories dropdown-->
-				<ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-lg-0" href="#" data-bs-toggle="dropdown"><i class="ci-menu align-middle mt-n1 me-2"></i>Categories</a>
-						<ul class="dropdown-menu py-1">
-							{% for link in links %}
-							<li class="dropdown"><a class="dropdown-item" href="{% url 'post_by_category' link.slug %}">{{ link.category }}</a></li>
-							{% endfor %}
-						</ul>
-					</li>
-				</ul>
-				<!-- Primary menu-->
-				<ul class="navbar-nav navbar-expand-lg">
-					<li class="nav-item"><a class="nav-link" href="{% url 'post' %}">Blog</a></li>
-                    {% if user.is_superuser %}
-                        <li class="nav-item dropdown navbar-nav"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Admin</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="{% url 'category_list' %}">Quản lý danh mục</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{% url 'list_post' %}">Quản lý bài đăng</a></li>
-                            </ul>
-                        </li>
-                    {% endif %}
-                    <li class="nav-item dropdown navbar-nav"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Tài khoản</a>
-                        <ul class="dropdown-menu">
-                            {% if user.id is None %}
-                            <li><a class="dropdown-item" href="{% url 'login' %}">Sign In</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'register' %}">Sign Up</a></li>
-                            {% else %}
-                            <li><a class="dropdown-item" href="{% url 'edit_profile' user.profile.slug %}">Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- Search collapse-->
-	<div class="search-box collapse" id="searchBox">
-		<div class="card pt-2 pb-4 border-0 rounded-0">
-			<div class="container">
-                <form action="{% url 'search_post' %}">
-                    <div class="input-group">
-                        <i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i>
-                        <input class="form-control rounded-start" type="search" name='keyword' placeholder="Search posts">
-                    </div>
-                </form>
-			</div>
-		</div>
-	</div>
+{% load static %} 
 
-</header>
+<!-- Navbar Section -->
+<div class="ud-header bg-transparent absolute top-0 left-0 z-40 w-full flex items-center">
+	<div class="container">
+		<div class="flex -mx-4 items-center justify-between relative">
+			<div class="px-4 w-60 max-w-full">
+				<a href="{% url 'index' %}" class="navbar-logo w-full block py-5">
+					<img src="{% static 'img/logo/logo-white.svg' %}" alt="logo" class="w-full header-logo" />
+				</a>
+			</div>
+			<div class="flex px-4 justify-between items-center w-full">
+				<div>
+					<button id="navbarToggler" class="block absolute right-4 top-1/2 -translate-y-1/2 lg:hidden focus:ring-2 ring-primary px-3 py-[6px] rounded-lg">
+						<span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
+						<span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
+						<span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
+					</button>
+					<nav id="navbarCollapse" class="absolute py-5 lg:py-0 lg:px-4 xl:px-6 bg-white lg:bg-transparent shadow-lg rounded-lg max-w-[250px] w-full lg:max-w-full lg:w-full right-4 top-full hidden lg:block lg:static lg:shadow-none">
+						<ul class="blcok lg:flex">
+							<li class="relative group">
+								<a href="{% url 'index' %}" class="ud-menu-scroll text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:px-0 flex mx-8 lg:mr-0"> Home </a>
+							</li>
+							<li class="relative group">
+								<a href="{% url 'post' %}" class="ud-menu-scroll text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:px-0 flex mx-8 lg:mr-0 lg:ml-7 xl:ml-12"> Blog </a>
+							</li>
+							<li class="relative group submenu-item">
+								<a href="javascript:void(0)" class="text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:pl-0 lg:pr-4 flex mx-8 lg:mr-0 lg:ml-8 xl:ml-12 relative after:absolute after:w-2 after:h-2 after:border-b-2 after:border-r-2 after:border-current after:rotate-45 lg:after:right-0 after:right-1 after:top-1/2 after:-translate-y-1/2 after:mt-[-2px]"> Pages </a>
+								<div class="submenu hidden relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
+									<a href="about.html" class="block text-sm text-body-color rounded hover:text-primary py-[10px] px-4"> About Page </a>
+									<a href="blog-grids.html" class="block text-sm text-body-color rounded hover:text-primary py-[10px] px-4"> Blog Grid Page </a>
+								</div>
+							</li>
+                            {% if user.is_superuser %}
+                            <li class="relative group submenu-item">
+								<a href="javascript:void(0)" class="text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:pl-0 lg:pr-4 flex mx-8 lg:mr-0 lg:ml-8 xl:ml-12 relative after:absolute after:w-2 after:h-2 after:border-b-2 after:border-r-2 after:border-current after:rotate-45 lg:after:right-0 after:right-1 after:top-1/2 after:-translate-y-1/2 after:mt-[-2px]"> Admin </a>
+								<div class="submenu hidden relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
+									<a href="{% url 'category_list' %}" class="block text-sm text-body-color rounded hover:text-primary py-[10px] px-4"> Quản lý danh mục </a>
+									<a href="{% url 'list_post' %}" class="block text-sm text-body-color rounded hover:text-primary py-[10px] px-4"> Quản lý bài đăng </a>
+								</div>
+							</li>
+                            {% endif %}
+						</ul>
+					</nav>
+				</div>
+				<div class="sm:flex justify-end hidden pr-16 lg:pr-0">
+                    <!-- Search input on screen -->
+                    <div class="mx-10 md:block">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </span>
+                            <form action="{% url 'search_post' %}">
+                                <input type="text" name="keyword" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300" placeholder="   Search">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
