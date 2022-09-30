@@ -58,9 +58,9 @@ class Post(models.Model):
 							self.slug])
 
 
-class Viewer(models.Model):
-	name = models.CharField(max_length=255)
-	email = models.EmailField(_("Email"), max_length=254)
+# class Viewer(models.Model):
+# 	name = models.CharField(max_length=255)
+# 	email = models.EmailField(_("Email"), max_length=254)
 
 
 class Comment(MPTTModel):
