@@ -23,7 +23,7 @@
 									<img src="{% static 'img/blog/author-01.png' %}" alt="image" class="w-full" />
 								</div>
 								<p class="text-base text-white font-medium">
-									By <a href="javascript:void(0)" class="text-white hover:opacity-70"> {{post.author}} </a>
+									By <a href="javascript:void(0)" class="text-white hover:opacity-70"> {{post.author.get_full_name}} </a>
 								</p>
 							</div>
 							<div class="flex items-center mb-4">
@@ -279,7 +279,7 @@
 											<h4>
 												<a href="{{ post.get_absolute_url }}" class="text-lg lg:text-base xl:text-lg leading-snug font-medium text-dark hover:text-primary mb-1 inline-block"> {{ post.title }} </a>
 											</h4>
-											<p class="text-sm text-body-color">{{post.author}}</p>
+											<p class="text-sm text-body-color">{{post.author.get_full_name}}</p>
 										</div>
 									</div>
 								</div>
