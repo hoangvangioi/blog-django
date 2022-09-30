@@ -140,7 +140,7 @@
 										<a class="nav-link-style fs-sm fw-medium" onclick="myFunction({{ node.id }})"><i class="ci-reply me-2"></i>Reply</a>
 										{% else %}
 										<h6 class="fs-md mb-0">{{ node.user.get_full_name }}</h6>
-										<a class="nav-link-style fs-sm fw-medium" href="{% url 'login' %}"><i class="ci-reply me-2"></i>Reply</a>
+										{% comment %} <a class="nav-link-style fs-sm fw-medium" href="{% url 'login' %}"><i class="ci-reply me-2"></i>Reply</a> {% endcomment %}
 										{% endif %} {% endif %}
 									</div>
 									<p class="fs-md mb-1">{{ node.content|safe }}</p>
