@@ -83,8 +83,7 @@ INSTALLED_APPS = [
 
 
 PREPEND_WWW = os.getenv('PREPEND_WWW', default=False)
-# print(os.getenv)
-# print(os.environ)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
