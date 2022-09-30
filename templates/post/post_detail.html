@@ -196,7 +196,7 @@
 												<div class="invalid-feedback">Please write your comment.</div>
 											</div>
 											<button class="btn btn-primary btn-sm" type="submit">Post comment</button> {% else %}
-											<h6><a href="{% url 'login' %}">Đăng nhập</a> để bình luận</h6>
+											{% comment %} <h6><a href="{% url 'login' %}">Đăng nhập</a> để bình luận</h6> {% endcomment %}
 											{% endif %}
 										</form>
 									</div>
