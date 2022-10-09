@@ -50,7 +50,7 @@ urlpatterns = [
     re_path(r'^ckeditor/',include('ckeditor_uploader.urls')),
 
     path('tinymce/', include('tinymce.urls')),
-    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('./static/favicon.ico'))),
+    re_path(r'^favicon\.ico$', RedirectView.as_view(url='../static/favicon.ico')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('ads.txt', TemplateView.as_view(template_name='ads.txt', content_type='text/plain'), name='ads_file'),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_file'),

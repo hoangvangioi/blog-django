@@ -325,7 +325,7 @@ EMAIL_PORT = 587
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Activate Django-Heroku.
-django_on_heroku.settings(locals())
+django_on_heroku.settings(locals(), logging=False)
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'info',
@@ -355,3 +355,37 @@ CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
 CSRF_COOKIE_DOMAIN = os.getenv('CSRF_COOKIE_DOMAIN')
 
 CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST')
+
+
+LOGGING = {
+   'version': 1,
+   'disable_existing_loggers': False,
+   'formatters': {
+      'verbose': {
+         'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+         'datefmt': "%d/%b/%Y %H:%M:%S"
+      },
+      'simple': {
+         'format': '%(levelname)s %(message)s'
+      },
+   },
+   'handlers': {
+      'file': {
+         'level': 'DEBUG',
+         'class': 'logging.FileHandler',
+         'filename': 'mysite.log',
+         'formatter': 'verbose'
+      },
+   },
+   'loggers': {
+      'django': {
+         'handlers': ['file'],
+         'propagate': True,
+         'level': 'DEBUG',
+      },
+      'MYAPP': {
+         'handlers': ['file'],
+         'level': 'DEBUG',
+      },
+   }
+}
