@@ -289,24 +289,35 @@
 								{% endif %}
 							</div>
 							<!-- Categories-->
-							<div class="widget widget-links mb-grid-gutter pb-grid-gutter border-bottom mx-lg-2">
-								<h3 class="widget-title">Blog categories</h3>
-								<ul class="widget-list">
-									{% for link in links %}
-									<li class="widget-list-item">
-										<a class="widget-list-link d-flex justify-content-between align-items-center" href="{% url 'post_by_category' link.slug %}">
-											<span>{{ link.category }}</span>
-										</a>
-									</li>                
-									{% endfor %}
-								</ul>
+							<div class="flex flex-wrap -mx-4 mb-8">
+								<div class="w-full px-4">
+									<h2 class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative wow fadeInUp" data-wow-delay=".1s"> Categories </h2>
+									<span class="h-[2px] bg-primary w-20 mb-10 inline-block"></span>
+								</div>
+								<div class="w-full md:w-1/2 lg:w-full px-4">
+									<ul class="widget-list">
+										{% for link in links %}
+										<li class="widget-list-item">
+											<a class="widget-list-link d-flex justify-content-between align-items-center" href="{% url 'post_by_category' link.slug %}">
+												<span>{{ link.category }}</span>
+											</a>
+										</li>                
+										{% endfor %}
+									</ul>
+								</div>
 							</div>
 							<!-- Popular tags-->
-							<div class="widget pb-grid-gutter mx-lg-2">
-								<h3 class="widget-title">Popular tags</h3>
-								{% for tag in all_tag %}
-								<a class="btn-tag me-2 mb-2" href="{% url 'post_tag' tag.slug %}"># {{ tag }}</a>
-								{% endfor %}
+							<div class="flex flex-wrap -mx-4 mb-8">
+								<div class="w-full px-4">
+									<h2 class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative wow fadeInUp" data-wow-delay=".1s"> Popular tags </h2>
+									<span class="h-[2px] bg-primary w-20 mb-10 inline-block"></span>
+								</div>
+								<div class="w-full md:w-1/2 lg:w-full px-4">
+									<h3 class="widget-title">Popular tags</h3>
+									{% for tag in all_tag %}
+									<a class="btn-tag me-2 mb-2" href="{% url 'post_tag' tag.slug %}"># {{ tag }}</a>
+									{% endfor %}
+								</div>
 							</div>
 							<div class="rounded overflow-hidden mb-12 wow fadeInUp" data-wow-delay=".1s">
 								<img src="{% static 'img/blog/bannder-ad.png' %}" alt="image" class="w-full" />
