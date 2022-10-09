@@ -43,20 +43,14 @@
 						</ul>
 					</nav>
 				</div>
-				<div class="sm:flex justify-end hidden pr-16 lg:pr-0">
+				<div class="sm:flex justify-end pr-16 lg:pr-0">
                     <!-- Search input on screen -->
-                    <div class="mx-10 md:block">
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                <svg class="w-8 h-8 text-gray-400" viewBox="0 0 24 24" fill="none">
-                                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </span>
-                            <form action="{% url 'search_post' %}">
-                                <input type="text" name="keyword" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300" placeholder="   Search">
-                            </form>
-                        </div>
-                    </div>
+					<form action="{% url 'search_post' %}" class="relative mx-auto w-max">
+						<input type="search" name="keyword" class="peer cursor-pointer relative z-10 h-10 w-10 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:pl-16 focus:pr-4" />
+						<svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-y-0 my-auto h-10 w-12 border-r border-transparent px-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+						</svg>
+					</form>
                 </div>
 			</div>
 		</div>

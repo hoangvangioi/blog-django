@@ -2453,3 +2453,65 @@ body {
         font-size: 40px;
     }
 }
+
+/* Add css button search */
+
+.inset-y-0 {
+	top: 0;
+	bottom: 0;
+}
+
+.my-auto {
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.h-12 {
+	height: 3rem;
+}
+.w-max {
+	width: -webkit-max-content;
+	width: -moz-max-content;
+	width: max-content;
+}
+.w-12 {
+	width: 3rem;
+}
+.max-w-md {
+	max-width: 28rem;
+}
+.border-r {
+	border-right-width: 1px;
+}
+.px-6 {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+.px-3\.5 {
+	padding-left: 0.875rem;
+	padding-right: 0.875rem;
+}
+.px-3 {
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+}
+.pt-10 {
+	padding-top: 2.5rem;
+}
+.pb-8 {
+	padding-bottom: 2rem;
+}
+.pl-12 {
+	padding-left: 3rem;
+}
+.focus\:w-full:focus {
+	width: 100%;
+}
+.focus\:cursor-text:focus {
+	cursor: text;
+}
+.focus\:pl-16:focus {
+	padding-left: 4rem;
+}
+.focus\:pr-4:focus {
+	padding-right: 1rem;
+}
