@@ -66,6 +66,9 @@ INSTALLED_APPS = [
     'cloudinary',
 
     'django.contrib.sitemaps',
+    
+    # PWA
+    'pwa'
 ]
 
 
@@ -375,3 +378,35 @@ LOGGING = {
       },
    }
 }
+
+PWA_APP_NAME = 'Blog Hoàng Giỏi'
+PWA_APP_DESCRIPTION = "My app description"
+PWA_APP_THEME_COLOR = '#ec3fce'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/favicon-32x32.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/favicon-32x32.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/favicon-32x32.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'vi-VN'
+# import os
+# PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
