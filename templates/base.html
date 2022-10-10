@@ -42,18 +42,13 @@
     <script>
         new WOW().init();
     </script>
-    <!-- Main Theme Styles + Bootstrap-->
-    {% comment %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"> {% endcomment %} {% if '/' == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %} {% comment %}
-    <link rel="stylesheet" href="{% static 'css/theme.list.css' %}"> {% endcomment %} {% elif post.get_absolute_url == request.path %} {% comment %}
-    <link rel="stylesheet" href="{% static 'css/theme.detail.css' %}"> {% endcomment %} {% else %} {% comment %}
-    <link rel="stylesheet" href="{% static 'css/theme.min.css' %}"> {% endcomment %} {% endif %}
+    {% if '/' == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %}
+    {% elif post.get_absolute_url == request.path %}{% else %}{% endif %}
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap"> {% if '/' == request.path or post.get_absolute_url == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %}
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap"> 
+    {% if post.get_absolute_url == request.path %}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308" crossorigin="anonymous"></script>
     {% endif %}
-
 </head>
 
 <body class="handheld-toolbar-enabled">
