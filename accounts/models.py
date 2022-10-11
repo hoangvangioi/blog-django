@@ -55,7 +55,7 @@ class MyAccountManager(BaseUserManager):
         return user
 
 
-class Account(AbstractBaseUser, PermissionsMixin):
+class Account(AbstractBaseUser):
     first_name      = models.CharField(max_length=50)
     last_name       = models.CharField(max_length=50)
     email           = models.EmailField(max_length=100, unique=True)
@@ -75,7 +75,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _('Account')
         verbose_name_plural = _('Accounts')
-
+        
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
 
