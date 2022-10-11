@@ -44,6 +44,10 @@ urlpatterns = [
     path('', include('post.urls')),
     path('', include('category.urls')),
     path('', include('search.urls')),
+
+    path("user/", include("users.urls")),
+    path("comments/", include("django_comments_ink.urls")),
+
     path('', TemplateView.as_view(template_name='index.html', content_type='text/html'), name='index'), 
 
     # CKeditor
