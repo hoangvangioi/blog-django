@@ -58,6 +58,25 @@ class Post(models.Model):
 							self.slug])
 
 
+
+from datetime import date, datetime
+
+
+
+def check_comments_input_allowed(obj):
+    """
+    Return False if obj's publish is older than 2 years.
+    """
+    obj_date = obj.publish.date()
+    obj_time = obj.publish.time()
+    in2years_date = date(obj_date.year + 2, obj_date.month, obj_date.day)
+    in2years = timezone.make_aware(datetime.combine(in2years_date, obj_time))
+    if timezone.now() > in2years:
+        return False
+    else:
+        return True
+
+
 # class Viewer(models.Model):
 # 	name = models.CharField(max_length=255)
 # 	email = models.EmailField(_("Email"), max_length=254)
