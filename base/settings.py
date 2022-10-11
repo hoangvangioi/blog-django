@@ -35,6 +35,10 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS', default='127.0.0.1')]
 
+INTERNAL_IPS = ["127.0.0.1"]
+
+ADMINS = (("Alice Bloggs", "gioitube2k2@gmail.com"),)
+
 
 # Application definition
 
@@ -47,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # App
-    'accounts',
+    # 'accounts',
     'category',
     'post',
     'search',
@@ -68,9 +72,15 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     
     # PWA
-    'pwa'
+    'pwa',
+
+    "django.contrib.sites",
+    "django_comments_ink",
+    "django_comments",
+    "users",
 ]
 
+SITE_ID = 2
 
 PREPEND_WWW = os.getenv('PREPEND_WWW', default=False)
 
@@ -177,7 +187,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.Account'
+# AUTH_USER_MODEL = 'accounts.Account'
 
 CKEDITOR_UPLOAD_PATH="uploads/"
 
@@ -346,38 +356,38 @@ CSRF_COOKIE_DOMAIN = os.getenv('CSRF_COOKIE_DOMAIN')
 CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST')
 
 
-LOGGING = {
-   'version': 1,
-   'disable_existing_loggers': False,
-   'formatters': {
-      'verbose': {
-         'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-         'datefmt': "%d/%b/%Y %H:%M:%S"
-      },
-      'simple': {
-         'format': '%(levelname)s %(message)s'
-      },
-   },
-   'handlers': {
-      'file': {
-         'level': 'DEBUG',
-         'class': 'logging.FileHandler',
-         'filename': 'mysite.log',
-         'formatter': 'verbose'
-      },
-   },
-   'loggers': {
-      'django': {
-         'handlers': ['file'],
-         'propagate': True,
-         'level': 'DEBUG',
-      },
-      'MYAPP': {
-         'handlers': ['file'],
-         'level': 'DEBUG',
-      },
-   }
-}
+# LOGGING = {
+#    'version': 1,
+#    'disable_existing_loggers': False,
+#    'formatters': {
+#       'verbose': {
+#          'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+#          'datefmt': "%d/%b/%Y %H:%M:%S"
+#       },
+#       'simple': {
+#          'format': '%(levelname)s %(message)s'
+#       },
+#    },
+#    'handlers': {
+#       'file': {
+#          'level': 'DEBUG',
+#          'class': 'logging.FileHandler',
+#          'filename': 'mysite.log',
+#          'formatter': 'verbose'
+#       },
+#    },
+#    'loggers': {
+#       'django': {
+#          'handlers': ['file'],
+#          'propagate': True,
+#          'level': 'DEBUG',
+#       },
+#       'MYAPP': {
+#          'handlers': ['file'],
+#          'level': 'DEBUG',
+#       },
+#    }
+# }
 
 PWA_APP_NAME = 'Blog Hoàng Giỏi'
 PWA_APP_DESCRIPTION = "My app description"
@@ -410,3 +420,133 @@ PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'vi-VN'
 # import os
 # PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+
+
+
+# Define the user model. The difference between 'users.User' and 'auth.User'
+# is that the former doesn't include an 'username' attribute, and rather uses
+# the email address.
+AUTH_USER_MODEL = "users.User"
+
+SIGNUP_URL = "/user/signup/"
+LOGIN_URL = "/user/login/"
+LOGOUT_URL = "/user/logout/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+COMMENTS_APP = "django_comments_ink"
+
+COMMENTS_HIDE_REMOVED = False
+
+COMMENTS_INK_SALT = os.getenv("COMMENTS_INK_SALT", "").encode("utf-8")
+COMMENTS_INK_CONFIRM_EMAIL = True  # Set to False to disable confirmation.
+COMMENTS_INK_FROM_EMAIL = "staff@example.com"
+COMMENTS_INK_CONTACT_EMAIL = "staff@example.com"
+
+# Default to True, use False to allow other
+# backend (say Celery based) send your emails.
+COMMENTS_INK_THREADED_EMAILS = False
+
+COMMENTS_INK_API_USER_REPR = lambda user: user.name
+
+COMMENTS_INK_SEND_HTML_EMAIL = True
+
+# This setting is to apply a maximum thread level of 1 to all apps by default.
+COMMENTS_INK_MAX_THREAD_LEVEL = 1
+
+# This setting applies a maximum thread level of 1 only to the 'quotes.quote'
+# app model. Useful in case you want to allow different levels of comment
+# nesting to different app models.
+COMMENTS_INK_MAX_THREAD_LEVEL_BY_APP_MODEL = {
+    "post.post": 10  # So 2 levels: from 0 to 1.
+}
+
+COMMENTS_INK_LIST_ORDER = ("-thread__score", "thread__id", "order")
+
+COMMENTS_INK_APP_MODEL_OPTIONS = {
+    "default": {
+        "who_can_post": "all",  # Valid values: "users", "all".
+        "comment_flagging_enabled": True,
+        "comment_votes_enabled": True,
+        "comment_reactions_enabled": True,
+        "object_reactions_enabled": True,
+    },
+    "post.post": {
+        "check_input_allowed": "post.models.check_comments_input_allowed"
+    },
+}
+
+COMMENTS_INK_CACHE_NAME = "default"
+
+# All HTML elements rendered by django-comments-ink use the 'dci' CSS selector,
+# defined in 'django_comments_ink/static/django_comments_ink/css/comments.css'.
+# You can alter the CSS rules applied to your comments adding your own custom
+# selector to the following setting.
+# COMMENTS_INK_CSS_CUSTOM_SELECTOR = "dci dci-custom"
+
+# How many users are listed when hovering a reaction.
+COMMENTS_INK_MAX_USERS_IN_TOOLTIP = 10
+
+# Display up to the given number of comments in the last page to avoid
+# creating another page containing only these amount of comments.
+COMMENTS_INK_MAX_LAST_PAGE_ORPHANS = 4
+
+# Number of comments per page. When <=0 pagination is disabled.
+COMMENTS_INK_COMMENTS_PER_PAGE = 10
+
+# COMMENTS_INK_THEME_DIR = "feedback_in_header"
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
+        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
+    },
+    "formatters": {
+        "simple": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(message)s"
+        },
+        "console": {
+            "format": (
+                "[%(asctime)s][%(levelname)s] %(name)s "
+                "%(filename)s:%(funcName)s:%(lineno)d | %(message)s"
+            ),
+            "datefmt": "%H:%M:%S",
+        },
+    },
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "django.utils.log.AdminEmailHandler",
+        },
+        "console": {
+            "level": "DEBUG",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+            "formatter": "console",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+        },
+        "django.request": {
+            "handlers": ["console", "mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+        "django.security": {
+            "handlers": ["console", "mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+        "django_comments_ink": {
+            "handlers": ["console", "mail_admins"],
+            "level": "INFO",
+            "propagate": True,
+        },
+    },
+}
