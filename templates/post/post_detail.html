@@ -2,19 +2,17 @@
 
 <!-- Code Highlight -->
 <link rel="stylesheet" href="{% static 'css/prism.css' %}" /> {% endblock style %} 
-{% block banner %}
-<div class="text-center">
-	<h1 class="font-semibold text-white text-4xl">{{post.title}}</h1>
-</div>
-{% endblock %}
+{% load i18n %}
+{% load comments %}
+{% load comments_ink %}
+
 {% block content %}
 
-<!-- ====== Blog Details Section Start -->
-<section class="pt-20 lg:pt-[120px] pb-10 lg:pb-20">
+<section class="pt-20 lg:pt-[75px] pb-10 lg:pb-20">
 	<div class="container">
 		<div class="flex flex-wrap justify-center -mx-4">
 			<div class="w-full px-4">
-				<div class="relative rounded overflow-hidden z-20 mb-[60px] h-[300px] md:h-[400px] lg:h-[500px] wow fadeInUp" data-wow-delay=".1s">
+				<div class="relative rounded overflow-hidden z-20 mb-[60px] h-[300px] md:h-[400px] lg:h-[500px]">
 					<img src="{{post.featured_image.url}}" alt="image" class="w-full h-full object-cover object-center" />
 					<div class="absolute w-full h-full top-0 left-0 flex items-end z-10 bg-gradient-to-t from-dark-700 to-transparent">
 						<div class="flex flex-wrap items-center p-4 sm:p-8 pb-4">
@@ -43,8 +41,8 @@
 									</span>
 									{{post.publish|date}}
 								</p>
-
 								<p class="flex items-center text-sm font-medium text-white mr-5 md:mr-8">
+									<a href="#comments" class="flex">
 									<span class="mr-3">
 										<svg width="18" height="13" viewBox="0 0 18 13" class="fill-current">
 											<path d="M15.9754 0H2.02539C1.09727 0 0.337891 0.759375 0.337891 1.6875V10.6875C0.337891 11.3062 0.647266 11.8406 1.18164 12.15C1.43477 12.2906 1.74414 12.375 2.02539 12.375C2.30664 12.375 2.58789 12.2906 2.86914 12.15L5.34414 10.7156C5.45664 10.6594 5.56914 10.6312 5.68164 10.6312H15.9473C16.8754 10.6312 17.6348 9.87187 17.6348 8.94375V1.6875C17.6629 0.759375 16.9035 0 15.9754 0ZM16.6785 8.94375C16.6785 9.3375 16.3691 9.64687 15.9754 9.64687H5.70977C5.42852 9.64687 5.11914 9.73125 4.86602 9.87187L2.39102 11.3063C2.16602 11.4187 1.91289 11.4187 1.68789 11.3063C1.46289 11.1938 1.35039 10.9688 1.35039 10.7156V1.6875C1.35039 1.29375 1.65977 0.984375 2.05352 0.984375H16.0035C16.3973 0.984375 16.7066 1.29375 16.7066 1.6875V8.94375H16.6785Z" />
@@ -52,7 +50,11 @@
 											<path d="M11.3908 6.55322H5.03457C4.75332 6.55322 4.52832 6.77822 4.52832 7.05947C4.52832 7.34072 4.75332 7.56572 5.03457 7.56572H11.4189C11.7002 7.56572 11.9252 7.34072 11.9252 7.05947C11.9252 6.77822 11.6721 6.55322 11.3908 6.55322Z" />
 										</svg>
 									</span>
-									{{ comments_count }}
+									{% get_inkcomment_count for post as comment_count %}
+									{% if comment_count %}
+										{{ comment_count }}						
+									{% endif %}
+									<a>
 								</p>
 							</div>
 						</div>
@@ -61,27 +63,26 @@
 				<div class="flex flex-wrap -mx-4">
 					<div class="w-full lg:w-8/12 px-4">
 						<div>
-							<h2 class="font-bold text-dark text-[26px] sm:text-3xl md:text-4xl leading-snug sm:leading-snug md:leading-snug mb-6 wow fadeInUp" data-wow-delay=".1s">
+							<h2 class="font-bold text-dark text-[26px] sm:text-3xl md:text-4xl leading-snug sm:leading-snug md:leading-snug mb-6">
 								{{ post.title }}
 							</h2>
 							{% if user.is_superuser %}
 							<a class="btn btn-success btn-sm mb-2 me-2" href="{{ post.get_absolute_url }}update/">Update</a>
 							<a class="btn btn-success btn-sm mb-2 ms-2" href="{{ post.get_absolute_url }}delete/">Delete</a>
 							{% endif %}
-							{{ post.body|safe }} 
-
+							{{ post.body|safe }}
+							<br>
+							<br>
 							<div class="flex flex-wrap items-center -mx-4 mb-12">
 								<div class="w-full md:w-1/2 px-4">
-									<div class="flex items-center flex-wrap mb-8 md:mb-0 wow fadeInUp" data-wow-delay=".1s">
+									<div class="flex items-center flex-wrap mb-8 md:mb-0">
 										{% for tag in post.tags.all %}
-										<a href="{% url 'post_tag' tag.slug %}" class="block py-2 px-5 bg-primary bg-opacity-5 text-primary rounded text-xs font-medium mr-2 md:mr-4 lg:mr-2 xl:mr-4 mb-2 hover:bg-opacity-100 hover:text-white"> {{tag.name}} </a>{% if not forloop.last %} {% endif %}
-										{% comment %} <a href="{% url 'post_tag' tag.slug %}" class="block py-2 px-5 bg-primary bg-opacity-5 text-primary rounded text-xs font-medium mr-2 md:mr-4 lg:mr-2 xl:mr-4 mb-2 hover:bg-opacity-100 hover:text-white"> {{tag.name}} </a>{% if not forloop.last %} {% endif %} {% endcomment %}
-										{% comment %} <a href="{% url 'post_tag' tag.slug %}" class="block py-2 px-5 mb-2 bg-primary bg-opacity-5 text-primary rounded text-xs font-medium hover:bg-opacity-100 hover:text-white"> {{tag.name}} </a>{% if not forloop.last %} {% endif %} {% endcomment %}
+										<a href="{% url 'post_tag' tag.slug %}" class="block py-2 px-5 bg-primary bg-opacity-5 text-primary rounded text-xs font-medium mr-2 md:mr-4 lg:mr-2 xl:mr-4 mb-2 hover:bg-opacity-100 hover:text-white"> {{tag.name}} </a> {% if not forloop.last %} {% endif %}
 										{% endfor %}
 									</div>
 								</div>
 								<div class="w-full md:w-1/2 px-4">
-									<div class="flex items-center md:justify-end wow fadeInUp" data-wow-delay=".1s">
+									<div class="flex items-center md:justify-end">
 										<span class="text-sm text-body-color font-medium mr-5"> Share This Post </span>
 										<div class="flex items-center">
 											<a title="Share facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://{{domain}}{{ post.get_absolute_url }}" target="_blank" class="mr-4 mb-2">
@@ -104,101 +105,56 @@
 									</div>
 								</div>
 							</div>
-						</div>
-
-						<!-- Post navigation-->
-						<nav class="entry-navigation" aria-label="Post navigation">
-							{% if post.previous_post %}
-							<a class="entry-navigation-link" title="{{ post.previous_post.title }}" href="{{ post.previous_post.get_absolute_url }}" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="hover" data-bs-html="true" data-bs-content='&lt;div class="d-flex align-items-center"&gt;&lt;img src="{{ post.previous_post.featured_image.url }}" width="60" class="rounded" alt="Post thumb"&gt;&lt;div class="ps-3"&gt;&lt;h6 class="fs-sm fw-semibold mb-0"&gt;{{ post.previous_post.title }}&lt;/h6&gt;&lt;span class="d-block fs-xs text-muted"&gt;by {{ post.previous_post.author }}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;'><i class="ci-arrow-left me-2"></i><span class="d-none d-sm-inline">Prev post</span></a>
-							{% endif %}
-							<a class="entry-navigation-link" title="All posts" href="{% url 'post' %}"><i class="ci-view-list me-2"></i><span class="d-none d-sm-inline">All posts</span></a>
-							{% if post.next_post %}
-							<a class="entry-navigation-link" title="{{ post.next_post.title }}" href="{{ post.next_post.get_absolute_url }}" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="hover" data-bs-html="true" data-bs-content='&lt;div class="d-flex align-items-center"&gt;&lt;img src="{{ post.next_post.featured_image.url }}" width="60" class="rounded" alt="Post thumb"&gt;&lt;div class="ps-3"&gt;&lt;h6  class="fs-sm fw-semibold mb-0"&gt;{{ post.next_post.title }}&lt;/h6&gt;&lt;span class="d-block fs-xs text-muted"&gt;by {{ post.next_post.author }}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;'><span class="d-none d-sm-inline">Next post</span><i class="ci-arrow-right ms-2"></i></a> {% endif %}
-						</nav>
-						<!-- Comments-->
-						<div class="pt-2 mt-5" id="comments">
-							{% with allcomments.count as total_comments %}
-							<h2 class="h4">Comments<span class="badge bg-secondary fs-sm text-body align-middle ms-2">{{ total_comments }} {{ total_comments|pluralize }}</span></h2>
-							{% endwith %}
-							<!-- comment-->
-							{% load mptt_tags %} {% recursetree comments %}
-							<div id="{{ node.id }}" class="d-flex align-items-start py-4 border-bottom">
-								<img class="rounded-circle" src="{{ node.user.profile.get_avatar }}" width="50" alt="{{ node.user.get_full_name }}" />
-								<div class="ps-3">
-									<div class="d-flex justify-content-between align-items-center mb-2">
-										{% if node.level < 8 %} {% if user.id %}
-										<h6 class="fs-md mb-0">{{ node.user.get_full_name }}</h6>
-										<a class="nav-link-style fs-sm fw-medium" onclick="myFunction({{ node.id }})"><i class="ci-reply me-2"></i>Reply</a>
-										{% else %}
-										<h6 class="fs-md mb-0">{{ node.user.get_full_name }}</h6>
-										{% comment %} <a class="nav-link-style fs-sm fw-medium" href="{% url 'login' %}"><i class="ci-reply me-2"></i>Reply</a> {% endcomment %}
-										{% endif %} {% endif %}
-									</div>
-									<p class="fs-md mb-1">{{ node.content|safe }}</p>
-									<span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>{{ node.publish }}</span>
-								</div>
-							</div>
-							{% if not node.is_leaf_node %}
-							<div class="children ps-2 ps-md-5">{{ children }}</div>
-							{% endif %} {% endrecursetree %}
-							<div class="py-4">
-								<nav aria-label="Page navigation example">
-									{% if comments.has_other_pages %}
-									<ul class="pagination">
-										{% if comments.has_previous %}
-										<li class="page-item">
-											<a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a>
-										</li>
-										{% else %}
-										<li class="page-item disabled">
-											<a class="page-link" href="#">Previous</a>
-										</li>
-										{% endif %} {% for num in comments.paginator.page_range %} {% if comments.number == l %}
-										<li class="page-item active">
-											<span class="page-link">{{ num }} <span class="sr-only">(current)</span></span>
-										</li>
-										{% else %}
-										<li>
-											<a class="page-link" href="?page={{ num }}">{{ num }}</a>
-										</li>
-										{% endif %} {% endfor %} {% if comments.has_next %}
-										<li class="page-item">
-											<a class="page-link" href="?page={{ comments.next_page_number }}">Next</a>
-										</li>
-										{% else %}
-										<li class="page-item disabled">
-											<a class="page-link" href="#">Next</a>
-										</li>
-										{% endif %}
-									</ul>
+							<div class="mb-8 w-full">
+								<div class="inline-flex rounded-full">
+									{% if post.previous_post %}
+									<a href="{{ post.previous_post.get_absolute_url }}" class="inline-flex items-center justify-center rounded-l-full border border-[#F87171] py-[10px] px-[12px] text-center font-semibold text-black transition-all hover:border-primary hover:bg-primary hover:text-white sm:py-3 sm:px-6"> {{ post.previous_post.title }} </a>
 									{% endif %}
-								</nav>
-							</div>
-
-							<!-- Post comment form-->
-							<div class="card border-0 shadow mt-2 mb-4">
-								<div class="card-body" id="myDIV">
-									<div class="d-flex align-items-start">
-										<form id="myForm" method="post" action="#comments" class="w-100 needs-validation" novalidate>
-											{% if user.id %}
-											<div class="mb-3">
-												<h5>Để lại một bình luận:</h5>
-												{% csrf_token %} {{ comment_form.content }} {{ comment_form.media }}
-												<div class="invalid-feedback">Please write your comment.</div>
-											</div>
-											<button class="btn btn-primary btn-sm" type="submit">Post comment</button> {% else %}
-											{% comment %} <h6><a href="{% url 'login' %}">Đăng nhập</a> để bình luận</h6> {% endcomment %}
-											{% endif %}
-										</form>
-									</div>
+									{% if post.next_post %}
+									<a href="{{ post.next_post.get_absolute_url }}" class="inline-flex items-center justify-center rounded-r-full border border-[#F87171] py-[10px] px-[12px] text-center text-sm font-semibold text-black transition-all hover:border-primary hover:bg-primary hover:text-white sm:py-3 sm:px-6 sm:text-base"> {{ post.next_post.title }} </a>
+									{% endif %}
 								</div>
 							</div>
-						</div>
 
+							<link rel="stylesheet" type="text/css" href="{% static 'django_comments_ink/css/comments.css' %}">
+							<link rel="stylesheet" type="text/css" href="{% static 'django_comments_ink/css/reactions.css' %}">
+
+							<div class="{% dci_custom_selector %}">
+								<div class="text-center flex flex-justify-center">
+								{% render_object_reactions_form for post %}
+								</div>
+								{% get_inkcomment_count for post as comment_count %}
+								{% if comment_count %}
+								<h6 class="text-center">
+									{% blocktrans count comment_count=comment_count %}
+									There is {{ comment_count }} comment
+									{% plural %}
+									There are {{ comment_count }} comments
+									{% endblocktrans %}
+								</h6>
+								{% endif %}
+							</div>
+
+							{% if comment_count %}
+								<div class="{% dci_custom_selector %} pb32">
+								{% render_inkcomment_list for post %}
+								</div>
+							{% endif %}
+							{% if is_comment_input_allowed %}
+								<div class="{% dci_custom_selector %}" data-dci="comment-form">
+								<section class="comment-form">
+									<h5 class="text-center">{% translate "Post your comment" %}</h5>
+									{% render_inkcomment_form for post %}
+								</section>
+								</div>
+							{% else %}
+								<h4 class="text-center">{% trans "New comments are not allowed." %}</h4>
+							{% endif %}
+						</div>
 					</div>
 					<div class="w-full lg:w-4/12 px-4">
 						<div>
-							<div class="mb-12 bg-primary rounded relative overflow-hidden text-center py-[60px] px-11 lg:px-8 wow fadeInUp" data-wow-delay=".1s">
+							<div class="mb-12 bg-primary rounded relative overflow-hidden text-center py-[60px] px-11 lg:px-8">
 								<h3 class="font-semibold text-white mb-2 text-2xl">Join our newsletter!</h3>
 								<p class="text-base text-white mb-8">Enter your email to receive our latest newsletter.</p>
 								<form>
@@ -253,17 +209,16 @@
 							<div class="flex flex-wrap -mx-4 mb-8">
 								<div class="w-full px-4">
 									<h2
-										class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative wow fadeInUp"
-										data-wow-delay=".1s">
+										class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative">
 										Popular Articles
 									</h2>
 									<span class="h-[2px] bg-primary w-20 mb-10 inline-block"></span>
 								</div>
-								{% if most_recent %}
-								{% for post in most_recent %}
 								<div class="w-full md:w-1/2 lg:w-full px-4">
-									<div class="w-full flex items-center pb-5 mb-5 border-b border-[#F2F3F8] wow fadeInUp" data-wow-delay=".1s">
-										<div class="w-full max-w-[80px] h-20 rounded-full overflow-hidden mr-5">
+									{% if most_recent %}
+									{% for post in most_recent %}
+									<div class="w-full flex items-center pb-5 mb-5 border-b border-[#F2F3F8]">
+										<div class="w-full max-w-[80px] rounded-full overflow-hidden mr-5">
 											<img src="{{ post.featured_image.url }}" alt="image" class="w-full" />
 										</div>
 										<div class="w-full">
@@ -273,35 +228,35 @@
 											<p class="text-sm text-body-color">{{post.author.get_full_name}}</p>
 										</div>
 									</div>
+									{% endfor %}
+									{% else %}
+										<p>There are no latest posts.</p>
+									{% endif %}
 								</div>
-								{% endfor %}
-								{% else %}
-									<p>There are no latest posts.</p>
-								{% endif %}
 							</div>
 							<!-- Categories-->
 							<div class="flex flex-wrap -mx-4 mb-8">
 								<div class="w-full px-4">
-									<h2 class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative wow fadeInUp" data-wow-delay=".1s"> Categories </h2>
+									<h2 class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative"> Categories </h2>
 									<span class="h-[2px] bg-primary w-20 mb-10 inline-block"></span>
 								</div>
 								<div class="w-full md:w-1/2 lg:w-full px-4">
-									<ol>
-									{% for link in links %}
-										<li class="flex text-base mb-4">
-											<a class="flex" href="{% url 'post_by_category' link.slug %}">
-											<span class="bg-primary rounded mr-2 h-6 w-8"></span>
-											{{ link.category }}
-											</a>
-										</li>
-									{% endfor %}
-									</ol> 
+									<div class="mb-12">
+										<ul>
+											{% for link in links %}
+											<li class="mb-4 flex text-base text-body-color">
+												<span class="mr-2 mt-2 flex h-2 w-full max-w-[8px] items-center justify-center rounded-full bg-primary text-base"></span>
+												<a class="flex" href="{% url 'post_by_category' link.slug %}">{{ link.category }}</a>
+											</li>
+											{% endfor %}
+										</ul>
+									</div>
 								</div>
 							</div>
 							<!-- Popular tags-->
 							<div class="flex flex-wrap -mx-4 mb-8">
 								<div class="w-full px-4">
-									<h2 class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative wow fadeInUp" data-wow-delay=".1s"> Popular tags </h2>
+									<h2 class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative"> Popular tags </h2>
 									<span class="h-[2px] bg-primary w-20 mb-10 inline-block"></span>
 								</div>
 								<div class="w-full md:w-1/2 lg:w-full px-4">
@@ -310,7 +265,7 @@
 									{% endfor %}
 								</div>
 							</div>
-							<div class="rounded overflow-hidden mb-12 wow fadeInUp" data-wow-delay=".1s">
+							<div class="rounded overflow-hidden mb-12">
 								<img src="{% static 'img/blog/bannder-ad.png' %}" alt="image" class="w-full" />
 							</div>
 						</div>
@@ -318,15 +273,14 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="flex flex-wrap -mx-4">
-			<div class="w-full px-4 mt-14 wow fadeInUp" data-wow-delay=".2s">
+			<div class="w-full px-4 mt-14">
 				<h2 class="font-semibold text-dark text-2xl sm:text-[28px] pb-5 relative">Related Articles</h2>
 				<span class="h-[2px] bg-primary w-20 mb-10 inline-block"></span>
 			</div>
 			{% for post in similar_posts %}
 			<div class="w-full md:w-1/2 lg:w-1/3 px-4">
-				<div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
+				<div class="mb-10 group">
 					<div class="rounded overflow-hidden mb-8">
 						<a href="{{ post.get_absolute_url }}" class="block">
 							<img src="{{ post.featured_image.url }}" alt="image" class="w-full transition group-hover:scale-125 group-hover:rotate-6" />
@@ -342,40 +296,15 @@
 				</div>
 			</div>
 			{% empty %}
-				<p class="text-muted">No related article</p>
+				<p class="text-center text-xl">No related article</p>
 			{% endfor %}
 		</div>
 	</div>
 </section>
-<!-- ====== Blog Details Section End -->
+
 
 {% endblock content %} {% block script %}
 
-<script>
-	function formExit() {
-		document.getElementById('newForm').remove();
-	}
-
-	function myFunction(id) {
-		if (document.contains(document.getElementById('newForm'))) {
-			document.getElementById('newForm').remove();
-		}
-
-		var d1 = document.getElementById(id);
-		d1.insertAdjacentHTML('afterend', '<form id="newForm" class="form-insert py-2" method="post"> \
-	            <div class="d-flex justify-content-between"><h5>Reply:</h5><div><button type="button" class="btn btn-outline-secondary btn-sm" onclick="formExit()"">Close</button></div></div> \
-	            <select name="parent" class="d-none" id="id_parentt"> \
-	            <option value="' + id + '" selected="' + id + '"></option> \
-	            </select> \
-	            <label for="id_content">Content:</label> \
-	            <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
-	            {% csrf_token %} \
-	            <button type="submit" class="btn btn-success btn-block mt-2 btn-sm">Submit</button> \
-	        </form>');
-	}
-
-	// $('#myForm').trigger("reset");
-</script>
 <!-- Code Highlight -->
 <script src="{% static 'js/prism.js' %}"></script>
 
