@@ -13,6 +13,8 @@ from taggit.models import Tag
 from .decorators import superuser_required
 from .forms import CommentForm, PostForm
 from .models import Post
+from django.urls import reverse
+from .models import check_comments_input_allowed
 
 
 # Create your views here.
@@ -104,6 +106,8 @@ def post_detail(request, year, month, day, post):
                 'comments': comments,
                 'comment_form': comment_form,
                 'allcomments': allcomments,
+                "next": reverse("comments-ink-sent"),
+                "is_comment_input_allowed": check_comments_input_allowed(post),
                 }
     return render(request, 'post/post_detail.html', context)
 
