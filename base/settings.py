@@ -80,7 +80,7 @@ INSTALLED_APPS = [
     "users",
 ]
 
-SITE_ID = 2
+SITE_ID = int(os.getenv('SITE_ID'))
 
 PREPEND_WWW = os.getenv('PREPEND_WWW', default=False)
 
