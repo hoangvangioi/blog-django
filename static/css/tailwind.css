@@ -911,6 +911,11 @@ input#checkboxLabelFive:checked ~ .box{
   margin-right: -0.75rem;
 }
 
+.my-0{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .my-4{
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -929,6 +934,11 @@ input#checkboxLabelFive:checked ~ .box{
 .-mx-2{
   margin-left: -0.5rem;
   margin-right: -0.5rem;
+}
+
+.mx-0{
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .mx-4{

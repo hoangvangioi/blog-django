@@ -3,18 +3,14 @@
 {% load i18n %}
 {% load static %}
 
-{% block nav-delete-account %}<span class="small">{% trans "Delete account" %}</span>{% endblock %}
+{% block nav-delete-account %}<span>{% trans "Delete account" %}</span>{% endblock %}
 
 {% block sub_content %}
-<div class="container mt32">
-  <div class="row">
-    <div class="column">
-      <h3>{% trans "Delete account" %}</h3>
-      <p>
-        {% blocktrans with email=user.email %}A confirmation message has been sent to <strong><code>{{ email }}</code></strong>.{% endblocktrans %}
-      </p>
-      <h6>{% trans "Click on the confirmation link in the email to complete the deletion of your user account." %}</h6>
-    </div>
-  </div>
+<div class="container mt-10">
+    <h3 class="text-danger text-xl mb-6">{% trans "Delete account" %}</h3>
+    <p>
+      {% blocktrans with email=user.email %}A confirmation message has been sent to <strong><code>{{ email }}</code></strong>.{% endblocktrans %}
+    </p>
+    <h6>{% trans "Click on the confirmation link in the email to complete the deletion of your user account." %}</h6>
 </div>
 {% endblock %}
