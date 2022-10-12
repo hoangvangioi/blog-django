@@ -38,7 +38,7 @@
     {% elif post.get_absolute_url == request.path %}{% else %}{% endif %}
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap"> 
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{% static 'css/main.css' %}" /> {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
     {% if post.get_absolute_url == request.path %}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308" crossorigin="anonymous"></script>

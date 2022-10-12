@@ -6,44 +6,33 @@
 {% block title %}{{ block.super }}&nbsp;&bull;&nbsp;Register{% endblock %}
 
 {% block content %}
-<main>
-  <div class="container">
-    <div class="row">
-      <div class="column">
-        <h2>{% trans "Register" %}</h2>
-        <p>
-          Thanks for confirming your email address. Your user account has been created. Please, assign a password to your new account before you can login.
-        </p>
-        <h3>{% trans "Protect your account" %}<h3>
-        <div class="grid-form">
-          <form method="POST" autocomplete="off">
-            {% csrf_token %}{{ form.email }}
 
-            <label class="col1" for="{{ form.password.id_for_label }}">
-              {% trans form.password.label %}
-            </label>
-            <div class="col2 {% if 'password' in form.errors %}error{% endif %}">
-              {{ form.password }}
-            </div>
-            {% if "password" in form.errors %}
-              <div class="col2 helper-text error">
-                {{ form.password.url.0 }}
-              </div>
-            {% endif %}
+<div class="w-full bg-white px-7 py-8 md:p-9 rounded-lg shadow-md flex border-l-[6px] border-transparent">
+   <div class="w-full">
+      <h5 class="text-lg font-semibold mb-3 text-dark">{% trans "Register" %}</h5>
+      <p class="text-base text-body-color mb-3 leading-relaxed">
+        Thanks for confirming your email address. Your user account has been created. Please, assign a password to your new account before you can login.
+      </p>
+		<form method="POST" autocomplete="off">
+			{% csrf_token %}{{ form.email }}
+			<div class="w-full md:w-1/2 lg:w-1/3 px-4">
+				<div class="mb-12">
+					<label class="font-medium text-base text-black block mb-3" for="{{ form.password.id_for_label }}">
+						{% trans form.password.label %}
+					</label>
+					<div class="mb-3 {% if 'password' in form.errors %}error{% endif %}">
+						{{ form.password }}
+					</div>
+					{% if "password" in form.errors %}
+					<div class="mb-3 helper-text error">
+						{{ form.password.url.0 }}
+					</div>
+					{% endif %}
+					<input type="submit" value="{% trans 'Save' %}" class="py-4 px-10 lg:px-8 xl:px-10 inline-flex items-center justify-center text-center text-white text-base bg-secondary hover:bg-opacity-90 font-normal rounded-full cursor-pointer" />
+				</div>
+			</div>
+		</form>
+   </div>
+</div>
 
-
-            <div class="col2">
-              <div class="inline-left">
-                <button class="primary" type="submit" name="submit">
-                  {% trans 'Save' %}
-                </button>
-              </div>
-            </div>
-
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
 {% endblock content %}

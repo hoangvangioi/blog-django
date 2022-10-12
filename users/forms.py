@@ -20,8 +20,8 @@ usr_not_auth_msg = _(
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"tabindex": 1, 'placeholder': 'Email *', 'class': 'bordder-[#E9EDF4] w-full lg:w-1/2 rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"tabindex": 2, 'placeholder': 'Password *', 'class': 'bordder-[#E9EDF4] w-full lg:w-1/2 rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
     remember = forms.BooleanField(
         widget=forms.CheckboxInput, required=False, label=_("Remember me")
     )
@@ -31,9 +31,9 @@ class LoginForm(forms.Form):
         self.request = kwargs.pop("request", None)
         super().__init__(*args, **kwargs)
 
-        for field in self.fields:
+        # for field in self.fields:
             # self.fields[field].widget.attrs['label'] = ''       
-            self.fields[field].widget.attrs['class'] = 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'
+            # self.fields[field].widget.attrs['class'] = 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'
         self.fields['email'].widget.attrs['type'] = 'email'
         self.fields['email'].widget.attrs['placeholder'] = 'Email'
         self.fields['password'].widget.attrs['type'] = 'password'
@@ -72,16 +72,16 @@ class LoginForm(forms.Form):
 
 
 class RegisterStep1Form(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"tabindex": 1}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"tabindex": 1, 'placeholder': 'Email *', 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
     name = forms.CharField(
         label=_("Name"),
         max_length=150,
-        widget=forms.TextInput(attrs={"size": 30, "tabindex": 2}),
+        widget=forms.TextInput(attrs={"size": 30, "tabindex": 2, 'placeholder': 'Full Name *', 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}),
     )
     url = forms.URLField(
         required=False,
         label=_("Personal URL"),
-        widget=forms.URLInput(attrs={"tabindex": 3, "autocomplete": "off"}),
+        widget=forms.URLInput(attrs={"tabindex": 3, "autocomplete": "off", 'placeholder': 'Personal URL (optional)','class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}),
     )
 
     def clean_email(self):
@@ -93,7 +93,7 @@ class RegisterStep1Form(forms.Form):
                 return email
             else:
                 raise forms.ValidationError(
-                    _("This E-Mail address is already registered.")
+                    _("This email address is already registered.")
                 )
 
     def clean_name(self):
@@ -113,7 +113,7 @@ class RegisterStep2Form(forms.Form):
     password = forms.CharField(
         label=_("Create Password"),
         widget=forms.PasswordInput(
-            attrs={"size": 30, "autocomplete": "new-password"}
+            attrs={"size": 30, "autocomplete": "new-password", 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}
         ),
     )
 
