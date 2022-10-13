@@ -24,7 +24,7 @@ handler400, handler403, handler404, handler500
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import PostSitemap, StaticViewSitemap, CategorySitemap, ProfileSitemap
+from .sitemaps import PostSitemap, StaticViewSitemap, CategorySitemap
 from django.views.generic import TemplateView
 from .feeds import LatestEntriesFeed
 from . import views
@@ -34,7 +34,7 @@ sitemaps = {
     'static': StaticViewSitemap,
     'post': PostSitemap,
     'category': CategorySitemap,
-    'profile': ProfileSitemap,
+    # 'profile': ProfileSitemap,
 }
 
 urlpatterns = [

@@ -37,7 +37,7 @@ ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS', default='127.0.0.1')]
 
 INTERNAL_IPS = ["127.0.0.1"]
 
-ADMINS = (("Alice Bloggs", "gioitube2k2@gmail.com"),)
+ADMINS = (("Hoàng Văn Giỏi", "gioitube2k2@gmail.com"),)
 
 
 # Application definition
@@ -354,39 +354,6 @@ CSRF_COOKIE_DOMAIN = os.getenv('CSRF_COOKIE_DOMAIN')
 CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST')
 
 
-# LOGGING = {
-#    'version': 1,
-#    'disable_existing_loggers': False,
-#    'formatters': {
-#       'verbose': {
-#          'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-#          'datefmt': "%d/%b/%Y %H:%M:%S"
-#       },
-#       'simple': {
-#          'format': '%(levelname)s %(message)s'
-#       },
-#    },
-#    'handlers': {
-#       'file': {
-#          'level': 'DEBUG',
-#          'class': 'logging.FileHandler',
-#          'filename': 'mysite.log',
-#          'formatter': 'verbose'
-#       },
-#    },
-#    'loggers': {
-#       'django': {
-#          'handlers': ['file'],
-#          'propagate': True,
-#          'level': 'DEBUG',
-#       },
-#       'MYAPP': {
-#          'handlers': ['file'],
-#          'level': 'DEBUG',
-#       },
-#    }
-# }
-
 PWA_APP_NAME = 'Blog Hoàng Giỏi'
 PWA_APP_DESCRIPTION = "My app description"
 PWA_APP_THEME_COLOR = '#ec3fce'
@@ -438,8 +405,8 @@ COMMENTS_HIDE_REMOVED = False
 
 COMMENTS_INK_SALT = os.getenv("COMMENTS_INK_SALT", "").encode("utf-8")
 COMMENTS_INK_CONFIRM_EMAIL = True  # Set to False to disable confirmation.
-COMMENTS_INK_FROM_EMAIL = "staff@example.com"
-COMMENTS_INK_CONTACT_EMAIL = "staff@example.com"
+COMMENTS_INK_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
+COMMENTS_INK_CONTACT_EMAIL = os.getenv('EMAIL_HOST_USER')
 
 # Default to True, use False to allow other
 # backend (say Celery based) send your emails.
@@ -525,6 +492,12 @@ LOGGING = {
             "filters": ["require_debug_true"],
             "class": "logging.StreamHandler",
             "formatter": "console",
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'mysite.log',
+            'level': 'DEBUG',
+            'formatter': 'console'
         },
     },
     "loggers": {

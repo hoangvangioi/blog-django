@@ -51,15 +51,15 @@ class CategorySitemap(Sitemap):
         return reverse('post_by_category', args=[item.slug])
 
 
-class ProfileSitemap(Sitemap):
-    changefreq = "daily"
-    priority = 0.5
+# class ProfileSitemap(Sitemap):
+#     changefreq = "daily"
+#     priority = 0.5
 
-    def items(self):
-        return Profile.objects.all()
+#     def items(self):
+#         return Profile.objects.all()
 
-    def lastmod(self, obj):
-        return obj.updated_at
+#     def lastmod(self, obj):
+#         return obj.updated_at
 
-    def location(self, item):
-        return reverse('profile', args=[item.slug])
+#     def location(self, item):
+#         return reverse('profile', args=[item.slug])
