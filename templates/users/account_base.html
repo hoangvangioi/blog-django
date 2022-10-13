@@ -1,21 +1,19 @@
 {% extends "base.html" %} {% load i18n %} {% load static %} {% block title %}{{ block.super }}&nbsp;&bull;&nbsp;{% trans "Account" %}{% endblock %} {% block nav-account-class %}active{% endblock %} {% block content %}
-<main>
-	<div class="container">
-		<div class="marquee mt-3">
-			<div class="my-1 p-3 justify-between">
-				{% if user.name %}
-				<h4 id="user_name" class="text-4xl font-semibold mb-3 text-dark">{{ user.name }}</h4>
-				{% else %}
-				<h4 class="text-4xl text-body-color font-semibold mb-3">{% trans "Unknown name" %}</h4>
-				{% endif %}
-				<h6 class="pb-4"><i>{{ user.email }}</i></h6>
-				<p>{% block nav-edit-profile %}<a class="text-danger" href="{% url 'edit-profile' %}">{% trans "Edit profile" %}</a>{% endblock %} &nbsp;&bull;&nbsp; {% block nav-change-pwd %}<a class="text-danger" href="{% url 'edit-password' %}">{% trans "Change password" %}</a>{% endblock %} &nbsp;&bull;&nbsp; {% block nav-delete-account %}<a class="text-danger" href="{% url 'delete' %}">{% trans "Delete account" %}</a>{% endblock %}</p>
-			</div>
-			<div>
-				<a class="font-semibold text-sm inline-block py-1 px-3 m-2 rounded-full bg-danger text-white" href="{% url 'logout' %}">{% trans "Logout" %}</a>
-			</div>
+<div class="container">
+	<div class="marquee mt-3">
+		<div class="my-1 p-3 justify-between">
+			{% if user.name %}
+			<h4 id="user_name" class="text-4xl font-semibold mb-3 text-dark">{{ user.name }}</h4>
+			{% else %}
+			<h4 class="text-4xl text-body-color font-semibold mb-3">{% trans "Unknown name" %}</h4>
+			{% endif %}
+			<h6 class="pb-4"><i>{{ user.email }}</i></h6>
+			<p>{% block nav-edit-profile %}<a class="text-danger" href="{% url 'edit-profile' %}">{% trans "Edit profile" %}</a>{% endblock %} &nbsp;&bull;&nbsp; {% block nav-change-pwd %}<a class="text-danger" href="{% url 'edit-password' %}">{% trans "Change password" %}</a>{% endblock %} &nbsp;&bull;&nbsp; {% block nav-delete-account %}<a class="text-danger" href="{% url 'delete' %}">{% trans "Delete account" %}</a>{% endblock %}</p>
+		</div>
+		<div>
+			<a class="font-semibold text-sm inline-block py-1 px-3 m-2 rounded-full bg-danger text-white" href="{% url 'logout' %}">{% trans "Logout" %}</a>
 		</div>
 	</div>
-	{% block sub_content %} {% endblock %}
-</main>
+</div>
+{% block sub_content %} {% endblock %}
 {% endblock content %}
