@@ -15,8 +15,6 @@
 
 {% block sub_content %}
 <div class="container mt-10">
-  <div class="row">
-    <div class="column">
       <h3>{% trans "Your comments to this website" %}</h3>
       {% if comments %}
       <h6 class="text-center">You have sent the following comments.</h6>
@@ -40,7 +38,6 @@
                 <div>{{ comment.submit_date }}&nbsp;&nbsp;<a class="permalink" title="comment permalink" href="{% get_inkcomment_permalink comment %}">¶</a></div>
               </div>
               <div class="body">{{ comment.comment|linebreaks|escape }}</div>
-              <div class="footer"></div>
             </div>
           </div>
           {% if comment.reactions.count > 0 %}
@@ -61,7 +58,5 @@
           {% endif %}
         </div>
       {% endfor %}
-    </div>
-  </div>
 </div>
 {% endblock sub_content %}

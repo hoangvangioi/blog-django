@@ -7,8 +7,6 @@
 
 {% block sub_content %}
 <div class="container mt-10">
-  <div class="row">
-    <div class="column">
       <h3>{% trans "Edit Profile" %}</h3>
       <div class="grid-form xmargin fgrow bt1">
         <form id="profile_form" method="POST" action="{% url 'edit-profile' %}">
@@ -31,12 +29,10 @@
           <div class="col2">{{ form.url }}</div>
           <div class="col2">
             <div class="inline-left">
-              <button class="small primary" type="submit" name="submit">{% trans 'save profile' %}</button>
+              <button class="font-semibold text-md inline-block py-2 px-4 rounded-full bg-[#34D399] text-white" type="submit" name="submit">{% trans 'Save profile' %}</button>
             </div>
           </div>
         </form>
       </div>
-    </div>
-  </div>
 </div>
 {% endblock sub_content %}

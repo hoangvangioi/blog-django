@@ -29,7 +29,7 @@
     <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
     <link rel="shortcut icon" type="image/x-icon" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="shortcut icon" type="image/x-icon" sizes="64x64" href="{% static 'favicon.ico' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="webmanifest" href="{% static 'site.webmanifest' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
     <link rel="mask-icon" color="#5bbad5" href="{% static 'img/safari-pinned-tab.svg' %}">
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
@@ -38,7 +38,7 @@
     {% elif post.get_absolute_url == request.path %}{% else %}{% endif %}
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap"> 
-    {% comment %} <link rel="stylesheet" href="{% static 'css/main.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
     {% if post.get_absolute_url == request.path %}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308" crossorigin="anonymous"></script>

@@ -1,43 +1,69 @@
 main {
     flex: 1 0 auto;
-    margin: 0 1em;
-    padding: 0em;
+    min-height:64vh;
 }
 
-.column p {
-    margin: 8px 0 24px;
-    font-size: 0.9rem;
-    line-height: 1.5em;
-    color: rgba(0, 0, 0, .8);
+input.error,
+.error>input {
+    border-color: rgb(245, 153, 156);
+    box-shadow: inset 0 2px 0 rgba(245, 153, 156, .2);
 }
 
-.row {
-    width: 100%;
-    margin-left: -.75em;
-    margin-right: -.75em;
+input.error:focus,
+.error>input:focus {
+    border: 1px solid rgb(245, 153, 156);
+    box-shadow: 0 0 0 .2rem rgba(247, 37, 42, 0.25);
 }
 
-.column {
-    flex: 1;
-    margin-right: 0.75em;
-    margin-left: 0.75em;
+/* ------- buttons --------- */
+
+button.primary {    
+    border-style: solid;
+    border-width: 0 1px 2px 1px;
+    border-radius: 0.25rem;
+    padding: 0.3rem 0.8rem 0.25rem;
+    font-size: 0.800rem;
+    font-weight: 450;
+    line-height: normal;
+    text-transform: uppercase;
+    font-family: inherit;
+    background-color: rgb(88, 160, 219);
+    color: #fff;
 }
 
-/* ------------------------------------ */
-
-footer {
-    flex-shrink: 0;
-    margin: 32px 0 0;
-    padding: 8px 0;
-    background-color: rgb(241, 241, 241);
-    font-size: 0.8rem;
-    text-align: center;
+button.primary:hover {
+    background-color: rgb(0, 89, 255);
+    border-color: rgb(0, 89, 255);
 }
 
-footer p {
-    margin: 0.5rem auto;
-    text-align: center;
-    color: gray;
+button.primary:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(238, 195, 3, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(238, 195, 3, 0.5);
+}
+
+button.secondary {
+    border-style: solid;
+    border-width: 0 1px 2px 1px;
+    border-radius: 0.25rem;
+    padding: 0.3rem 0.8rem 0.25rem;
+    font-size: 0.800rem;
+    font-weight: 450;
+    line-height: normal;
+    text-transform: uppercase;
+    font-family: inherit;
+    background-color: rgb(228, 127, 131);
+    color: #fff;
+}
+
+
+button.secondary:hover {
+    background-color: rgb(224, 26, 33);
+    border-color: rgb(224, 26, 33);
+}
+
+button.secondary:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(238, 195, 3, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(238, 195, 3, 0.5);
 }
 
 /* ---------------------------------------------------------------- */
@@ -76,92 +102,6 @@ footer p {
 
 .alert-error {
     background-color: #fdf0f0
-}
-
-/* ------- buttons --------- */
-
-button {
-    border-style: solid;
-    border-width: 0 1px 4px 1px;
-    border-radius: 0.25rem;
-    padding: 0.4rem 1rem 0.35rem;
-    font-size: 0.800rem;
-    font-weight: 500;
-    line-height: normal;
-    text-transform: uppercase;
-    font-family: inherit;
-}
-
-button.small {
-    padding: 0.2rem 0.8rem;
-    font-size: 0.75rem;
-}
-
-button:not(.disabled):hover {
-    margin-top: 1px;
-    border-bottom-width: 3px;
-}
-
-button:not(.disabled):active {
-    margin-top: 2px;
-    border-bottom-width: 2px;
-}
-
-button:hover,
-button:focus {
-    text-decoration: none;
-}
-
-button:focus {
-    outline: 0;
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
-    box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
-}
-
-
-button:disabled {
-    opacity: 0.65;
-}
-
-button:not(:disabled):not(.disabled) {
-    cursor: pointer;
-}
-
-button.primary {
-    color: #fff;
-    background-color: #2196f3;
-    border-color: #0d8aee;
-}
-
-button.primary:hover {
-    color: #fff;
-    background-color: #0c83e2;
-    border-color: #0c7cd5;
-}
-
-button.primary:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.5);
-}
-
-
-button.primary:disabled {
-    color: #fff;
-    background-color: #2196f3;
-    border-color: #2196f3;
-}
-
-button.primary:not(:disabled):not(.disabled):active,
-button.primary:not(:disabled):not(.disabled).active {
-    color: #fff;
-    background-color: #0c7cd5;
-    border-color: #0b75c9;
-}
-
-button.primary:not(:disabled):not(.disabled):active:focus,
-button.primary:not(:disabled):not(.disabled).active:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.5);
 }
 
 /* -------- forms ---------- */
@@ -213,44 +153,6 @@ label {
     font-size: 0.9rem;
 }
 
-input {
-    font-family: "Oxygen", sans-serif;
-    font-size: 0.9rem;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 0.25rem;
-    box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.075);
-}
-
-input:focus {
-    outline: 0;
-    color: #555;
-    background-color: white;
-    border: 1px solid #9acffa;
-    box-shadow: 0 0 0 .2rem rgba(33, 150, 243, 0.25);
-}
-
-
-input[type=url],
-input[type=text],
-input[type=email],
-input[type=password] {
-    width: 100%;
-    padding: .3rem .5rem;
-    background-color: white;
-}
-
-input.error,
-.error>input {
-    border-color: rgb(245, 153, 156);
-    box-shadow: inset 0 2px 0 rgba(245, 153, 156, .2);
-}
-
-input.error:focus,
-.error>input:focus {
-    border: 1px solid rgb(245, 153, 156);
-    box-shadow: 0 0 0 .2rem rgba(247, 37, 42, 0.25);
-}
-
 .helper-text {
     margin-top: -.7rem;
     font-size: 0.75rem;
@@ -271,18 +173,14 @@ input.error:focus,
     color: red
 }
 
-.small {
-    font-size: 0.75rem
-}
-
-.text-center {
-    text-align: center
-}
-
 .ml32 {
     margin-left: 32px
 }
 
 .bt1 {
     border-top: 1px solid rgba(0, 0, 0, .1)
+}
+
+.small {
+    font-size: 0.75rem;
 }

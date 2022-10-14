@@ -20,8 +20,8 @@ usr_not_auth_msg = _(
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"tabindex": 1, 'placeholder': 'Email *', 'class': 'bordder-[#E9EDF4] w-full lg:w-1/2 rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"tabindex": 2, 'placeholder': 'Password *', 'class': 'bordder-[#E9EDF4] w-full lg:w-1/2 rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"tabindex": 1, 'placeholder': 'Email *', 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"tabindex": 2, 'placeholder': 'Password *', 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
     remember = forms.BooleanField(
         widget=forms.CheckboxInput, required=False, label=_("Remember me")
     )
@@ -133,7 +133,7 @@ class RegisterStep2Form(forms.Form):
 # ---------------------------------------------------------------------
 # Change email address form.
 
-email_already_registered = "This e-Mail address is already registered."
+email_already_registered = "This email address is already registered."
 too_many_attempts = (
     "Please, wait 24 hours to request another email address change."
 )
@@ -141,9 +141,12 @@ profile_did_not_change = "Data did not change."
 
 
 class ProfileForm(forms.Form):
-    email = forms.CharField(required=True)
-    name = forms.CharField(max_length=150, required=False, label=_("Name"))
-    url = forms.URLField(required=False, label=_("Personal URL"))
+    email = forms.CharField(required=True, 
+    widget=forms.EmailInput(attrs={'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'}),
+    )
+    name = forms.CharField(max_length=150, required=False, label=_("Name"), 
+    widget=forms.TextInput(attrs={'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'}),)
+    url = forms.URLField(required=False, label=_("Personal URL"), widget=forms.TextInput(attrs={'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'}),)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user", None)
@@ -216,13 +219,13 @@ class ResetPwdForm(forms.Form):
     pwd1 = forms.CharField(
         max_length=128,
         required=True,
-        widget=forms.PasswordInput(attrs={"size": 26, "tabindex": 1}),
+        widget=forms.PasswordInput(attrs={"size": 26, "tabindex": 1, 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'}),
         label=_("Type a New Password"),
     )
     pwd2 = forms.CharField(
         max_length=128,
         required=True,
-        widget=forms.PasswordInput(attrs={"size": 26, "tabindex": 2}),
+        widget=forms.PasswordInput(attrs={"size": 26, "tabindex": 2, 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'}),
         label=_("Confirm the Password"),
     )
 
