@@ -61,7 +61,7 @@
                 </li>
                 {% for i in posts.paginator.page_range %} {% if posts.number == i %}
                 <li class="px-[6px]">
-                    <a href="#" class="flex h-10 w-10 items-center justify-center rounded-md border border-[#EDEFF1] text-base text-[#838995] hover:border-primary hover:bg-primary hover:text-white"> {{i}} </a>
+                    <a href="#" class="flex h-10 w-10 items-center bg-primary justify-center rounded-md border border-[#EDEFF1] text-base text-white"> {{i}} </a>
                 </li>
                 {% else %}
                 <li class="px-[6px]">
