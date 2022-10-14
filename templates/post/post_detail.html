@@ -67,8 +67,8 @@
 								{{ post.title }}
 							</h2>
 							{% if user.is_superuser %}
-							<a class="btn btn-success btn-sm mb-2 me-2" href="{{ post.get_absolute_url }}update/">Update</a>
-							<a class="btn btn-success btn-sm mb-2 ms-2" href="{{ post.get_absolute_url }}delete/">Delete</a>
+							<a class="border border-success py-1 px-3 mb-4 mr-3 text-success inline-block rounded hover:bg-secondary hover:text-white" href="{{ post.get_absolute_url }}update/">Update</a>
+							<a class="border border-success py-1 px-3 mb-4 text-success inline-block rounded hover:bg-secondary hover:text-white" href="{{ post.get_absolute_url }}delete/">Delete</a>
 							{% endif %}
 							{{ post.body|safe }}
 							<br>

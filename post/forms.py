@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
     title = forms.CharField(
         error_messages={'invalid': "Phone number have 4-25 digits and may start with '+'."},
         widget=forms.TextInput(
-            attrs={'class': 'form-control',
+            attrs={'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none',
                     'placeholder': 'Nhập tiêu đề bài viết'
             }
         )
@@ -24,7 +24,7 @@ class PostForm(forms.ModelForm):
 
         widget=CKEditorUploadingWidget(
             attrs={
-                'class': 'form-control'
+                'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'
             }
         )
     )
@@ -57,11 +57,7 @@ class PostForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         for field in self.fields:
-            self.fields[field].widget.attrs['class'] = 'form-control'
-        self.fields['previous_post'].widget.attrs['class'] = 'form-control'
-        self.fields['next_post'].widget.attrs['class'] = 'form-control'
-        self.fields['status'].widget.attrs['class'] = 'form-control'
-        self.fields['tags'].widget.attrs['class'] = 'form-control'
+            self.fields[field].widget.attrs['class'] = 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'
 
 
 

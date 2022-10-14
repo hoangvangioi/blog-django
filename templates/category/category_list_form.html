@@ -1,29 +1,37 @@
-{% extends 'base.html' %}
-{% block title %} Danh sách thể loại {% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% block title %} Danh sách thể loại {% endblock %} {% block content %}
 
-<div class="container">
-    <div class="content-section">
-        <a href="{% url 'create_category' %}" class="btn btn-outline-success mb-4 mt-3" type="submit">Add New Category</a>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Category Name</th>
-                    <th scope="col" class="text-center">Edit Category</th>
-                    <th scope="col" class="text-center">Delete Category</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for cat in category %}
-                <tr>
-                    <td>{{ cat }}</td>
-                    <td class="text-center"><a href="{% url 'update_category' cat.slug %}" class="btn btn-dark" role="button">Edit</a></td>
-                    <td class="text-center"><a href="{% url 'delete_category' cat.slug %}" class="btn btn-danger" role="button">Delete</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
+<section class="bg-white py-20 lg:py-[120px]">
+	<div class="container">
+		<div class="flex flex-wrap -mx-4 justify-center">
+            <a href="{% url 'create_category' %}" class="border border-success py-2 px-6 mb-4 text-success inline-block rounded hover:bg-primary hover:text-white"> Add New Category </a>
+			<div class="w-full px-4">
+				<div class="max-w-full overflow-x-auto">
+					<table class="table-auto w-full">
+						<thead>
+							<tr class="bg-primary text-center">
+								<th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-l border-transparent">Category</th>
+								<th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">Edit</th>
+								<th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-r border-transparent">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+            				{% for cat in category %}
+							<tr>
+								<td class="text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">{{ cat }}</td>
+								<td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">
+                                    <a href="{% url 'update_category' cat.slug %}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white"> Edit </a>
+                                </td>
+								<td class="text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-r border-[#E8E8E8]">
+									<a href="{% url 'delete_category' cat.slug %}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white"> Delete </a>
+								</td>
+							</tr>
+            				{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 {% endblock %}
