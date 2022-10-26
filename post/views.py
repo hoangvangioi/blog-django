@@ -11,7 +11,7 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from taggit.models import Tag
 
 from .decorators import superuser_required
-from .forms import CommentForm, PostForm
+from .forms import PostForm
 from .models import Post
 from django.urls import reverse
 from .models import check_comments_input_allowed
@@ -75,37 +75,9 @@ def post_detail(request, year, month, day, post):
     similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:3]
     current_site = get_current_site(request)
 
-    allcomments = post.comments.filter(status=True)
-    page = request.GET.get('page', 1)
-
-    paginator = Paginator(allcomments, 10)
-    try:
-        comments = paginator.page(page)
-    except PageNotAnInteger:
-        comments = paginator.page(1)
-    except EmptyPage:
-        comments = paginator.page(paginator.num_pages)
-
-    user_comment = None
-    redirect_url = post.get_absolute_url()
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            user_comment = comment_form.save(commit=False)
-            user_comment.user = request.user
-            user_comment.post = post
-            user_comment.save()
-            return redirect(redirect_url)
-    else:
-        comment_form = CommentForm()
-
     context = {'domain': current_site,
                 'post': post,
                 'similar_posts': similar_posts,
-                'comments':  user_comment,
-                'comments': comments,
-                'comment_form': comment_form,
-                'allcomments': allcomments,
                 "next": reverse("comments-ink-sent"),
                 "is_comment_input_allowed": check_comments_input_allowed(post),
                 }

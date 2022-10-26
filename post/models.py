@@ -6,11 +6,11 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.urls import reverse
 from django.utils import timezone
-from mptt.models import MPTTModel, TreeForeignKey
 from taggit.managers import TaggableManager
 from .utils import unique_slug_generator
 from base.fields import WEBPField
 from django.utils.translation import gettext_lazy as _
+from datetime import date, datetime
 
 
 # Create your models here.
@@ -59,7 +59,7 @@ class Post(models.Model):
 
 
 
-from datetime import date, datetime
+
 
 
 
@@ -75,33 +75,3 @@ def check_comments_input_allowed(obj):
         return False
     else:
         return True
-
-
-# class Viewer(models.Model):
-# 	name = models.CharField(max_length=255)
-# 	email = models.EmailField(_("Email"), max_length=254)
-
-
-class Comment(MPTTModel):
-	post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments')
-	# name = models.CharField(max_length=255)
-	# email = models.EmailField()
-	# user = models.ForeignKey(Viewer, on_delete=models.CASCADE, related_name='comments')
-	parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-	content = RichTextField()
-	publish = models.DateTimeField(auto_now_add=True)
-	status = models.BooleanField(default=True)
-
-	class MPTTMeta:
-		order_insertion_by = ['publish']
-
-	def __unicode__(self):
-		return self.post
-
-
-def pre_save_post_receiver(sender, instance, *args, **kwargs):
-    if not instance.slug:
-        instance.slug = unique_slug_generator(instance)
-
-pre_save.connect(pre_save_post_receiver, sender=Post)
