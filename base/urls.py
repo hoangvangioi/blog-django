@@ -38,7 +38,6 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('admin/clearcache/', include('clearcache.urls')),
     path('hvg/', admin.site.urls),
     # App
     path('', include('post.urls')),

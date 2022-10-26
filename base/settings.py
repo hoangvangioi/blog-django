@@ -37,13 +37,12 @@ ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS', default='127.0.0.1')]
 
 INTERNAL_IPS = ["127.0.0.1"]
 
-ADMINS = (("Hoàng Văn Giỏi", "gioitube2k2@gmail.com"),)
+ADMINS = ((os.getenv('NAME_ADMIN'), os.getenv('EMAIL_ADMIN')),)
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'clearcache',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,29 +53,23 @@ INSTALLED_APPS = [
     'category',
     'post',
     'search',
+    "users",
     # CKeditor
     'ckeditor_uploader',
     'ckeditor',
     # Tag
     'taggit',
-    # MPTT
-    'mptt',
-
-    'tinymce',
 
     # Cloud
     'cloudinary_storage',
     'cloudinary',
 
     'django.contrib.sitemaps',
-    
-    # PWA
     'pwa',
-
     "django.contrib.sites",
     "django_comments_ink",
     "django_comments",
-    "users",
+    'django_social_share',
 ]
 
 SITE_ID = int(os.getenv('SITE_ID'))
@@ -190,13 +183,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CKEDITOR_UPLOAD_PATH="uploads/"
 
 TAGGIT_CASE_INSENSITIVE = True
-
-
-TINYMCE_DEFAULT_CONFIG = {
-    "height": "320px",
-    "language": "en",  # To force a specific language instead of the Django current language.
-}
-
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'
 
@@ -386,11 +372,7 @@ PWA_APP_LANG = 'vi-VN'
 # import os
 # PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
 
-
-
 # Define the user model. The difference between 'users.User' and 'auth.User'
-# is that the former doesn't include an 'username' attribute, and rather uses
-# the email address.
 AUTH_USER_MODEL = "users.User"
 
 SIGNUP_URL = "/user/signup/"
@@ -495,7 +477,7 @@ LOGGING = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': 'mysite.log',
+            'filename': 'warning.log',
             'level': 'DEBUG',
             'formatter': 'console'
         },
