@@ -26,3 +26,4 @@ sqlparse==0.4.2
 tzdata==2022.1
 urllib3==1.26.9
 whitenoise==6.0.0
+django_social_share==2.3.0
