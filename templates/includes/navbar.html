@@ -94,10 +94,17 @@
 					</svg>
 				</form>
 			</div>
+			{% if user.id %}
 			<div class="hidden justify-end pr-16 lg:flex lg:pr-0">
-				<a href="" class="mr-2 py-2 px-5 text-base font-medium text-dark hover:text-primary">Login</a>
-				<a href="" class="rounded-lg bg-primary py-2 px-5 text-base font-medium text-white hover:bg-opacity-90">Sign Up</a>
+				<a href="{% url 'logout' %}" class="mr-2 py-2 px-5 text-base font-medium text-dark hover:text-primary">Logout</a>
+				<a href="{% url 'account' %}" class="rounded-lg bg-primary py-2 px-5 text-base font-medium text-white hover:bg-opacity-90">Setting</a>
 			</div>
+			{% else %}
+			<div class="hidden justify-end pr-16 lg:flex lg:pr-0">
+				<a href="{% url 'login' %}" class="mr-2 py-2 px-5 text-base font-medium text-dark hover:text-primary">Login</a>
+				<a href="{% url 'register' %}" class="rounded-lg bg-primary py-2 px-5 text-base font-medium text-white hover:bg-opacity-90">Sign Up</a>
+			</div>
+			{% endif %}
 		</div>
 	</div>
 </div>
