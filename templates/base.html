@@ -48,9 +48,12 @@
     {% include "includes/navbar.html" %} 
     <main> {% block content %} {% endblock content %} </main>
     {% include "includes/footer.html" %}
-    <a href="javascript:void(0)" class="hidden items-center justify-center bg-primary text-white w-10 h-10 rounded-md fixed bottom-8 right-8 left-auto z-[999] hover:bg-dark back-to-top shadow-md transition duration-300 ease-in-out">
-        <span class="w-3 h-3 border-t border-l border-white rotate-45 mt-[6px]">Top</span>
-    </a>
+    <span class="back-to-top hidden bg-[#D64937] z-10 hover:bg-opacity-90">
+        <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+        </svg>
+    </span>
+    <div class="progress-bar"></div>
     <!-- Scripts -->
     {% block script %}{% endblock script %}
     <script src="{% static 'js/main.js' %}"></script>
