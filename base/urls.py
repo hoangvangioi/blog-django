@@ -42,7 +42,6 @@ urlpatterns = [
     # App
     path('', include('post.urls')),
     path('', include('category.urls')),
-    path('', include('search.urls')),
 
     path("user/", include("users.urls")),
     path("comments/", include("django_comments_ink.urls")),

@@ -15,6 +15,7 @@ from .forms import PostForm
 from .models import Post
 from django.urls import reverse
 from .models import check_comments_input_allowed
+from django.db.models import Q
 
 
 # Create your views here.
@@ -59,6 +60,23 @@ def post_list(request, tag_slug=None):
                 'tag': tag,
                 }
 
+    return render(request, 'post/post_list.html', context)
+
+
+def search_post(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            posts = Post.objects.order_by('-publish').filter(Q(title__icontains=keyword) | Q(body__icontains=keyword))
+            post_count = posts.count()
+        else:
+            # If not searched, return default posts
+            posts = Post.objects.all().order_by("-publish")
+            post_count = 0
+    context = {
+        'posts': posts,
+        'post_count': post_count,
+    }
     return render(request, 'post/post_list.html', context)
 
 
