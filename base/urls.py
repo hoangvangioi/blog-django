@@ -42,6 +42,7 @@ urlpatterns = [
     # App
     path('', include('post.urls')),
     path('', include('category.urls')),
+    path('', include('pwa.urls')), 
 
     path("user/", include("users.urls")),
     path("comments/", include("django_comments_ink.urls")),
@@ -57,7 +58,7 @@ urlpatterns = [
 
     path('feed', LatestEntriesFeed()),
 
-    path('error/', views.error, name='error')
+    path('error/', views.error, name='error'),
 ]
 
 

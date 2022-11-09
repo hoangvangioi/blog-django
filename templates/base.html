@@ -1,6 +1,5 @@
-<!DOCTYPE html> {% load static %}
+<!DOCTYPE html> {% load static %} {% load pwa %} 
 <html lang="vi" class="h-full">
-
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,11 +28,10 @@
     <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
     <link rel="shortcut icon" type="image/x-icon" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="shortcut icon" type="image/x-icon" sizes="64x64" href="{% static 'favicon.ico' %}">
-    <link rel="webmanifest" href="{% static 'site.webmanifest' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
     <link rel="mask-icon" color="#5bbad5" href="{% static 'img/safari-pinned-tab.svg' %}">
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
-    <meta name="theme-color" content="#ffffff">
+    {% progressive_web_app_meta %}
     {% if '/' == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %}
     {% elif post.get_absolute_url == request.path %}{% else %}{% endif %}
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
