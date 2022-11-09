@@ -62,6 +62,8 @@
     EMAIL_ADMIN = 'email-admin'
 
     SITE_ID = 1
+
+    CLOUDINARY_URL = 'cloudinary_url'
     ```
 
 5. Di chuyển cơ sở dữ liệu
