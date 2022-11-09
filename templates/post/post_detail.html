@@ -68,22 +68,22 @@
 									<span class="text-sm text-body-color font-medium mr-5"> Share This Post </span>
 									<div class="gap-4">
 										{% load social_share %}
-										<button class="duration-500 border-2 w-12 transform hover:-translate-y-3 h-12 text-2xl rounded-full hover:bg-blue-600 hover:text-white text-blue-600">
+										<button title="Share Facebook" class="duration-500 border-2 w-12 transform hover:-translate-y-3 h-12 text-2xl rounded-full hover:bg-blue-600 hover:text-white text-blue-600">
 											{% post_to_facebook post '<i class="icon-facebook"></i>' %}
 										</button>
-										<button class="duration-500 w-12 h-12 border-2 rounded-full transform hover:-translate-y-3 text-2xl text-green-500 hover:bg-green-600 hover:text-white">
+										<button title="Share Whatsapp" class="duration-500 w-12 h-12 border-2 rounded-full transform hover:-translate-y-3 text-2xl text-green-500 hover:bg-green-600 hover:text-white">
 											{% post_to_whatsapp post '<i class="icon-whatsapp"></i>' %}
 										</button>
-										<button class=" transform hover:-translate-y-3  border-2 w-12 h-12 rounded-full duration-500 text-blue-400 hover:bg-blue-400 hover:text-white text-2xl">
+										<button title="Share Twitter" class=" transform hover:-translate-y-3  border-2 w-12 h-12 rounded-full duration-500 text-blue-400 hover:bg-blue-400 hover:text-white text-2xl">
 											{% post_to_twitter "text_to_post" post '<i class="icon-twitter"></i>' %}
 										</button>
-										<button class=" transform hover:-translate-y-3  border-2 w-12 h-12 rounded-full duration-500 text-blue-400 hover:bg-blue-400 hover:text-white text-2xl">
+										<button title="Share Telegram" class=" transform hover:-translate-y-3  border-2 w-12 h-12 rounded-full duration-500 text-blue-400 hover:bg-blue-400 hover:text-white text-2xl">
 											{% post_to_telegram "text_to_post" post '<i class="icon-telegram"></i>' %}
 										</button>
-										<button class="transform hover:-translate-y-3  border-2 w-12 h-12 rounded-full duration-500 text-indigo-500 hover:bg-indigo-500 hover:text-white text-2xl">
+										<button title="Send email" class="transform hover:-translate-y-3  border-2 w-12 h-12 rounded-full duration-500 text-indigo-500 hover:bg-indigo-500 hover:text-white text-2xl">
 											{% send_email "subject" "text_to_post" post '<i class="icon-envelope"></i>' %}
 										</button>
-										<button class="transform hover:-translate-y-3  border-2 w-12 h-12 rounded-full duration-500 text-yellow-600 hover:bg-yellow-600 hover:text-white text-2xl">
+										<button title="Share Reddit" class="transform hover:-translate-y-3  border-2 w-12 h-12 rounded-full duration-500 text-yellow-600 hover:bg-yellow-600 hover:text-white text-2xl">
 											{% post_to_reddit "text_to_post" post '<i class="icon-reddit"></i>' %}
 										</button>
 									</div>
