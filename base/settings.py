@@ -338,7 +338,7 @@ CSRF_COOKIE_DOMAIN = os.getenv('CSRF_COOKIE_DOMAIN')
 
 CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST')
 
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'templates/pwa', 'serviceworker.js')
 
 PWA_APP_NAME = 'HOANG VAN GIOI'
 PWA_APP_DESCRIPTION = "My blog web app "

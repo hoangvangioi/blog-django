@@ -16,13 +16,13 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="{{ PWA_APP_STATUS_BAR_COLOR }}">
 
 {% if PWA_APP_ICONS_APPLE %}
-    {% for icon in PWA_APP_ICONS_APPLE %}
-        <link rel="apple-touch-icon" href="{{ icon.src }}" sizes="{{ icon.size }}">
-    {% endfor %}
+{% for icon in PWA_APP_ICONS_APPLE %}
+<link rel="apple-touch-icon" href="{{ icon.src }}" sizes="{{ icon.size }}">
+{% endfor %}
 {% else %}
-    {% for icon in PWA_APP_ICONS %}
-        <link rel="apple-touch-icon" href="{{ icon.src }}" sizes="{{ icon.size }}">
-    {% endfor %}
+{% for icon in PWA_APP_ICONS %}
+<link rel="apple-touch-icon" href="{{ icon.src }}" sizes="{{ icon.size }}">
+{% endfor %}
 {% endif %}
 
 {% for splash in PWA_APP_SPLASH_SCREEN %}
@@ -40,7 +40,7 @@
 <script type="text/javascript">
     // Initialize the service worker
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/serviceworker.js', {
+        navigator.serviceWorker.register('{% url 'serviceworker' %}', {
             scope: '{{ PWA_APP_SCOPE }}'
         }).then(function (registration) {
             // Registration was successful
