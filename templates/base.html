@@ -54,8 +54,11 @@
     <div class="progress-bar"></div>
     <!-- Scripts -->
     {% block script %}{% endblock script %}
+    <script>
+        let logo1 = "{% static 'img/about/about-image.svg' %}"
+        let logo2 = "{% static 'img/logo/logo.svg' %}"
+    </script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/alpine.min.js' %}"></script>
 </body>
 
 </html>

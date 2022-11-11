@@ -3,7 +3,7 @@
 <!-- Navbar Section -->
 <header class="ud-header absolute top-0 left-0 z-40 flex w-full items-center bg-transparent" x-data="{navbarOpen: false}">
 <div class="container">
-	<div class="relative -mx-4 flex items-center justify-between">
+	<div class="relative -mx-4 flex items-center justify-between header-logo">
 		<div class="w-60 max-w-full px-4">
 			<a href="{% url 'index' %}" class="block w-full py-2">
 				<img src="{% static 'img/logo/logo.svg' %}" alt="logo" class="w-full" />
@@ -13,27 +13,27 @@
 		<div class="flex w-full items-center justify-between px-4">
 			<div>
 				<button type="submit" id="navbarToggler" title="Menu" class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden">
-					<span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
-					<span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
-					<span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
+					<span class="relative my-[5px] block h-[2px] w-[24px] bg-dark"></span>
+					<span class="relative my-[5px] block h-[2px] w-[24px] bg-dark"></span>
+					<span class="relative my-[5px] block h-[2px] w-[24px] bg-dark"></span>
 				</button>
 				<nav id="navbarCollapse"
 					class="absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:py-0 lg:px-4 lg:shadow-none xl:px-6">
 					<ul class="blcok lg:flex">
 						<li class="group relative">
 							<a href="{% url 'index' %}"
-								class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70">
+								class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 lg:group-hover:text-red lg:group-hover:opacity-70">
 								Home
 							</a>
 						</li>
 						<li class="group relative">
 							<a href="{% url 'post' %}"
-								class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12">
+								class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">
 								Blog
 							</a>
 						</li>
 						<li class="submenu-item group relative">
-							<a href="javascript:void(0)" class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:text-white lg:after:right-0 lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12">
+							<a href="javascript:void(0)" class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">
 								Categories
 							</a>
 							<div class="submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
@@ -44,7 +44,7 @@
 						</li>
 						{% if user.id %}
 						<li class="submenu-item group relative">
-							<a href="javascript:void(0)" class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:text-white lg:after:right-0 lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12">
+							<a href="javascript:void(0)" class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">
 								Accounts
 							</a>
 							<div class="submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
@@ -54,7 +54,7 @@
 						</li>
 						{% else %}
 						<li class="submenu-item group relative">
-							<a href="javascript:void(0)" class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:text-white lg:after:right-0 lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12">
+							<a href="javascript:void(0)" class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">
 								Accounts
 							</a>
 							<div class="submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
@@ -65,7 +65,7 @@
 						{% endif %}
 						{% if user.is_superuser %}
 						<li class="submenu-item group relative">
-							<a href="javascript:void(0)" class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:text-white lg:after:right-0 lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12">
+							<a href="javascript:void(0)" class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">
 								Admin
 							</a>
 							<div class="submenu relative top-full left-0 hidden w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
@@ -102,21 +102,4 @@
 	</div>
 </div>
 </header>
-<div class="relative z-10 pt-[60px] lg:pt-[75px] bg-primary overflow-hidden">
-	<div>
-		<span class="absolute top-0 left-0 z-[-1]">
-		<svg width="495" height="470" viewBox="0 0 495 470" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<circle cx="55" cy="442" r="138" stroke="white" stroke-opacity="0.04" stroke-width="50" />
-		<circle cx="446" r="39" stroke="white" stroke-opacity="0.04" stroke-width="20" />
-		<path d="M245.406 137.609L233.985 94.9852L276.609 106.406L245.406 137.609Z" stroke="white" stroke-opacity="0.08" stroke-width="12" />
-		</svg>
-	</span>
-		<span class="absolute top-0 right-0 z-[-1]">
-		<svg width="493" height="470" viewBox="0 0 493 470" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<circle cx="462" cy="5" r="138" stroke="white" stroke-opacity="0.04" stroke-width="50" />
-		<circle cx="49" cy="470" r="39" stroke="white" stroke-opacity="0.04" stroke-width="20" />
-		<path d="M222.393 226.701L272.808 213.192L259.299 263.607L222.393 226.701Z" stroke="white" stroke-opacity="0.06" stroke-width="13" />
-		</svg>
-	</span>
-	</div>
-</div>
+<div class="relative z-10 pt-[60px] lg:pt-[75px] overflow-hidden"></div>
