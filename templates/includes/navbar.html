@@ -30,9 +30,9 @@
 							<label>
 								<div class="mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 pr-6 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">Categories</div>
 								<input type="checkbox" class="hidden" id="test">
-								<div class="z-10 menud submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
+								<div class="z-10 menud submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300">
 								{% for link in links %}
-									<a href="{% url 'post_by_category' link.slug %}" class="block rounded py-[10px] px-4 text-dark hover:text-white hover:bg-primary">{{ link.category }}</a>
+									<a href="{% url 'post_by_category' link.slug %}" class="border-b-2 block rounded py-[10px] px-4 text-dark hover:text-primary">{{ link.category }}</a>
 								{% endfor %}
 								</div>
 							</label>
@@ -42,20 +42,20 @@
 							<label>
 								<div class="mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 pr-6 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">Accounts</div>
 								<input type="checkbox" class="hidden" id="test">
-								<div class="z-10 menud submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
-									<a href="{% url 'logout' %}" class="block rounded py-[10px] px-4 text-dark hover:text-white hover:bg-primary">Logout</a>
-									<a href="{% url 'account' %}" class="block rounded py-[10px] px-4 text-dark hover:text-white hover:bg-primary">Setting</a>
+								<div class="z-10 menud submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300">
+									<a href="{% url 'logout' %}" class="border-b-2 block rounded py-[10px] px-4 text-dark hover:text-primary hover:bg-primary">Logout</a>
+									<a href="{% url 'account' %}" class="border-b-2 block rounded py-[10px] px-4 text-dark hover:text-primary hover:bg-primary">Setting</a>
 								</div>
 							</label>
 						</li>
 						{% else %}
 						<li class="group relative inline-block">
 							<label>
-								<div class="mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 pr-6 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">Accounts</div>
+								<div class="mx-8 flex py-2 text-base text-dark group-hover:text-primary after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 pr-6 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">Accounts</div>
 								<input type="checkbox" class="hidden" id="test">
-								<div class="z-10 menud submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
-									<a href="{% url 'login' %}" class="block rounded py-[10px] px-4 text-dark hover:text-white hover:bg-primary">Login</a>
-									<a href="{% url 'register' %}" class="block rounded py-[10px] px-4 text-dark hover:text-white hover:bg-primary">Sign Up</a>
+								<div class="z-10 menud submenu relative top-full left-0 hidden w-[150px] rounded-sm bg-white p-4 transition-[top] duration-300">
+									<a href="{% url 'login' %}" class="border-b-2 block rounded py-[10px] px-4 text-dark hover:text-primary">Sign In</a>
+									<a href="{% url 'register' %}" class="border-b-2 block rounded py-[10px] px-4 text-dark hover:text-primary">Sign Up</a>
 								</div>
 							</label>
 						</li>
@@ -65,9 +65,9 @@
 							<label>
 								<div class="mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 pr-6 lg:after:right-0 lg:group-hover:text-red lg:group-hover:opacity-70 xl:ml-12">Admin</div>
 								<input type="checkbox" class="hidden" id="test">
-								<div class="z-10 menud submenu relative top-full left-0 hidden w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
-									<a href="{% url 'category_list' %}" class="block rounded py-[10px] px-4 text-body-color hover:text-primary">Quản lý danh mục</a>
-									<a href="{% url 'list_post' %}" class="block rounded py-[10px] px-4 text-body-color hover:text-primary">Quản lý bài đăng</a>	
+								<div class="z-10 menud submenu relative top-full left-0 hidden w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300">
+									<a href="{% url 'category_list' %}" class="border-b-2 block rounded py-[10px] px-4 text-dark hover:text-primary">Quản lý danh mục</a>
+									<a href="{% url 'list_post' %}" class="border-b-2 block rounded py-[10px] px-4 text-dark hover:text-primary">Quản lý bài đăng</a>	
 								</div>
 							</label>
 						</li>
@@ -92,7 +92,7 @@
 			</div>
 			{% else %}
 			<div class="hidden justify-end pr-16 lg:flex lg:pr-0">
-				<a href="{% url 'login' %}" class="mr-2 py-2 px-5 text-base font-bold text-dark hover:text-opacity-80">Login</a>
+				<a href="{% url 'login' %}" class="mr-2 py-2 px-5 text-base font-bold text-dark hover:text-opacity-80">Sign In</a>
 				<a href="{% url 'register' %}" class="rounded-lg bg-primary py-2 px-5 text-base font-medium text-white hover:bg-opacity-90">Sign Up</a>
 			</div>
 			{% endif %}
