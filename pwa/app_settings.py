@@ -107,13 +107,3 @@ PWA_APP_SPLASH_SCREEN = getattr(settings, 'PWA_APP_SPLASH_SCREEN', [
 ])
 PWA_APP_DIR = getattr(settings, 'PWA_APP_DIR', 'auto')
 PWA_APP_LANG = getattr(settings, 'PWA_APP_LANG', 'en-US')
-
-
-PWA_APP_VERSION = getattr(settings, 'PWA_APP_VERSION', '1.0')
-PWA_APP_MANIFEST_VERSION = getattr(settings, 'PWA_APP_MANIFEST_VERSION', '1.0')
-PWA_APP_PERMISSIONS = getattr(settings, 'PWA_APP_PERMISSIONS', [
-			"notifications",
-			"webRequest"
-		])
-PWA_APP_AUTHOR = getattr(settings, 'PWA_APP_AUTHOR', 'Hoang Van Gioi')
-
