@@ -322,6 +322,9 @@ CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+FILE_UPLOAD_MAX_MEMORY_SIZE = 200000000000000000000
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 200000000000000000000
 
 options = DATABASES['default'].get('OPTIONS', {})
 options.pop('sslmode', None)
