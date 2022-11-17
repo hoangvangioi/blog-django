@@ -11,5 +11,5 @@
   "status_bar": {{ PWA_APP_STATUS_BAR_COLOR|js }},
   "icons": {{ PWA_APP_ICONS|js }},
   "dir": {{ PWA_APP_DIR|js }},
-  "lang": {{ PWA_APP_LANG|js }},
+  "lang": {{ PWA_APP_LANG|js }}
 }
