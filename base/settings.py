@@ -502,6 +502,10 @@ PWA_APP_LANG = 'vi-VN'
 # Define the user model. The difference between 'users.User' and 'auth.User'
 AUTH_USER_MODEL = "users.User"
 
+SUPERUSER_NAME = os.getenv("SUPERUSER_NAME")
+SUPERUSER_EMAIL = os.getenv("SUPERUSER_EMAIL")
+SUPERUSER_PASSWORD = os.getenv("SUPERUSER_PASSWORD")
+
 SIGNUP_URL = "/user/signup/"
 LOGIN_URL = "/user/login/"
 LOGOUT_URL = "/user/logout/"
