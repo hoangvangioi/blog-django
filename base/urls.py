@@ -58,7 +58,7 @@ urlpatterns = [
 
     path('feed', LatestEntriesFeed()),
 
-    path('error/', views.error, name='error'),
+    # path('error/', views.error, name='error'),
 ]
 
 
@@ -66,22 +66,11 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# handler400 = 'base.views.handler400'
-# handler404 = 'base.views.handler404'
-# handler500 = 'base.views.handler500'
-# handler403 = 'base.views.csrf_failure'
+handler400 = 'base.views.handler400'
+handler403 = 'base.views.handler403'
+handler404 = 'base.views.handler404'
+handler500 = 'base.views.handler500'
 
-
-# django.views.defaults.page_not_found
-# django.views.defaults.server_error
-# django.views.defaults.permission_denied
-# django.views.defaults.bad_request
-
-
-# defaults.page_not_found(request, exception, template_name='404.html')
-# defaults.server_error(request, template_name='500.html')
-# defaults.permission_denied(request, exception, template_name='403.html')
-# defaults.bad_request(request, exception, template_name='400.html')
 
 admin.site.site_header="Blog Hoàng Giỏi Admin"
 admin.site.site_title="Blog Hoàng Giỏi Admin Panel"
