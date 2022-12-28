@@ -1,14 +1,15 @@
 {
-    'arrowParens': 'always',
-    'bracketSameLine': true,
-    'bracketSpacing': true,
-    'embeddedLanguageFormatting': 'auto',
-    'printWidth': 1200000,
-    'quoteProps': 'consistent',
-    'requirePragma': false,
-    'semi': true,
-    'singleQuote': true,
-    'tabWidth': 4,
-    'useTabs': true,
-    'proseWrap': 'preserve'
+    "arrowParens": "always",
+    "bracketSameLine": true,
+    "bracketSpacing": true,
+    "embeddedLanguageFormatting": "auto",
+    "printWidth": 1200000,
+    "quoteProps": "consistent",
+    "requirePragma": false,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "tabSize": 4,
+    "useTabs": true,
+    "proseWrap": "preserve"
 }
