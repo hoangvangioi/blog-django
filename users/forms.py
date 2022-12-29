@@ -272,9 +272,7 @@ class UserUpdateForm(forms.ModelForm):
         Creates form for user to update their account.
     """
     email = forms.EmailField(widget=forms.EmailInput(attrs={
-                                                     'name': "email",
-                                                     'id': "email",
-                                                     'class': "form-control",
+                                                     'class': "pl-3 py-3 w-full text-sm focus:outline-none placeholder-gray-500 rounded bg-transparent text-gray-600 dark:text-gray-400",
                                                     }
                                                 ),
                                             )
@@ -285,9 +283,7 @@ class UserUpdateForm(forms.ModelForm):
         widgets = {
 
             'name': forms.TextInput(attrs={
-                'name': "first-name",
-                'class': "form-control",
-                'id': "first-name"
+                'class': "border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400",
             }),
         }
 
@@ -306,19 +302,19 @@ class ProfileUpdateForm(forms.ModelForm):
 
             'job_title': forms.TextInput(attrs={
                 'name': "job-title",
-                'class': "form-control",
+                'class': "border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400",
                 'id': "job-title"
             }),
 
             'bio': forms.Textarea(attrs={
                 'name': "bio",
-                'class': "form-control",
-                'id': "bio", "rows": "5",
+                'class': "bg-transparent border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 resize-none placeholder-gray-500 text-gray-600 dark:text-gray-400",
+                'id': "bio", "rows": "6",
             }),
 
             'address': forms.TextInput(attrs={
                 'name': "address",
-                'class': "form-control",
+                'class': "border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400",
                 'id': "address"
             }),
 
@@ -328,28 +324,37 @@ class ProfileUpdateForm(forms.ModelForm):
                 "id": "profileImage",
             }),
 
-            'facebook_url': forms.TextInput(attrs={
-                'name': "facebook-account-url",
-                'class': "form-control",
-                'id': "github-account-url"
-            }),
+            # 'facebook_url': forms.TextInput(attrs={
+            #     'name': "facebook-account-url",
+            #     'class': "form-control",
+            #     'id': "github-account-url"
+            # }),
 
-            'twitter_url': forms.TextInput(attrs={
-                'name': "twitter-account-url",
-                'class': "form-control",
-                'id': "twitter-account-url"
-            }),
+            # 'twitter_url': forms.TextInput(attrs={
+            #     'name': "twitter-account-url",
+            #     'class': "form-control",
+            #     'id': "twitter-account-url"
+            # }),
 
-            'instagram_url': forms.TextInput(attrs={
-                'name': "instagram-account-url",
-                'class': "form-control",
-                'id': "instagram-account-url"
-            }),
+            # 'instagram_url': forms.TextInput(attrs={
+            #     'name': "instagram-account-url",
+            #     'class': "form-control",
+            #     'id': "instagram-account-url"
+            # }),
 
-            'github_url': forms.TextInput(attrs={
-                'name': "github-account-url",
-                'class': "form-control",
-                'id': "github-account-url"
-            }),
+            # 'github_url': forms.TextInput(attrs={
+            #     'name': "github-account-url",
+            #     'class': "form-control",
+            #     'id': "github-account-url"
+            # }),
 
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields['facebook_url'].widget.attrs['class'] = 'border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400'
+            self.fields['twitter_url'].widget.attrs['class'] = 'border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400'
+            self.fields['instagram_url'].widget.attrs['class'] = 'border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400'
+            self.fields['github_url'].widget.attrs['class'] = 'border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400'
