@@ -2,6 +2,12 @@
 <link href="{% static 'dashboard/author/css/dashboard.css' %}" rel="stylesheet" />
 {% endblock stylesheets %} {% block content %}
 
+<div class="w-full container mx-auto pt-20">
+	<div class="flex flex-col items-center py-12">
+		<span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-4xl">Profile</span>
+	</div>
+</div>
+
 <div aria-label="cards" class="container mx-auto bg-white dark:bg-gray-800 shadow rounded">
 	<div class="relative">
 		{% comment %} <img alt="author-banner-image" src="{{ author_profile_details.profile.banner_image.url }}" /> {% endcomment %}
