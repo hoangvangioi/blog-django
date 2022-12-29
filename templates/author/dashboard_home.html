@@ -1,6 +1,11 @@
 {% extends 'base.html' %} {% load static %} {% load only_hours %} {% block title %} Home {% endblock %} {% block stylesheets %} {{ block.super }}
 <link href="{% static 'dashboard/author/css/dashboard-article.css' %}" rel="stylesheet" />
 {% endblock stylesheets %} {% block content %}
+<div class="w-full container mx-auto pt-20">
+    <div class="flex flex-col items-center py-12">
+        <span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl">Dashboard</span>
+    </div>
+</div>
 <div class="container mx-auto">
 	<div class="w-full flex items-center justify-center">
 		<div class="py-4 sm:py-6 md:py-8 bg-white shadow rounded-lg">
@@ -79,14 +84,12 @@
 		</div>
 	</div>
 
-    <div class="w-full container mx-auto pt-20">
+    <div class="w-full container mx-auto pt-10">
         <div class="flex flex-col items-center py-12">
-            <span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl">Recent Published Articles</span>
+            <span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-3xl">Recent Published Articles</span>
             <p class="text-lg text-gray-600">List of your recently published articles.</p>
         </div>
     </div>
-
-
 
     <div class="container mx-auto w-full sm:px-6">
         <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 dark:bg-gray-700 rounded-tl-lg rounded-tr-lg">
