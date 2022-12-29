@@ -1,8 +1,10 @@
-<!DOCTYPE html> {% load static %} {% load pwa %} 
-<html lang="vi" class="h-full">
+<!DOCTYPE html> {% load static %}
+<html lang="vi" translate="no">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django, {% block keywords %}{% endblock keywords %}">
@@ -13,11 +15,11 @@
     <meta property="og:url" content="http://{{ request.get_host }}{{ request.get_full_path }}" />
     <meta property="og:title" content="{% block og %}{% endblock og %}">
     <meta property="og:description" content="{% block description_og %}{% endblock description_og %}">
-    <meta property="og:image" content="{{ post.featured_image.url }}">
+    <meta property="og:image" content="{{ post.featured_image_url }}">
 
     <meta name="twitter:title" content="{% block twitter %}{% endblock twitter %}">
     <meta name="twitter:description" content="{% block description_twitter %}{% endblock description_twitter %}">
-    <meta name="twitter:image" content="{{ post.featured_image.url }}" />
+    <meta name="twitter:image" content="{{ post.featured_image_url }}" />
     <meta name="twitter:card" content="summary">
 
     <link rel="canonical" href="http://{{ request.get_host }}{{ request.get_full_path }}">
@@ -31,7 +33,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
     <link rel="mask-icon" color="#5bbad5" href="{% static 'img/safari-pinned-tab.svg' %}">
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
-    {% progressive_web_app_meta %}
     {% if '/' == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %}
     {% elif post.get_absolute_url == request.path %}{% else %}{% endif %}
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
@@ -40,25 +41,27 @@
     <script async data-ad-client="ca-pub-2146269335848308" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     {% endif %}
+
+    <!-- <link rel="stylesheet" href="/assets/css/tailwind.css"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" /> -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    {% include "includes/navbar.html" %} 
-    <main> {% block content %} {% endblock content %} </main>
+<body class="min-h-screen">
+    <!--[if lt IE 11]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
+        <br />As of January 12, 2016<a href="#outdatedRef01"><sup>[1]</sup></a>, Internet Explorer 10 and older is no longer supported or updated by Microsoft, and are to be considered <strong>unsafe</strong> to use.
+        <br />
+        <br />Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+        <br />
+        <br />Ref <a name="outdatedRef01">[1]</a>: <a href="https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support">Microsoft: <em>Support for older versions of Internet Explorer ends on January 12, 2016</em></a></p>
+    <![endif]-->
+    {% include "includes/header.html" %}
+
+    {% block content %} {% endblock content %}
+
     {% include "includes/footer.html" %}
-    <span class="back-to-top hidden bg-[#D64937] z-10 hover:bg-opacity-90">
-        <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
-        </svg>
-    </span>
-    <div class="progress-bar"></div>
-    <!-- Scripts -->
-    {% block script %}{% endblock script %}
-    <script>
-        let logo1 = "{% static 'img/about/about-image.svg' %}"
-        let logo2 = "{% static 'img/logo/logo.svg' %}"
-    </script>
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
 </body>
 
 </html>

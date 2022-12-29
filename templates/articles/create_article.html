@@ -1,0 +1,186 @@
+{% extends "base.html" %} {% block title %} Tạo bài viết {% endblock %} {% block content %}
+
+
+<h2 class="font-semibold dark:text-white lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-gray-800 pt-20">
+	{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+				{{message}}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+			{% endfor %}
+		{% endif %}
+
+	</h2>
+	{% comment %} {% for field in form %}
+	<div class="form-group">
+		<div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
+		{{ field }}
+	</div>
+	{% endfor %} {% endcomment %}
+
+	
+<div class="2xl:container 2xl:mx-auto md:py-12 lg:px-20 md:px-6 py-9 px-4">
+	<h2 class="font-semibold dark:text-white lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-gray-800 pt-20">Frequently Asked Questions</h2>
+	<div class="mt-4 flex md:justify-between md:items-start md:flex-row flex-col justify-start items-start">
+		<p class="font-normal dark:text-gray-400 text-base leading-6 text-gray-600 lg:w-8/12 md:w-9/12">Here are few of the most frequently asked questions by our valueable customers</p>
+	</div>
+
+	<form method="POST" enctype="multipart/form-data" novalidate>
+		{% csrf_token %} {{ form.media }}
+		<div class="bg-white rounded py-7 shadow">
+			<div class="mt-10 px-7">
+				<p class="text-xl font-semibold leading-tight text-gray-800">Meta Details</p>
+				<div class="grid w-full grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-7 mt-7">
+					<div>
+						<p class="text-base font-medium leading-none text-gray-800">Title</p>
+						{{ form.title }}
+						<p class="mt-3 text-xs leading-3 text-gray-600">Set a simple and precise meta title</p>
+					</div>
+					<div>
+						<p class="text-base font-medium leading-none text-gray-800">Status</p>
+						{{ form.status }}
+						<p class="mt-3 text-xs leading-[15px] text-gray-600">Set words that are related to the product</p>
+					</div>
+					<div>
+						<p class="text-base font-medium leading-none text-gray-800">Tags</p>
+						{{ form.tags }}
+						<p class="mt-3 text-xs leading-3 text-gray-600">Set a simple and precise meta title</p>
+					</div>
+					<div>
+						<p class="text-base font-medium leading-none text-gray-800">Category</p>
+						{{ form.category }}
+						<p class="mt-3 text-xs leading-[15px] text-gray-600">Set words that are related to the product</p>
+					</div>
+				</div>
+			</div>
+			<div class="pt-6 border-gray-300 mt-2 px-7">
+				<p class="text-base font-semibold leading-4 text-gray-800">Content</p>
+				<div class="mt-10 border border-gray-300 rounded">
+					{{ form.body }}
+				</div>
+			</div>
+			<p class="mt-3 text-xs leading-[15px] text-gray-600 px-7">Enter product meta description for better understanding</p>
+		</div>
+
+		<div class="flex md:flex-row flex-col md:space-x-8 md:mt-16 mt-8">
+			<div class="w-full md:mt-0 sm:mt-14 mt-10">
+				<div>
+					<div class="flex justify-between items-center cursor-pointer">
+						<h3 class="font-semibold text-xl dark:text-white leading-5 text-gray-800">Illustration</h3>
+						<span aria-label="too" class="text-gray-800 dark:text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" onclick="openAnsSection(1)">
+							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path id="path1" class="" d="M10 4.1665V15.8332" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+								<path d="M4.16602 10H15.8327" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</span>
+					</div>
+					<div id="para1" class="hidden rounded py-7">
+						<div class="grid w-full grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-7 mt-7">
+							<div>
+								<p class="text-base font-medium leading-none text-gray-800">Featured image</p>
+								{{form.featured_image}}
+								<p class="mt-3 text-xs leading-3 text-gray-600">Set words that are related to the product</p>
+							</div>
+							<div>
+								<p class="text-base font-medium leading-none text-gray-800">Image credit</p>
+								{{form.image_credit}}
+								<p class="mt-3 text-xs leading-[15px] text-gray-600">Enter product meta description for better understanding</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-7 bg-gray-200" />
+
+				<div>
+					<div class="flex justify-between items-center cursor-pointer">
+						<h3 class="font-semibold text-xl dark:text-white leading-5 text-gray-800">Post Other</h3>
+						<span aria-label="too" class="text-gray-800 dark:text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" onclick="openAnsSection(2)">
+							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path id="path2" class="" d="M10 4.1665V15.8332" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+								<path d="M4.16602 10H15.8327" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</span>
+					</div>
+					<div id="para2" class="hidden rounded py-7">
+						<div class="grid w-full grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-7 mt-7">
+							<div>
+								<p class="text-base font-medium leading-none text-gray-800">Bài trước</p>
+								{{form.previous_post}}
+								<p class="mt-3 text-xs leading-3 text-gray-600">Set words that are related to the product</p>
+							</div>
+							<div>
+								<p class="text-base font-medium leading-none text-gray-800">Bài sau</p>
+								{{form.next_post}}
+								<p class="mt-3 text-xs leading-[15px] text-gray-600">Enter product meta description for better understanding</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-7 bg-gray-200" />
+
+				<div>
+					<div class="flex justify-between items-center cursor-pointer">
+						<h3 class="font-semibold text-xl dark:text-white leading-5 text-gray-800">SEO</h3>
+						<span aria-label="too" class="text-gray-800 dark:text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" onclick="openAnsSection(3)">
+							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path id="path3" d="M10 4.1665V15.8332" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+								<path d="M4.16602 10H15.8327" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</span>
+					</div>
+					<div id="para3" class="hidden rounded py-7">
+						<div class="grid w-full grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-7 mt-7">
+							<div>
+								<p class="text-base font-medium leading-none text-gray-800">Meta Keywords</p>
+								{{form.keywords}}
+								<p class="mt-3 text-xs leading-3 text-gray-600">Set words that are related to the product</p>
+							</div>
+							<div>
+								<p class="text-base font-medium leading-none text-gray-800">Meta Description</p>
+								{{form.description}}
+								<p class="mt-3 text-xs leading-[15px] text-gray-600">Enter product meta description for better understanding</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-7 bg-gray-200" />
+
+				<div class="flex flex-col flex-wrap items-center justify-center w-full px-7 lg:flex-row lg:justify-end md:justify-end gap-x-4 gap-y-4">
+					<button class="bg-white border-indigo-700 rounded hover:bg-gray-50 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-indigo-700 border lg:max-w-[95px] w-full">Cancel</button>
+					<button type="submit" class="bg-indigo-700 rounded hover:bg-indigo-600 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-white lg:max-w-[144px] w-full">Save Changes</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script>
+	function openAnsSection(val) {
+		var p = document.getElementById('para' + val);
+		var svg = document.getElementById('path' + val);
+
+		if (p.classList.contains('hidden')) {
+			p.classList.remove('hidden');
+			p.classList.add('block');
+		} else {
+			p.classList.remove('block');
+			p.classList.add('hidden');
+		}
+
+		if (svg.classList.contains('hidden')) {
+			svg.classList.remove('hidden');
+			svg.classList.add('block');
+		} else {
+			svg.classList.remove('block');
+			svg.classList.add('hidden');
+		}
+	}
+</script>
+
+{% endblock content %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Categories {% endblock title %} {% block content %}
+<!-- Text Header -->
+<div class="w-full container mx-auto pt-20">
+	<div class="flex flex-col items-center py-12">
+		<span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl"> CATEGORIES </span>
+	</div>
+</div>
+
+<div class="bg-white dark:bg-gray-900 px-4 xl:px-4 py-14">
+	<div class="mx-auto container">
+		<div tabindex="0" aria-label="Group of cards" class="focus:outline-none mt-12 lg:mt-24">
+			{% if categories %}
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mx-4 sm:mx-0">
+				{% for category in categories %}
+				<div tabindex="0" class="focus:outline-none shadow-lg" aria-label="card 5">
+					<a href="{{ category.get_absolute_url }}">
+						<img tabindex="0" role="img" aria-label="worker" class="focus:outline-none w-full" src="{{ category.image_url }}" alt="worker" />
+						<div class="py-2 px-4 w-full flex justify-between bg-indigo-700">
+							<p tabindex="0" class="focus:outline-none text-sm text-white font-semibold tracking-wide">{{ category.name }}</p>
+							<p tabindex="0" class="focus:outline-none text-sm text-white font-semibold tracking-wide">{{ category.articles.count }} Article</p>
+						</div>
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+			{% else %}
+			<center><div class="alert alert-info">No Categories</div></center>
+			{% endif %} {% if is_paginated %}
+			<div class="max-w-8xl mx-auto container py-10">
+				<ul class="flex justify-center items-center">
+					{% if page_obj.has_previous %} {% comment %}
+					<a href="?page=1">First</a>
+					{% endcomment %}
+					<li>
+						<a href="?page={{page_obj.previous_page_number}}">
+							<span tabindex="0" aria-label="backward" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none p-1 flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 mr-1 sm:mr-3">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+									<path stroke="none" d="M0 0h24v24H0z" />
+									<polyline points="15 6 9 12 15 18" />
+								</svg>
+							</span>
+						</a>
+					</li>
+					{% endif %} {# Displays current page #} {% for page_number in page_obj.paginator.page_range %} {% if page_obj.number == page_number %}
+					<span tabindex="0" class="{% if page_number == page_obj.number %}current bg-indigo-700 text-white{% endif %} focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
+					{% elif page_number > page_obj.number|add:'-3' and page_number < page_obj.number|add:'3' %}
+					<a href="?page={{ page_number }}">
+						<span tabindex="0" class="{% if page_number == page_obj.number %}current bg-indigo-700 text-white{% endif %} focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
+					</a>
+					{% endif %} {% endfor %} {% if page_obj.has_next %}
+					<li>
+						<a href="?page={{page_obj.next_page_number}}">
+							<span tabindex="0" aria-label="forward" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 p-1 ml-1 sm:ml-3">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+									<path stroke="none" d="M0 0h24v24H0z" />
+									<polyline points="9 6 15 12 9 18" />
+								</svg>
+							</span>
+						</a>
+					</li>
+					{% comment %}
+					<a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+					{% endcomment %} {% endif %}
+				</ul>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

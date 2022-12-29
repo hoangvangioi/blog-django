@@ -6,34 +6,58 @@ from django.contrib.auth.forms import (
     UserCreationForm,
 )
 
-from .models import Confirmation, User
+from .models import User, Profile
+
+
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    show_change_link = True
+    extra = 3
+    can_delete = False
+    readonly_fields = ['updated_on']
+    fieldsets = (
+        (None,
+            {
+                "fields": (("avatar", "address"), ("job_title", "bio"))
+            },
+        ),
+        ('Social Network',
+            {
+                "fields": (( 'twitter_url', 'instagram_url'), ('facebook_url', 'github_url'))
+            }
+        ),
+        ('Date information',
+            {
+                "fields": (( 'created_on', 'updated_on'), ),
+                'classes': ('collapse', 'collapse-closed'),
+            }
+        )
+    )
 
 
 @admin.register(User)
 class UserAdmin(AuthUserAdmin):
-    add_form_template = "admin/users/user/add_form.html"
+    # add_form_template = "admin/users/user/add_form.html"
     change_user_password_template = None
     fieldsets = (
-        (
-            None,
+        (None,
             {
                 "fields": (
-                    (
-                        "name",
-                        "email",
-                        "password",
-                        "is_active",
-                        "url",
-                    )
+                    (("name", "email", ), "password", "is_active", )
                 )
             },
         ),
-        (
-            "Date Information",
+        ("Date Information",
             {
                 "fields": (("date_joined", "last_login"),),
                 "classes": ("collapse"),
             },
+        ),
+        ('Permissions', 
+            {
+                'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions'),
+                'classes': ('collapse', 'collapse-closed'),
+            }
         ),
     )
     add_fieldsets = (
@@ -58,16 +82,4 @@ class UserAdmin(AuthUserAdmin):
         "groups",
         "user_permissions",
     )
-
-
-@admin.register(Confirmation)
-class ConfirmationAdmin(admin.ModelAdmin):
-    list_display = (
-        "email",
-        "is_out_of_date",
-        "purpose",
-        "notifications",
-        "key",
-    )
-    list_display_links = ("email",)
-    date_hierarchy = "creation_date"
+    inlines = [ProfileInline]

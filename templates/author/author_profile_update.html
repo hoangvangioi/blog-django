@@ -1,0 +1,191 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Update Profile {% endblock title %} {% block stylesheets %} {{ block.super }}
+<link href="{% static 'dashboard/author/css/dashboard.css' %}" rel="stylesheet" />
+{% endblock stylesheets %} {% block content %}
+
+<div class="w-full container mx-auto pt-20">
+	<div class="flex flex-col items-center py-12">
+		<span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl">Profile Update</span>
+		<p class="text-lg text-gray-600">Update your profile.</p>
+	</div>
+</div>
+
+{% comment %} <label>Fullname</label>
+<h6>{{ contact_form.name.errors }}</h6>
+{{ user_form.name }}
+
+<label for="email">Email address</label>
+<h6>{{ contact_form.email.errors }}</h6>
+{{ user_form.email }}
+
+<label>Job Title</label>
+<h6>{{ contact_form.job_title.errors }}</h6>
+{{ profile_form.job_title }}
+
+<label>Address</label>
+<h6>{{ contact_form.address.errors }}</h6>
+{{ profile_form.address }}
+
+<label>Profile Image</label>
+<div>
+    <span class="text-danger">Current image:</span>
+    <a href="{{ user.profile.image.url }}"> {{ user.profile.image.url }}</a><br />
+</div>
+<h6>{{ contact_form.image.errors }}</h6>
+{{ profile_form.image }}
+
+<label>Profile Banner</label>
+<div>
+    <span class="text-danger">Current banner:</span>
+    <a href="{{ user.profile.banner_image.url }}"> {{ user.profile.banner_image.url }}</a><br />
+</div>
+<h6>{{ contact_form.banner_image.errors }}</h6>
+{{ profile_form.banner_image }}
+
+<label>About Me</label>
+<h6>{{ contact_form.bio.errors }}</h6>
+{{ profile_form.bio }}
+
+<label>Facebook Account Url</label>
+<h6>{{ contact_form.facebook_url.errors }}</h6>
+{{ profile_form.facebook_url }}
+
+<label>Twitter Account Url</label>
+<h6>{{ contact_form.twitter_url.errors }}</h6>
+{{ profile_form.twitter_url }}
+
+<label>Instagram Account Url</label>
+<h6>{{ contact_form.instagram_url.errors }}</h6>
+{{ profile_form.instagram_url }}
+
+<label>Github Account Url</label>
+<h6>{{ contact_form.github_url.errors }}</h6>
+{{ profile_form.github_url }} {% endcomment %}
+
+
+
+<div class="bg-white dark:bg-gray-800">
+	<form method="post" action="{% url 'author_profile_update' %}" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+		<div class="container mx-auto bg-white dark:bg-gray-800 rounded">
+			<div class="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5 bg-white dark:bg-gray-800">
+				<div class="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
+					<p class="text-lg text-gray-800 dark:text-gray-100 font-bold">Update Profile</p>
+				</div>
+			</div>
+			<div class="mx-auto">
+				<div class="xl:w-9/12 w-11/12 mx-auto xl:mx-0">
+					<div class="rounded relative mt-8 h-48">
+						<img src="https://cdn.tuk.dev/assets/webapp/forms/form_layouts/form1.jpg" alt="" class="w-full h-full object-cover rounded absolute shadow" />
+						<div class="absolute bg-black opacity-50 top-0 right-0 bottom-0 left-0 rounded"></div>
+						<div class="flex items-center px-3 py-2 rounded absolute right-0 mr-4 mt-4 cursor-pointer">
+							<p class="text-xs text-gray-100">Change Cover Photo</p>
+							<div class="ml-2 text-gray-100">
+								<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg1.svg" alt="Edit" />
+							</div>
+						</div>
+						<div class="w-20 h-20 rounded-full bg-cover bg-center bg-no-repeat absolute bottom-0 -mb-10 ml-12 shadow flex items-center justify-center">
+							<img src="https://cdn.tuk.dev/assets/webapp/forms/form_layouts/form2.jpg" alt="" class="absolute z-0 h-full w-full object-cover rounded-full shadow top-0 left-0 bottom-0 right-0" />
+							<div class="absolute bg-black opacity-50 top-0 right-0 bottom-0 left-0 rounded-full z-0"></div>
+							<div class="cursor-pointer flex flex-col justify-center items-center z-10 text-gray-100">
+								<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg1.svg" alt="Edit" />
+								<p class="text-xs text-gray-100">Edit Picture</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container mx-auto bg-white dark:bg-gray-800 mt-10 rounded px-4">
+			<div class="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5">
+				<div class="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
+					<p class="text-lg text-gray-800 dark:text-gray-100 font-bold">Personal Information</p>
+					<div class="ml-2 cursor-pointer text-gray-600 dark:text-gray-400">
+						<img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg4.svg" alt="info" />
+						<img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg4dark.svg" alt="info" />
+					</div>
+				</div>
+			</div>
+			<div class="mx-auto pt-4">
+				<div class="container mx-auto">
+					<form class="my-6 w-11/12 mx-auto xl:w-full xl:mx-0">
+						<div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
+							<div class="lg:w-3/4 w-full flex flex-col mb-6">
+								<div class="flex flex-col">
+									<label for="Email" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Email</label>
+									<div class="border border-green-400 shadow-sm rounded flex">
+										<div tabindex="0" class="focus:outline-none px-4 py-3 dark:text-gray-100 flex items-center border-r border-green-400">
+											<img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg2.svg" alt="mail" />
+											<img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg2dark.svg" alt="mail" />
+										</div>
+										<input tabindex="0" type="text" id="Email" name="email" required class="pl-3 py-3 w-full text-sm focus:outline-none placeholder-gray-500 rounded bg-transparent text-gray-600 dark:text-gray-400" placeholder="example@gmail.com" />
+									</div>
+									<div class="flex justify-between items-center pt-1 text-green-700">
+										<p class="text-xs">Email submission success!</p>
+										<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg3.svg" alt="success" />
+									</div>
+								</div>
+								<div class="flex flex-col">
+									<label for="FullName" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Full Name</label>
+									<input tabindex="0" type="text" id="FullName" name="FullName" required class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="" />
+								</div>
+							</div>
+							<div class="flex flex-col lg:w-3/4 w-full mb-6">
+								<label for="about" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">About</label>
+								<textarea id="about" name="about" required class="bg-transparent border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 resize-none placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="Let the world know who you are" rows="6"></textarea>
+								<p class="w-full text-right text-xs pt-1 text-gray-600 dark:text-gray-400">Character Limit: 200</p>
+							</div>
+						</div>
+
+						<div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
+							<div class="lg:w-3/4 w-full flex flex-col mb-6">
+								<label for="StreetAddress" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Street Address</label>
+								<input tabindex="0" type="text" id="StreetAddress" name="streetAddress" required class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="" />
+							</div>
+							<div class="lg:w-3/4 w-full flex flex-col mb-6">
+								<label for="StreetAddress" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Street Address</label>
+								<input tabindex="0" type="text" id="StreetAddress" name="streetAddress" required class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="" />
+							</div>
+						</div>
+
+						<div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
+							<div class="lg:w-3/4 w-full flex flex-col mb-6">
+								<label for="StreetAddress" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Street Address</label>
+								<input tabindex="0" type="text" id="StreetAddress" name="streetAddress" required class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="" />
+							</div>
+							<div class="lg:w-3/4 w-full flex flex-col mb-6">
+								<label for="StreetAddress" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Street Address</label>
+								<input tabindex="0" type="text" id="StreetAddress" name="streetAddress" required class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="" />
+							</div>
+						</div>
+
+						<div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
+							<div class="lg:w-3/4 w-full flex flex-col mb-6">
+								<div class="flex items-center pb-2">
+									<label for="ZIP" class="text-sm font-bold text-gray-800 dark:text-gray-100">ZIP/Postal Code</label>
+								</div>
+								<input tabindex="0" type="text" name="zip" required id="ZIP" class="bg-transparent border border-red-400 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="86745" />
+								<div class="flex justify-between items-center pt-1 text-red-700">
+									<p class="text-xs">Incorrect Zip Code</p>
+									<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg6.svg" alt="cancel" />
+								</div>
+							</div>
+							<div class="lg:w-3/4 w-full flex flex-col mb-6">
+								<label for="Country" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Country</label>
+								<input tabindex="0" type="text" id="Country" name="country" required class="border bg-transparent border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="United States" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="container mx-auto w-11/12 xl:w-full">
+			<div class="w-full py-4 sm:px-0 bg-white dark:bg-gray-800 flex justify-end">
+				<button role="button" aria-label="cancel form" class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4 focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">Cancel</button>
+				<button role="button" aria-label="Save form" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-indigo-700 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm" type="submit">Save</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+{% endblock content %}

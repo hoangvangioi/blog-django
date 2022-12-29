@@ -34,20 +34,16 @@ sitemaps = {
     'static': StaticViewSitemap,
     'post': PostSitemap,
     'category': CategorySitemap,
-    # 'profile': ProfileSitemap,
 }
 
 urlpatterns = [
     path('hvg/', admin.site.urls),
     # App
-    path('', include('post.urls')),
+    path('', include('articles.urls')),
     path('', include('category.urls')),
-    path('', include('pwa.urls')), 
 
-    path("user/", include("users.urls")),
+    path("", include("users.urls")),
     path("comments/", include("django_comments_ink.urls")),
-
-    path('', TemplateView.as_view(template_name='index.html', content_type='text/html'), name='index'), 
 
     # CKeditor
     re_path(r'^ckeditor/',include('ckeditor_uploader.urls')),
@@ -57,8 +53,6 @@ urlpatterns = [
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_file'),
 
     path('feed', LatestEntriesFeed()),
-
-    # path('error/', views.error, name='error'),
 ]
 
 

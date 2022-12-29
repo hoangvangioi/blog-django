@@ -1,6 +1,6 @@
 from django.contrib.syndication.views import Feed
 from django.urls import reverse
-from post.models import Post
+from articles.models import Article
 
 
 class LatestEntriesFeed(Feed):
@@ -9,7 +9,7 @@ class LatestEntriesFeed(Feed):
     description = "Updates on changes and additions to python articles on pythoncircle.com."
 
     def items(self):
-        return Post.objects.order_by('-updated')[:10]
+        return Article.objects.order_by('-updated')[:10]
 
     def item_title(self, item):
         return item.title

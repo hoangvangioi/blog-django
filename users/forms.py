@@ -4,8 +4,10 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth import authenticate, get_user_model
 from django.utils.translation import gettext as _
+from django.contrib.auth.forms import UserCreationForm
 
-from .models import Confirmation, User
+from .models import Confirmation, User, Profile
+
 
 # ---------------------------------------------------------------------
 # Login form.
@@ -20,8 +22,14 @@ usr_not_auth_msg = _(
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"tabindex": 1, 'placeholder': 'Email *', 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"tabindex": 2, 'placeholder': 'Password *', 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
+    email = forms.EmailField(
+        required=True,
+        label='Email',
+        widget=forms.EmailInput(attrs={"tabindex": 1, 'placeholder': 'e.g: john@gmail.com ', 'class': 'bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2'}))
+    password = forms.CharField(
+        required=True,
+        label='Password',
+        widget=forms.PasswordInput(attrs={"tabindex": 2, 'placeholder': ' ******** ', 'class': 'bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2'}))
     remember = forms.BooleanField(
         widget=forms.CheckboxInput, required=False, label=_("Remember me")
     )
@@ -30,15 +38,8 @@ class LoginForm(forms.Form):
         self.user = None
         self.request = kwargs.pop("request", None)
         super().__init__(*args, **kwargs)
-
-        # for field in self.fields:
-            # self.fields[field].widget.attrs['label'] = ''       
-            # self.fields[field].widget.attrs['class'] = 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'
         self.fields['email'].widget.attrs['type'] = 'email'
-        self.fields['email'].widget.attrs['placeholder'] = 'Email'
         self.fields['password'].widget.attrs['type'] = 'password'
-        self.fields['password'].widget.attrs['placeholder'] = 'Password'
-
 
     def clean(self):
         email = self.cleaned_data.get("email")
@@ -72,16 +73,15 @@ class LoginForm(forms.Form):
 
 
 class RegisterStep1Form(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"tabindex": 1, 'placeholder': 'Email *', 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}))
+    email = forms.EmailField(
+        required=True,
+        label=_("Email"),
+        widget=forms.EmailInput(attrs={"tabindex": 1, 'placeholder': 'e.g: john@gmail.com ', 'type':'email', 'class': 'bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2'}))
     name = forms.CharField(
+        required=True,
         label=_("Name"),
         max_length=150,
-        widget=forms.TextInput(attrs={"size": 30, "tabindex": 2, 'placeholder': 'Full Name *', 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}),
-    )
-    url = forms.URLField(
-        required=False,
-        label=_("Personal URL"),
-        widget=forms.URLInput(attrs={"tabindex": 3, "autocomplete": "off", 'placeholder': 'Personal URL (optional)','class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}),
+        widget=forms.TextInput(attrs={"size": 30, "tabindex": 2, 'placeholder': 'Full Name ', 'class': 'bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2'}),
     )
 
     def clean_email(self):
@@ -113,7 +113,7 @@ class RegisterStep2Form(forms.Form):
     password = forms.CharField(
         label=_("Create Password"),
         widget=forms.PasswordInput(
-            attrs={"size": 30, "autocomplete": "new-password", 'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none'}
+            attrs={"size": 30, 'type': 'password', "autocomplete": "new-password", 'class': 'w-full p-3 mt-4 border border-gray-300 rounded outline-none focus:bg-gray-50'}
         ),
     )
 
@@ -146,7 +146,6 @@ class ProfileForm(forms.Form):
     )
     name = forms.CharField(max_length=150, required=False, label=_("Name"), 
     widget=forms.TextInput(attrs={'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'}),)
-    url = forms.URLField(required=False, label=_("Personal URL"), widget=forms.TextInput(attrs={'class': 'bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none'}),)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user", None)
@@ -154,7 +153,6 @@ class ProfileForm(forms.Form):
             kwargs["initial"] = {
                 "email": self.user.email,
                 "name": self.user.name,
-                "url": self.user.url,
             }
         super().__init__(*args, **kwargs)
 
@@ -196,13 +194,11 @@ class ProfileForm(forms.Form):
     def clean(self):
         email = self.cleaned_data["email"].strip()
         name = self.cleaned_data["name"].strip()
-        url = self.cleaned_data["url"].strip()
 
         if (
             self.user
             and email == self.user.email
             and name == self.user.name
-            and url == self.user.url
         ):
             raise forms.ValidationError(profile_did_not_change)
 
@@ -269,3 +265,91 @@ class CancelForm(forms.Form):
                 _("You must confirm that you want to cancel your account")
             )
         return self.cleaned_data["cancel"]
+
+
+class UserUpdateForm(forms.ModelForm):
+    """
+        Creates form for user to update their account.
+    """
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+                                                     'name': "email",
+                                                     'id': "email",
+                                                     'class': "form-control",
+                                                    }
+                                                ),
+                                            )
+
+    class Meta:
+        model = User
+        fields = ['name', 'email']
+        widgets = {
+
+            'name': forms.TextInput(attrs={
+                'name': "first-name",
+                'class': "form-control",
+                'id': "first-name"
+            }),
+        }
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    """
+       Creates form for user to update their Profile.
+    """
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'job_title', 'bio', 'address',
+                  'twitter_url', 'github_url',
+                  'facebook_url', 'instagram_url']
+
+        widgets = {
+
+            'job_title': forms.TextInput(attrs={
+                'name': "job-title",
+                'class': "form-control",
+                'id': "job-title"
+            }),
+
+            'bio': forms.Textarea(attrs={
+                'name': "bio",
+                'class': "form-control",
+                'id': "bio", "rows": "5",
+            }),
+
+            'address': forms.TextInput(attrs={
+                'name': "address",
+                'class': "form-control",
+                'id': "address"
+            }),
+
+            'avatar': forms.FileInput(attrs={
+                "class": "form-control clearablefileinput",
+                "type": "file",
+                "id": "profileImage",
+            }),
+
+            'facebook_url': forms.TextInput(attrs={
+                'name': "facebook-account-url",
+                'class': "form-control",
+                'id': "github-account-url"
+            }),
+
+            'twitter_url': forms.TextInput(attrs={
+                'name': "twitter-account-url",
+                'class': "form-control",
+                'id': "twitter-account-url"
+            }),
+
+            'instagram_url': forms.TextInput(attrs={
+                'name': "instagram-account-url",
+                'class': "form-control",
+                'id': "instagram-account-url"
+            }),
+
+            'github_url': forms.TextInput(attrs={
+                'name': "github-account-url",
+                'class': "form-control",
+                'id': "github-account-url"
+            }),
+
+        }

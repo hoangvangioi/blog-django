@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% block title %} Search Results {% endblock title %} {% block messages %} {% endblock messages %} {% block content %}
+
+<!-- Text Header -->
+<div class="w-full container mx-auto pt-20">
+	<div class="flex flex-col items-center py-12">
+		{% if messages %} {% for message in messages %}
+		<!-- Messages -->
+		<span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl 
+			{% if message.level_tag == 'error' %}
+			alert-danger
+			{% else %}
+			alert-{{ message.tags }}
+			{% endif %}"> {{ message }} 
+		</span>
+		{% endfor %} {% endif %}
+	</div>
+</div>
+
+<!--Container-->
+<div class="container px-4 md:px-0 mx-auto">
+	<div class="w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t">
+		<div class="flex flex-wrap justify-between pt-24">
+			{% if search_results %} {% for article in search_results %}
+			<div class="w-full md:w-1/2 xl:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+				<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+					<a href="{{ article.get_absolute_url }}" class="flex flex-wrap no-underline hover:no-underline">
+						<img src="{{article.featured_image_url}}" class="h-72 w-full rounded-t pb-6" />
+						<div class="w-full font-bold text-xl text-gray-900 px-6">
+							<a href="{{ article.get_absolute_url }}">{{article.title}}</a>
+						</div>
+						<p class="text-gray-800 font-serif text-base px-6 mb-5">{{article.body|safe|striptags|truncatechars:200 }}</p>
+					</a>
+				</div>
+				<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+					<div class="flex items-center justify-between">
+						<div class="flex items-center">
+							<div class="w-11 h-11 border border-indigo-700 rounded-full flex items-center justify-center">
+								<img src="{{article.author.profile.avatar_url}}" class="w-10 h-10 rounded-full" alt="Avatar of Author" />
+							</div>
+							<div class="flex flex-col items-start ml-4">
+								<p class="text-sm font-semibold leading-4 text-gray-800 dark:text-white">{{article.author}}</p>
+								<p class="text-sm leading-4 mt-2 text-center text-gray-600 dark:text-white">{{article.date_published|date}}</p>
+							</div>
+						</div>
+						<p class="text-gray-600 text-xs md:text-sm">{{ article.read_time }} min{{ article.read_time|pluralize }} read</p>
+					</div>
+				</div>
+			</div>
+			{% endfor %} {% endif %}
+		</div>
+	</div>
+</div>
+
+{% if is_paginated %}
+<div class="max-w-8xl mx-auto container py-10">
+	<ul class="flex justify-center items-center">
+		{% if page_obj.has_previous %}
+		<li>
+			<a href="?page={{page_obj.previous_page_number}}">
+				<span tabindex="0" aria-label="backward" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none p-1 flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 mr-1 sm:mr-3">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<path stroke="none" d="M0 0h24v24H0z" />
+						<polyline points="15 6 9 12 15 18" />
+					</svg>
+				</span>
+			</a>
+		</li>
+		{% endif %} {% for page_number in page_obj.adjusted_elided_pages %} {% if page_number == page_obj.paginator.ELLIPSIS %}
+		<li>
+			<span tabindex="0" class="focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
+		</li>
+		{% else %}
+		<li>
+			<a href="?page={{ page_number }}">
+				<span tabindex="0" class="{% if page_number == page_obj.number %}current bg-indigo-700 text-white{% endif %} focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
+			</a>
+		</li>
+		{% endif %} {% endfor %} {% if page_obj.has_next %}
+		<li>
+			<a href="?page={{page_obj.next_page_number}}">
+				<span tabindex="0" aria-label="forward" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 p-1 ml-1 sm:ml-3">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<path stroke="none" d="M0 0h24v24H0z" />
+						<polyline points="9 6 15 12 9 18" />
+					</svg>
+				</span>
+			</a>
+		</li>
+		{% endif %}
+	</ul>
+</div>
+{% endif %} {% endblock content %}

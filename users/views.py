@@ -7,8 +7,8 @@ from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 from django.db.models import Q
-from django.http.response import HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
@@ -32,7 +32,21 @@ from .utils import (
     send_confirm_user_registration_request,
 )
 
+from .models import User
+from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponseRedirect
+from articles.models import Article
 
+# Blog app imports
+from users.forms import (
+    UserUpdateForm,
+    ProfileUpdateForm,
+)
+
+
+@not_authenticated
 def user_login(request):
     form = LoginForm()
     if request.method == "POST":
@@ -243,3 +257,117 @@ def user_delete_confirm(request, key):
     #       field provided within the data dict.
     print("TODO: Now I can delete the account.")
     return user_logout(request)
+
+
+class DashboardHomeView(LoginRequiredMixin, View):
+    """
+    Display homepage of the dashboard.
+    """
+    context = {}
+    template_name = 'author/dashboard_home.html'
+
+    def get(self, request, *args, **kwargs):
+        """
+        Returns the author details
+        """
+
+        articles_list = Article.objects.filter(author=request.user)
+
+        total_articles_written = len(articles_list)
+        total_articles_published = len(articles_list.filter(status='published'))
+        total_articles_views = sum(article.views for article in articles_list)
+
+        recent_published_articles_list = articles_list.filter(status='published').order_by("-date_published")[:5]
+
+        self.context['total_articles_written'] = total_articles_written
+        self.context['total_articles_published'] = total_articles_published
+        self.context['total_articles_views'] = total_articles_views
+        self.context['recent_published_articles_list'] = recent_published_articles_list
+
+        return render(request, self.template_name, self.context)
+
+
+class AuthorProfileView(LoginRequiredMixin, View):
+    """
+    Displays author profile details
+    """
+    template_name = "author/author_profile_detail.html"
+    context_object = {}
+
+    def get(self, request):
+        author = User.objects.get(name=request.user)
+
+        self.context_object['author_profile_details'] = author
+        return render(request, self.template_name, self.context_object)
+
+
+class AuthorProfileUpdateView(LoginRequiredMixin, View):
+    """
+     Updates author profile details
+    """
+    template_name = 'author/author_profile_update.html'
+    context_object = {}
+
+    def get(self, request):
+        user_form = UserUpdateForm(instance=self.request.user)
+        profile_form = ProfileUpdateForm(instance=self.request.user.profile)
+
+        self.context_object['user_form'] = user_form
+        self.context_object['profile_form'] = profile_form
+
+        return render(request, self.template_name, self.context_object)
+
+    def post(self, request, *args, **kwargs):
+        user_form = UserUpdateForm(data=request.POST, instance=self.request.user)
+        profile_form = ProfileUpdateForm(data=request.POST, files=request.FILES,
+                                         instance=self.request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+
+            user_form.save()
+            profile_form.save()
+
+            messages.success(request, f'Your account has successfully '
+                                      f'been updated!')
+            return redirect('author_profile_details')
+
+        else:
+            user_form = UserUpdateForm(instance=self.request.user)
+            profile_form = ProfileUpdateForm(instance=self.request.user.profile)
+
+            self.context_object['user_form'] = user_form
+            self.context_object['profile_form'] = profile_form
+
+            messages.error(request, f'Invalid data. Please provide valid data.')
+            return render(request, self.template_name, self.context_object)
+
+
+class AuthorWrittenArticlesView(LoginRequiredMixin, View):
+    """
+       Displays all articles written by an author.
+    """
+
+    def get(self, request):
+        """
+           Returns all articles written by an author.
+        """
+        template_name = 'author/author_written_article_list.html'
+        context_object = {}
+
+        written_articles = Article.objects.filter(author=request.user.id).order_by('-date_created')
+        total_articles_written = len(written_articles)
+
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(written_articles, 5)
+        try:
+            written_articles_list = paginator.page(page)
+        except PageNotAnInteger:
+            written_articles_list = paginator.page(1)
+        except EmptyPage:
+            written_articles_list = paginator.page(paginator.num_pages)
+
+        context_object['written_articles_list'] = written_articles_list
+        context_object['total_articles_written'] = total_articles_written
+
+        return render(request, template_name, context_object)

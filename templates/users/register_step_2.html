@@ -7,32 +7,44 @@
 
 {% block content %}
 
-<div class="w-full bg-white px-7 py-8 md:p-9 rounded-lg shadow-md flex border-l-[6px] border-transparent">
-   <div class="w-full">
-      <h5 class="text-lg font-semibold mb-3 text-dark">{% trans "Register" %}</h5>
-      <p class="text-base text-body-color mb-3 leading-relaxed">
-        Thanks for confirming your email address. Your user account has been created. Please, assign a password to your new account before you can login.
-      </p>
-		<form method="POST" autocomplete="off">
-			{% csrf_token %}{{ form.email }}
-			<div class="w-full md:w-1/2 lg:w-1/3 px-4">
-				<div class="mb-12">
-					<label class="font-medium text-base text-black block mb-3" for="{{ form.password.id_for_label }}">
-						{% trans form.password.label %}
-					</label>
-					<div class="mb-3 {% if 'password' in form.errors %}error{% endif %}">
-						{{ form.password }}
-					</div>
-					{% if "password" in form.errors %}
-					<div class="mb-3 helper-text error">
-						{{ form.password.url.0 }}
-					</div>
-					{% endif %}
-					<input type="submit" value="{% trans 'Save' %}" class="py-4 px-10 lg:px-8 xl:px-10 inline-flex items-center justify-center text-center text-white text-base bg-secondary hover:bg-opacity-90 font-normal rounded-full cursor-pointer" />
+<div class="container mx-auto px-2 py-12 pt-28">
+	<div class="flex flex-no-wrap items-start">
+		<div class="w-full">
+			<div class="py-4 px-2">
+				<div class="bg-white rounded shadow mt-7 py-7">
+					<h5 class="text-lg font-semibold mb-3 ml-5">{% trans "Register" %}</h5>
+					<p class="text-base mb-3 ml-5">
+						Thanks for confirming your email address. Your user account has been created. Please, assign a password to your new account before you can login.
+					</p>
+					<form method="POST" autocomplete="off">
+						{% csrf_token %}{{ form.email }}
+						<div class="mt-10 px-7">
+							<div class="grid w-full grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-7 mt-7">
+								<div>
+									<label class="text-base font-medium leading-none text-gray-800" for="{{ form.password.id_for_label }}">
+										{% trans form.password.label %}
+									</label>
+									<div class="{% if 'password' in form.errors %}error{% endif %}">
+										{{ form.password }}
+									</div>
+									{% if "password" in form.errors %}
+									<div class="mb-3 helper-text error">
+										{{ form.password.url.0 }}
+									</div>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="flex flex-col flex-wrap items-center justify-center w-full px-7 lg:flex-row lg:justify-end md:justify-end gap-x-4 gap-y-4">
+							<button type="submit" class="bg-indigo-700 rounded hover:bg-indigo-600 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-white lg:max-w-[144px] w-full">
+							{% trans " Save " %}
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
-		</form>
-   </div>
+		</div>
+	</div>
 </div>
 
 {% endblock content %}

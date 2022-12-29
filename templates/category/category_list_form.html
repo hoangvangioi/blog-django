@@ -1,37 +1,122 @@
 {% extends 'base.html' %} {% block title %} Danh sách thể loại {% endblock %} {% block content %}
 
-<section class="bg-white py-20 lg:py-[120px]">
-	<div class="container">
-		<div class="flex flex-wrap -mx-4 justify-center">
-            <a href="{% url 'create_category' %}" class="border border-success py-2 px-6 mb-4 text-success inline-block rounded hover:bg-primary hover:text-white"> Add New Category </a>
-			<div class="w-full px-4">
-				<div class="max-w-full overflow-x-auto">
-					<table class="table-auto w-full">
-						<thead>
-							<tr class="bg-primary text-center">
-								<th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-l border-transparent">Category</th>
-								<th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4">Edit</th>
-								<th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-r border-transparent">Delete</th>
-							</tr>
-						</thead>
-						<tbody>
-            				{% for cat in category %}
-							<tr>
-								<td class="text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-l border-[#E8E8E8]">{{ cat }}</td>
-								<td class="text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-[#E8E8E8]">
-                                    <a href="{% url 'update_category' cat.slug %}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white"> Edit </a>
-                                </td>
-								<td class="text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-r border-[#E8E8E8]">
-									<a href="{% url 'delete_category' cat.slug %}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white"> Delete </a>
-								</td>
-							</tr>
-            				{% endfor %}
-						</tbody>
-					</table>
-				</div>
+
+
+{% comment %} <div class="py-12 bg-gray-700 dark:bg-gray-900 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
+	<div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+		<div class="relative py-8 px-8 md:px-16 bg-white dark:bg-gray-800 dark:border-gray-700 shadow-md rounded border border-gray-400">
+			<button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-500 transition duration-150 ease-in-out" aria-label="Close" role="button" onclick="modalHandler()">
+				<svg xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+					<path stroke="none" d="M0 0h24v24H0z" />
+					<line x1="18" y1="6" x2="6" y2="18" />
+					<line x1="6" y1="6" x2="18" y2="18" />
+				</svg>
+			</button>
+			<div class="w-full flex justify-center text-green-400 mb-4">
+				<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/centre_aligned_short-svg1.svg" alt="icon"/>
+				
+			</div>
+			<h1 tabindex="0" class="focus:outline-none text-center text-gray-800 dark:text-gray-100 font-lg font-bold tracking-normal leading-tight mb-4">Payment Processing Successful</h1>
+			<p tabindex="0" class="focus:outline-none mb-5 text-sm text-gray-600 dark:text-gray-400 text-center font-normal">Thank you for your payment. An automated payment receipt will be sent to your email. Check the action below for more details.</p>
+			<div class="flex items-center justify-center w-full">
+				<button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Manage Plan</button>
+				<button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 focus:outline-none ml-3 bg-gray-100 dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-600 transition duration-150 text-gray-600 dark:text-gray-400 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onclick="modalHandler()">Cancel</button>
+			</div>
+			
+		</div>
+	</div>
+</div> {% endcomment %}
+{% comment %} <div class="w-full flex justify-center py-12" id="button">
+	<button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 focus:bg-indigo-500 focus:outline-none mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm" onclick="modalHandler(true)">Open Modal</button>
+</div> {% endcomment %}
+
+
+
+
+
+<div class="container mx-auto w-full sm:px-6 pt-28">
+	<div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 dark:bg-gray-700 rounded-tl-lg rounded-tr-lg">
+		<div class="sm:flex items-center justify-between">
+			<p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800 dark:text-white ">Categories</p>
+			<div>
+				<a href="{% url 'create_category' %}" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+					<p class="text-sm font-medium leading-none text-white">New Categories</p>
+				</a>
 			</div>
 		</div>
 	</div>
-</section>
+	<div class="bg-white dark:bg-gray-800  shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+		<table class="w-full whitespace-nowrap">
+			<thead>
+				<tr tabindex="0" class="focus:outline-none h-16 w-full text-sm leading-none text-gray-800 dark:text-white ">
+					<th class="font-bold text-left pl-4">Categories</th>
+					<th class="font-bold text-left pl-12">Edit</th>
+					<th class="font-bold text-left pl-12">Delete</th>
+				</tr>
+			</thead>
+			<tbody class="w-full">
+				{% for cat in category %}
+				<tr tabindex="0" class="focus:outline-none h-20 text-sm leading-none text-gray-800 dark:text-white  bg-white dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-900  border-b border-t border-gray-100 dark:border-gray-700 ">
+					<td class="pl-4 cursor-pointer">
+						<div class="flex items-center">
+							<div class="w-10 h-10">
+								<img class="w-full h-full" src="{{cat.image_url}}" alt="UX Design and Visual Strategy" />
+							</div>
+							<div class="pl-4">
+								<p class="font-medium">{{ cat.name }}</p>
+							</div>
+						</div>
+					</td>
+					<td class="pl-12">
+						<button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 dark:text-gray-200 py-3 px-5 bg-green-500 rounded hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 focus:outline-none" onclick="modalHandler(true)">Edit</button>
+		<a href="{% url 'update_category' cat.slug %}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white"> Edit </a>
+					
+					</td>
+					<td class="pl-12">
+		<a href="{% url 'delete_category' cat.slug %}" class="border border-primary py-2 px-6 text-primary inline-block rounded hover:bg-primary hover:text-white"> Delete </a>	
+						<button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 dark:text-gray-200 py-3 px-5 bg-red-500 rounded hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 focus:outline-none" onclick="modalHandler(true)">Delete</button>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+<script>
+	let modal = document.getElementById("modal");
+	function modalHandler(val) {
+		if (val) {
+			fadeIn(modal);
+		} else {
+			fadeOut(modal);
+		}
+	}
+	function fadeOut(el) {
+		el.style.opacity = 1;
+		(function fade() {
+			if ((el.style.opacity -= 0.1) < 0) {
+				el.style.display = "none";
+			} else {
+				requestAnimationFrame(fade);
+			}
+		})();
+	}
+	function fadeIn(el, display) {
+		el.style.opacity = 0;
+		el.style.display = display || "block";
+		(function fade() {
+			let val = parseFloat(el.style.opacity);
+			if (!((val += 0.2) > 1)) {
+				el.style.opacity = val;
+				requestAnimationFrame(fade);
+			}
+		})();
+	}
+</script>
+
+
 
 {% endblock %}

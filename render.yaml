@@ -1,0 +1,27 @@
+databases:
+  - name: django_render_db
+    databaseName: django_render_db
+    user: django_user
+    region: singapore
+    plan: free
+
+services:
+  - type: web
+    name: django_render
+    env: python
+    region: singapore
+    plan: free
+    branch: main
+    healthCheckPath: /
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn base.wsgi:application --log-file -"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: django_render_db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+    autoDeploy: true

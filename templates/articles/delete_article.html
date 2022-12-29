@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Xóa bài viết {% endblock %}
+{% block content %}
+<div class="container mt-3">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Category</legend>
+            <h2>Are you sure, you want to delete "{{ object.title }}" category?</h2>
+        </fieldset>
+        <div class="form-group mb-5">
+            <button class="bg-danger" type="submit">Yes, Delete</button>
+            <a class="bg-secondary" type="submit" href="{% url 'list_articles_admin' %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

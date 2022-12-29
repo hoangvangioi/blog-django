@@ -2,7 +2,8 @@ from category.models import Category
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from django.utils import timezone
-from post.models import Post
+from articles.models import Article
+from users.models import Profile
 
 
 class StaticViewSitemap(Sitemap):
@@ -25,7 +26,7 @@ class PostSitemap(Sitemap):
     priority = 0.9
 
     def items(self):
-        return Post.published.all()
+        return Article.published.all()
 
     def lastmod(self, obj):
         return obj.publish
@@ -49,17 +50,3 @@ class CategorySitemap(Sitemap):
 
     def location(self, item):
         return reverse('post_by_category', args=[item.slug])
-
-
-# class ProfileSitemap(Sitemap):
-#     changefreq = "daily"
-#     priority = 0.5
-
-#     def items(self):
-#         return Profile.objects.all()
-
-#     def lastmod(self, obj):
-#         return obj.updated_at
-
-#     def location(self, item):
-#         return reverse('profile', args=[item.slug])

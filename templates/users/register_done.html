@@ -9,36 +9,39 @@
 
 {% block content %}
 
-<div class="w-full bg-white px-7 py-8 md:p-9 rounded-lg shadow-md flex border-l-[6px] border-transparent">
-  <div class="w-full">
-        <h2 class="font-bold text-3xl sm:text-4xl text-dark mb-8">{% trans "Log in" %}</h2>
-        <p class="text-base mb-3 leading-relaxed">Your registration is complete. You can now log in using the form below.</p>
-        <p class="text-base mb-3 leading-relaxed">
-          This website places <strong>three cookies</strong> in your browser. One called <strong><code>csrftoken</code></strong> to send form data to the web server with security, another called <strong><code>sessionid</code></strong> to keep you logged in, and the last one called <strong><code>language</code></strong> to store your site language preference. It does not use third party tracking systems.
-        </p>
-        <h3 class="text-xl mb-3 leading-relaxed">{% trans "Login with your email and password" %}</h3>
-          <form method="POST" action="{% url 'login' %}">
-            {% csrf_token %}
-            {% if form.errors %}
-              <div class="col1-2 alert alert-error text-error">
-                {% trans form.non_field_errors.0 %}
-              </div>
-            {% endif %}
-            <div class="mb-3">{{ form.email }}</div>
-            <div class="mb-3">{{ form.password }}</div>
-            <label class="mb-3 flex" for="{{ form.remember.id_for_label }}">
-              {{ form.remember }} &nbsp; {{ form.remember.label }}
-            </label>
-            <div class="mb-3">
-                <button class="py-3 px-8 lg:px-6 xl:px-8 inline-flex items-center justify-center text-center text-white text-base bg-secondary rounded-full cursor-pointer" type="submit" name="submit">
-                  {% trans 'Log in' %}
-                </button>
-            </div>
-            <div class="mb-3">
-              <a class="text-base" href="/pascual">{% trans "Lost or forgot your password?" %}</a><br/>
-              <a class="text-base" href="{% url 'register' %}">{% trans "Have no account? Register." %}</a>
-            </div>
-          </form>
-      </div>
-    </div>
+<div class="container mx-auto px-2 py-12 pt-28">
+	<div class="flex flex-no-wrap items-start">
+		<div class="w-full">
+			<h2 class="font-bold text-3xl sm:text-4xl text-dark mb-8">{% trans "Log in" %}</h2>
+			<p class="text-base mb-3 leading-relaxed">Your registration is complete. You can now log in using the form below.</p>
+			<p class="text-base mb-3 leading-relaxed">
+			This website places <strong>three cookies</strong> in your browser. One called <strong><code>csrftoken</code></strong> to send form data to the web server with security, another called <strong><code>sessionid</code></strong> to keep you logged in, and the last one called <strong><code>language</code></strong> to store your site language preference. It does not use third party tracking systems.
+			</p>
+			<h3 class="text-xl mb-3 leading-relaxed">{% trans "Login with your email and password" %}</h3>
+			<form method="POST" action="{% url 'login' %}">
+				{% csrf_token %}
+				{% if form.errors %}
+				<div class="col1-2 alert alert-error text-error">
+					{% trans form.non_field_errors.0 %}
+				</div>
+				{% endif %}
+				<div class="mb-3">{{ form.email }}</div>
+				<div class="mb-3">{{ form.password }}</div>
+				<label class="mb-3 flex" for="{{ form.remember.id_for_label }}">
+				{{ form.remember }} &nbsp; {{ form.remember.label }}
+				</label>
+				<div class="mb-3">
+					<button type="submit" name="submit" class="bg-indigo-700 rounded hover:bg-indigo-600 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-white lg:max-w-[144px] w-full">
+						{% trans 'Log in' %}
+					</button>
+				</div>
+				<div class="mb-3">
+				<a class="text-base" href="/pascual">{% trans "Lost or forgot your password?" %}</a><br/>
+				<a class="text-base" href="{% url 'register' %}">{% trans "Have no account? Register." %}</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 {% endblock content %}

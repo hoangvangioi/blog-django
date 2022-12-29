@@ -1,6 +1,13 @@
 from django.urls import path, re_path
 
 from . import views
+from .views import (
+    DashboardHomeView,
+    AuthorWrittenArticlesView,
+    AuthorProfileUpdateView,
+    AuthorProfileView,
+)
+
 
 urlpatterns = [
     path("login/", views.user_login, name="login"),
@@ -13,4 +20,18 @@ urlpatterns = [
     path("account/password/", views.edit_password, name="edit-password"),
     path("account/cancel/", views.user_delete, name="delete"),
     re_path(r"^account/cancel/(?P<key>[^/]+)/confirm$", views.user_delete_confirm, name="delete-confirm",),
+
+    # DASHBOARD URLS #
+
+    # Author view profile home
+    path('author/dashboard/home/', DashboardHomeView.as_view(), name="dashboard_home"),
+
+    # Author view profile details
+    path('author/profile/details/', AuthorProfileView.as_view(), name='author_profile_details'),
+
+    # author update profile
+    path('author/profile/update/', AuthorProfileUpdateView.as_view(), name='author_profile_update'),
+
+    # /me/articles/written/
+    path("me/articles/written/", AuthorWrittenArticlesView.as_view(), name="written_articles"),
 ]

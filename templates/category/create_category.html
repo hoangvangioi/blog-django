@@ -2,12 +2,26 @@
 {% block title %} Thêm thể loại {% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="bg-white dark:bg-gray-800 pt-20">
     <form method="POST" class="mt-3" novalidate>
-        {% csrf_token %}
-        {{ form }}
-        <div class="col-12">
-            <button class="btn btn-success" type="submit">Submit form</button>
+        <div class="container mx-auto bg-white dark:bg-gray-800 rounded">
+            <div class="mx-auto">
+                <div class="xl:w-9/12 w-11/12 mx-auto">
+                    <div class="mt-16 flex flex-col w-full">
+                        {% csrf_token %}
+                        {{ form }}
+                        
+                        <label for="username" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Username</label>
+                        <input tabindex="0" type="text" id="username" name="username" required class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="@example" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto w-11/12 xl:w-full">
+            <div class="w-full py-4 sm:px-0 bg-white dark:bg-gray-800 flex justify-end">
+                <button role="button" aria-label="cancel form" class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4 focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">Cancel</button>
+                <button role="button" aria-label="Save form" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-indigo-700 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm" type="submit">Save</button>
+            </div>
         </div>
     </form>
 </div>
