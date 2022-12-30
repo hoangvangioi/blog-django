@@ -162,7 +162,7 @@ class TagArticlesListView(ListView):
 class ArticleWriteView(LoginRequiredMixin, CreateView):
     model = Article
     form_class = ArticleForm
-    template_name = "articles/create_article.html"
+    template_name = "articles/create_update_article.html"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -170,16 +170,16 @@ class ArticleWriteView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Create'
-        context['submit'] = 'Create Article'
-        context['head_title'] = 'Create Article'
+        context['title'] = 'Create Article'
+        context['submit'] = 'Save '
+        context['head_title'] = 'Create your Article'
         return context
 
 
 @method_decorator(superuser_required, name='dispatch')
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     model = Article
-    template_name = "articles/update_article.html"
+    template_name = "articles/create_update_article.html"
     form_class = ArticleForm
 
     def form_valid(self, form):
@@ -188,9 +188,9 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Update'
-        context['submit'] = 'Update Article'
-        context['head_title'] = 'Update Article'
+        context['title'] = 'Update Article'
+        context['submit'] = 'Save Changes'
+        context['head_title'] = 'Update your Article'
         return context
 
     def test_func(self):
