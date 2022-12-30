@@ -43,7 +43,7 @@ class RestrictStaffToAdminMiddleware:
             blocked = False
 
         for allowed_range in self.allowed_admin_ip_ranges:
-            if ipaddress.ip_address(ip) in ipaddress.ip_network(allowed_range):
+            if ipaddress.ip_address(ip) in ipaddress.ip_network(allowed_range, strict=False):
                 blocked = False
 
         return blocked
