@@ -87,8 +87,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'base.middleware.RestrictStaffToAdminMiddleware',
 ]
 
+ALLOWED_ADMIN_IPS = os.getenv('ALLOWED_ADMIN_IPS')
+ALLOWED_ADMIN_IP_RANGES = os.getenv('ALLOWED_ADMIN_IP_RANGES')
 
 ROOT_URLCONF = 'base.urls'
 
