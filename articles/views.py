@@ -41,11 +41,6 @@ class ArticleListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
-        paginator = Paginator(self.queryset, self.paginate_by)
-        page_number = self.request.GET.get("page", 1)
-        page_object = paginator.get_page(page_number)
-        page_object.adjusted_elided_pages = paginator.get_elided_page_range(page_number)
-        context['page_obj'] = page_object
         return context
 
 
