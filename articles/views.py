@@ -201,7 +201,7 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
 
 
 @method_decorator(superuser_required, name='dispatch')
-class ArticleDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     model = Article
     template_name = "articles/delete_article.html"
     success_url = reverse_lazy('list_articles_admin')
