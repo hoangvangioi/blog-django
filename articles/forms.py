@@ -1,6 +1,5 @@
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
-from category.models import Category
 from .models import Article
 
 
@@ -8,11 +7,7 @@ class ArticleForm(forms.ModelForm):
                                                       
     body = forms.CharField(
         required=True,
-        widget=CKEditorUploadingWidget(
-            attrs={
-                'class': 'w-full p-3 mt-4 border border-gray-300 rounded outline-none focus:bg-green-200'
-            }
-        )
+        widget=CKEditorUploadingWidget()
     )
     
     class Meta:
@@ -26,6 +21,8 @@ class ArticleForm(forms.ModelForm):
             'tags', 
             'keywords', 
             'description',
+            'previous_post',
+            'next_post',
             'body',
         )
 
@@ -34,5 +31,3 @@ class ArticleForm(forms.ModelForm):
 
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'w-full p-3 mt-4 border border-gray-300 rounded outline-none focus:bg-green-200'
-            # self.fields['status'].widget.attrs['class'] = 'relative flex items-center justify-between w-full px-5 py-4 dropbtn-one'
-            # self.fields['myfield'].widget.attrs.update({'class': 'myfieldclass'})
