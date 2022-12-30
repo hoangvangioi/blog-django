@@ -33,7 +33,7 @@ class CategoryListView(LoginRequiredMixin, ListView):
 @method_decorator(superuser_required, name='dispatch')
 class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 	model = Category
-	template_name = "category/create_category.html"
+	template_name = "category/create_update_category.html"
 	form_class = CategoryForm
 	success_message = "Category Created Successfully"
 
@@ -49,7 +49,7 @@ class CategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 @method_decorator(superuser_required, name='dispatch')
 class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 	model = Category
-	template_name = "category/update_category.html"
+	template_name = "category/create_update_category.html"
 	form_class = CategoryForm
 	success_message = "Category Updated Successfully"
 

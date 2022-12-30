@@ -34,7 +34,7 @@ class Category(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name, allow_unicode=True)
+        self.slug = slugify(self.name, allow_unicode=False)
         super(Category, self).save(*args, **kwargs)
 
         
