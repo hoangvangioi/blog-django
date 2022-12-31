@@ -88,10 +88,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'base.middleware.RestrictStaffToAdminMiddleware',
+    'base.middleware.MaintenanceModeMiddleware',
 ]
 
-ALLOWED_ADMIN_IPS = os.getenv('ALLOWED_ADMIN_IPS')
-ALLOWED_ADMIN_IP_RANGES = os.getenv('ALLOWED_ADMIN_IP_RANGES')
+
+MAINTENANCE_MODE = int(os.getenv("MAINTENANCE_MODE", 0))
+
+MAINTENANCE_BYPASS_QUERY = os.getenv("MAINTENANCE_BYPASS_QUERY")
 
 ROOT_URLCONF = 'base.urls'
 

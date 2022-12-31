@@ -53,6 +53,7 @@ urlpatterns = [
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_file'),
 
     path('feed', LatestEntriesFeed()),
+    path('maintenance/', TemplateView.as_view(template_name='503.html', content_type='text/html'), name='maintenance'),
 ]
 
 
