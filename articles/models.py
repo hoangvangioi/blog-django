@@ -58,7 +58,7 @@ class Article(models.Model):
 		return static("images/no-picture-available.webp")		
 
 	def save(self, *args, **kwargs):
-		self.slug = slugify(self.title, allow_unicode=True)
+		self.slug = slugify(self.title, allow_unicode=False)
 		self.count_words = count_words(self.body)
 		self.read_time = read_time(self.body)
 		super(Article, self).save(*args, **kwargs)
