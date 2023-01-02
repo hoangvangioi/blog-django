@@ -26,7 +26,7 @@ from django.views.generic.base import RedirectView
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import ArticlesSitemap, StaticViewSitemap, CategorySitemap, TagSitemap
 from django.views.generic import TemplateView
-from .feeds import LatestEntriesFeed
+from .feeds import LatestArticlesFeed, TaggedItemFeed, CategoryFeed
 from . import views
 
 
@@ -53,7 +53,9 @@ urlpatterns = [
     path('ads.txt', TemplateView.as_view(template_name='ads.txt', content_type='text/plain'), name='ads_file'),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_file'),
 
-    path('feed', LatestEntriesFeed()),
+    path('feed/articles/', LatestArticlesFeed(), name='feed_articles'),
+    path('feed/categories/', CategoryFeed(), name= 'feed_categories'),
+    path('feed/tags/', TaggedItemFeed(), name='feed_tags'),
     path('maintenance/', TemplateView.as_view(template_name='503.html', content_type='text/html'), name='maintenance'),
 ]
 
