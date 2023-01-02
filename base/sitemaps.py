@@ -3,16 +3,15 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from django.utils import timezone
 from articles.models import Article
-from users.models import Profile
+from taggit.models import Tag, TaggedItem
 
 
 class StaticViewSitemap(Sitemap):
-    priority = 0.9
-    changefreq = 'daily'
+    priority = 0.5
+    changefreq = 'weekly'
 
     def items(self):
-        # return ['post', 'login', 'register', 'logout']
-        return ['post', ]
+        return ['article_list', 'categories_list', 'login', 'register', ]
 
     def location(self, item):
         return reverse(item)
@@ -21,26 +20,23 @@ class StaticViewSitemap(Sitemap):
         return timezone.now()
 
 
-class PostSitemap(Sitemap):
-    changefreq = "daily"
-    priority = 0.9
+class ArticlesSitemap(Sitemap):
+    changefreq = "weekly"
+    priority = 0.5
 
     def items(self):
-        return Article.published.all()
+        return Article.objects.filter(status='published')
 
     def lastmod(self, obj):
-        return obj.publish
+        return obj.date_published
 
     def location(self, item):
-        return reverse('post_detail', args=[item.publish.year,
-							item.publish.month,
-							item.publish.day,
-							item.slug])
+        return reverse('article_detail', args=[item.slug])
 
 
 class CategorySitemap(Sitemap):
-    changefreq = "daily"
-    priority = 0.9
+    changefreq = "weekly"
+    priority = 0.5
 
     def items(self):
         return Category.objects.all()
@@ -49,4 +45,22 @@ class CategorySitemap(Sitemap):
         return timezone.now()
 
     def location(self, item):
-        return reverse('post_by_category', args=[item.slug])
+        return reverse('category_articles', args=[item.slug])
+
+
+class TagSitemap(Sitemap):
+    """
+    Sitemap for tags.
+    """
+
+    changefreq = "weekly"
+    priority = 0.5
+
+    def items(self):
+        return Tag.objects.all()
+
+    def lastmod(self, obj):
+        return timezone.now()
+
+    def location(self, item):
+        return reverse('tag_articles', args=[item.slug])
