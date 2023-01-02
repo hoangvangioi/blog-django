@@ -1,26 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Site Maintenance</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Site Maintenance</title>
+		<link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+	</head>
 
-    <style>
-      body { text-align: center; padding: 150px; }
-      h1 { font-size: 50px; }
-      body { font: 20px Helvetica, sans-serif; color: #333; }
-      article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-      a { color: #dc8100; text-decoration: none; }
-      a:hover { color: #333; text-decoration: none; }
-    </style>
-</head>
-<body>
-<article>
-        <h1>We&rsquo;ll be back soon!</h1>
-        <div>
-            <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:mymail@domain.com">contact us</a>, otherwise we&rsquo;ll be back online shortly!</p>
-            <p>&mdash; The Team</p>
-        </div>
-    </article>
-
-</body>
+	<body class="text-center px-8 py-28 md:p-40 xl:p-52 text-gray-700">
+		<div class="block text-left max-w-2xl my-0 mx-auto">
+			<h1 class="text-5xl font-bold">We&rsquo;ll be back soon!</h1>
+			<div class="mt-16 text-xl font-medium">
+				<p class="">Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:admin@hoangvangioi.xyz" class="text-orange-600 hover:no-underline hover:text-cyan-600">contact us </a>, otherwise we&rsquo;ll be back online shortly!</p>
+				<p class="mt-4">&mdash; The Team</p>
+			</div>
+		</div>
+	</body>
 </html>
