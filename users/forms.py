@@ -319,34 +319,10 @@ class ProfileUpdateForm(forms.ModelForm):
             }),
 
             'avatar': forms.FileInput(attrs={
-                "class": "form-control clearablefileinput",
+                "class": "hidden",
                 "type": "file",
                 "id": "profileImage",
             }),
-
-            # 'facebook_url': forms.TextInput(attrs={
-            #     'name': "facebook-account-url",
-            #     'class': "form-control",
-            #     'id': "github-account-url"
-            # }),
-
-            # 'twitter_url': forms.TextInput(attrs={
-            #     'name': "twitter-account-url",
-            #     'class': "form-control",
-            #     'id': "twitter-account-url"
-            # }),
-
-            # 'instagram_url': forms.TextInput(attrs={
-            #     'name': "instagram-account-url",
-            #     'class': "form-control",
-            #     'id': "instagram-account-url"
-            # }),
-
-            # 'github_url': forms.TextInput(attrs={
-            #     'name': "github-account-url",
-            #     'class': "form-control",
-            #     'id': "github-account-url"
-            # }),
 
         }
 
