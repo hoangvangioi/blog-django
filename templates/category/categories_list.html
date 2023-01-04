@@ -14,7 +14,7 @@
 				{% for category in categories %}
 				<div tabindex="0" class="focus:outline-none shadow-lg" aria-label="card 5">
 					<a href="{{ category.get_absolute_url }}">
-						<img tabindex="0" role="img" aria-label="worker" class="focus:outline-none w-full" src="{{ category.image_url }}" alt="worker" />
+						<img tabindex="0" role="img" aria-label="worker" class="focus:outline-none w-full" src="{{ category.image_url }}" alt="category" />
 						<div class="py-2 px-4 w-full flex justify-between bg-indigo-700">
 							<p tabindex="0" class="focus:outline-none text-sm text-white font-semibold tracking-wide">{{ category.name }}</p>
 							<p tabindex="0" class="focus:outline-none text-sm text-white font-semibold tracking-wide">{{ category.articles.count }} Article</p>

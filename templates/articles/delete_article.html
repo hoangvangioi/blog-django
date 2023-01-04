@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% block title %} Xóa bài viết {% endblock %}
 {% block content %}
-<div class="container mt-3">
-    <form method="POST" action="">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Delete Category</legend>
-            <h2>Are you sure, you want to delete "{{ object.title }}" category?</h2>
-        </fieldset>
-        <div class="form-group mb-5">
-            <button class="bg-danger" type="submit">Yes, Delete</button>
-            <a class="bg-secondary" type="submit" href="{% url 'list_articles_admin' %}">Cancel</a>
-        </div>
-    </form>
+<div class="container mx-auto pt-28">
+    <div class="py-12">
+        <form method="POST" action="{% url 'article_delete' slug=article.slug %}">{% csrf_token %}
+            <div class="w-full flex justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-700">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                </svg>
+            </div>
+            <h1 tabindex="0" class="focus:outline-none text-center text-xl text-gray-800 dark:text-gray-100 font-lg font-bold tracking-normal leading-tight mb-4">Ready to Delete Article?</h1>
+            <p tabindex="0" class="focus:outline-none mb-5 text-base text-gray-600 dark:text-gray-400 text-center font-normal">Select "Delete Article" below if you want to delete the article <span class="text-orange-600">{{ object.title }}</span> .</p>
+            <div class="flex items-center justify-center w-full mt-10">
+                <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-600 focus:outline-none transition duration-150 ease-in-out hover:bg-red-600 bg-red-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Delete Article</button>
+                <a href="{% url 'dashboard_home' %}" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 focus:outline-none ml-3 bg-gray-100 dark:bg-gray-700 dark:border-gray-700 dark:hover:bg-gray-600 transition duration-150 text-gray-600 dark:text-gray-400 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

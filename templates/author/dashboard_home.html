@@ -123,7 +123,7 @@
                                     <img class="w-full h-full" src="{{ article.featured_image_url }}" alt="UX Design and Visual Strategy" />
                                 </div>
                                 <div class="pl-4">
-                                    <p class="font-medium"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></p>
+                                    <p class="font-medium"><a href="{{ article.get_absolute_url }}">{{ article.title|truncatechars:60 }}</a></p>
                                 </div>
                             </div>
                         </td>
@@ -139,52 +139,11 @@
                         <td class="pl-20">
                             <p class="font-medium">{{ article.read_time }} min{{ article.read_time|pluralize }} read</p>
                         </td>
-                        <td class="px-7 2xl:px-0">
-                            <button onclick="dropdownFunction(this)" class="w-5 focus:ring-2 rounded-md focus:outline-none ml-7" role="button" aria-label="options">
-                               <img class="w-5" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/table_3-svg1.svg" alt="dropdown">
-                            </button>
-                            <div class="dropdown-content bg-white dark:bg-gray-800  shadow w-24 absolute z-30 right-0 mr-6 hidden">
-                                <div tabindex="0" class="focus:outline-none focus:text-indigo-600 text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                                    <p><a href="{% url 'article_update' slug=article.slug %}">Edit Article</a></p>
-                                </div>
-                                <div tabindex="0" class="focus:outline-none focus:text-indigo-600 text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                                    {% comment %} <p>Delete Article</p> {% endcomment %}
-                                    <a data-toggle="modal" data-target="#deleteModal" class="dropdown-item" href="javascript:void(0)">Delete Article</a>
-                                </div>
-    
-    
-                                {% comment %} <div class="meta mb-1">
-                                    <span class="time">
-                                        <i class="fas fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="">Edit Article</a>
-                                            <div class="dropdown-divider w-100"></div>
-                                            
-                                        </div>
-                                    </span>
-                                </div> {% endcomment %}
-                                            
-                                <!--//item-->
-                                {% comment %} <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Delete Article?</b></h5>
-                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">Select "Delete Article" below if you want to delete the article.</div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger" href="{% url 'article_delete' slug=article.slug %}">Delete Article</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> {% endcomment %}
-    
-    
-                            </div>
+                        <td class="pl-10">
+                            <a href="{% url 'article_update' slug=article.slug %}" class="focus:ring-2 focus:ring-offset-2 focus:ring-green-600 focus:outline-none transition duration-150 ease-in-out hover:bg-green-600 bg-green-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Edit</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'article_delete' slug=article.slug %}" class="focus:ring-2 focus:ring-offset-2 focus:ring-red-600 focus:outline-none transition duration-150 ease-in-out hover:bg-red-600 bg-red-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -197,30 +156,6 @@
         </center>
         {% endif %}
     </div>
-    
-
-
-
-            
-{% comment %} <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Ready to Delete Article?</b></h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Delete Article" below if you want to delete the article.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger" href="{% url 'article_delete' slug=article.slug %}">Delete Article</a>
-            </div>
-        </div>
-    </div>
-</div> {% endcomment %}
-
-
-
+</div>
 
 {% endblock content %}

@@ -199,7 +199,7 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     model = Article
     template_name = "articles/delete_article.html"
-    success_url = reverse_lazy('list_articles_admin')
+    success_url = reverse_lazy('dashboard_home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
