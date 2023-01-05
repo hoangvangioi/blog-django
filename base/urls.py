@@ -48,7 +48,7 @@ urlpatterns = [
 
     # CKeditor
     re_path(r'^ckeditor/',include('ckeditor_uploader.urls')),
-    re_path(r'^favicon\.ico$', RedirectView.as_view(url='../static/favicon.ico')),
+    re_path(r'^favicon\.ico$', RedirectView.as_view(url='../static/favicon.svg')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('ads.txt', TemplateView.as_view(template_name='ads.txt', content_type='text/plain'), name='ads_file'),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_file'),
@@ -57,6 +57,7 @@ urlpatterns = [
     path('feed/categories/', CategoryFeed(), name= 'feed_categories'),
     path('feed/tags/', TaggedItemFeed(), name='feed_tags'),
     path('maintenance/', TemplateView.as_view(template_name='503.html', content_type='text/html'), name='maintenance'),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 

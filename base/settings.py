@@ -15,6 +15,7 @@ import os
 import dj_database_url
 import django_on_heroku
 from django.contrib.messages import constants as messages
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 load_dotenv()  # take environment variables from .env.
@@ -165,6 +166,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+LANGUAGES = (
+    ('en', _('English')),
+    ('vi', _('Vietnamese')),
+)
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
