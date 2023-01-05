@@ -11,7 +11,10 @@
 	<div
 		class="xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center">
 		<div class=" md:hidden sm:mb-8 mb-6">
-			<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg1.svg" alt="logo">
+			<a href="{% url 'article_list' %}" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mr-10 flex items-center">
+				<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
+				<h3 class="text-base text-gray-800 font-bold tracking-normal leading-tight mx-3 block">Hoàng Văn Giỏi</h3>
+			</a>
 		</div>
 		<div
 			class="bg-white shadow-lg rounded xl:w-1/3 lg:w-5/12 md:w-1/2 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6">
@@ -23,17 +26,17 @@
 				{% csrf_token %}
 				<button aria-label="Continue with google" role="button"
 					class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-10 hover:bg-gray-100">
-					<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg2.svg" alt="google">
+					<img src="{% static 'images/google.svg' %}" alt="google">
 					<p class="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
 				</button>
 				<button aria-label="Continue with github" role="button"
 					class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-4 hover:bg-gray-100">
-					<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg3.svg" alt="github">
+					<img src="{% static 'images/github.svg' %}" alt="github">
 					<p class="text-base font-medium ml-4 text-gray-700">Continue with Github</p>
 				</button>
 				<button aria-label="Continue with twitter" role="button"
 					class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-4 hover:bg-gray-100">
-					<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg4.svg" alt="twitter">
+					<img src="{% static 'images/twitter.svg' %}" alt="twitter">
 					<p class="text-base font-medium ml-4 text-gray-700">Continue with Twitter</p>
 				</button>
 				<div class="w-full flex items-center justify-between py-5">
@@ -67,7 +70,10 @@
 		</div>
 		<div class="xl:w-1/3 md:w-1/2 lg:ml-16 ml-8 md:mt-0 mt-6">
 			<div class="pl-8 md:block hidden">
-				<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in_2-svg1.svg" alt="logo">
+				<a href="{% url 'article_list' %}" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mr-10 flex items-center">
+					<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
+					<h3 class="text-base text-gray-800 font-bold tracking-normal leading-tight mx-3 block">Hoàng Văn Giỏi</h3>
+				</a>
 			</div>
 		</div>
 	</div>

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% load static %} {% load i18n %} {% load comments %} {% load comments_ink %} {% block title %} Trang chủ {% endblock %} {% block content %}
+{% extends 'base.html' %}{% load static %} {% load i18n %} {% load comments %} {% load comments_ink %} {% block title %} Trang chủ {% endblock %} {% block stylesheets %}{{ block.super }}<link rel="stylesheet" href="{% static 'css/prism.css' %}">{% endblock stylesheets %} {% block content %}
 
 <div class="container mx-auto flex flex-wrap py-6 pt-20">
 	<!-- Post Section -->
@@ -67,18 +67,19 @@
 		</div>
 		<link rel="stylesheet" type="text/css" href="{% static 'django_comments_ink/css/comments.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'django_comments_ink/css/reactions.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
 
 		<div class="{% dci_custom_selector %}">
-			<div class="text-center flex flex-justify-center">{% render_object_reactions_form for article %}</div>
+			<div class="w-full text-center flex flex-justify-center">{% render_object_reactions_form for article %}</div>
 			{% get_inkcomment_count for article as comment_count %} {% if comment_count %}
 			<h6 class="text-center">{% blocktrans count comment_count=comment_count %} There is {{ comment_count }} comment {% plural %} There are {{ comment_count }} comments {% endblocktrans %}</h6>
 			{% endif %}
 		</div>
 
 		{% if comment_count %}
-		<div class="{% dci_custom_selector %} pb32">{% render_inkcomment_list for article %}</div>
+		<div class="{% dci_custom_selector %} pb-32">{% render_inkcomment_list for article %}</div>
 		{% endif %} {% if is_comment_input_allowed %}
-		<div class="{% dci_custom_selector %}" data-dci="comment-form">
+		<div class="{% dci_custom_selector %} w-full" data-dci="comment-form">
 			<section class="comment-form">
 				<h5 class="text-center">{% translate "Post your comment" %}</h5>
 				{% render_inkcomment_form for article %}
@@ -212,3 +213,4 @@
 </div>
 
 {% endblock %}
+{% block script %}{{ block.super }}<script src="{% static 'js/prism.js' %}"></script>{% endblock script %}

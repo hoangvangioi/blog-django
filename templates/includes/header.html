@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 <div id="progress" class="fixed h-1 z-10 top-0 left-0 bg-pink-500 shadow rounded-full"></div>
 
 <header>
@@ -6,7 +6,7 @@
 		<div class="container px-6 h-16 flex justify-between items-center lg:items-stretch mx-auto">
 			<div class="flex items-center">
 				<a href="{% url 'article_list' %}" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mr-10 flex items-center">
-					<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg1.svg" alt="logo" />
+					<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
 					<h3 class="text-base text-gray-800 font-bold tracking-normal leading-tight mx-3 hidden lg:block">Hoàng Văn Giỏi</h3>
 				</a>
 				<div class="hidden xl:flex items-center h-full">
@@ -38,6 +38,21 @@
 			</div>
 			<div class="h-full hidden xl:flex items-center justify-end">
 				<div class="h-full flex">
+					<div class="h-full flex items-center justify-center border-l border-gray-300 px-6">
+						<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+							<input name="next" type="hidden" value="{{ redirect_to }}">
+							<select name="language" onchange="this.form.submit()" class="border-0 p-3 focus:outline-none cursor-pointer rounded-full drop-shadow-md bg-sky-200 duration-300 hover:bg-sky-400 focus:bg-amber-200">
+								{% get_current_language as LANGUAGE_CODE %}
+								{% get_available_languages as LANGUAGES %}
+								{% get_language_info_list for LANGUAGES as languages %}
+								{% for language in languages %}
+									<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+										{{ language.name_local }} ({{ language.code }})
+									</option>
+								{% endfor %}
+							</select>
+						</form>
+					</div>
 					<div class="h-full flex items-center justify-center border-l border-gray-300 px-6">
 						<form method="get" action="{% url 'article_search_list_view' %}">
 							<input type="text" name="q" class="bg-transparent focus:outline-none text-xs w-0 transition duration-150 ease-in-out" placeholder="Type something..." />
@@ -99,12 +114,12 @@
 	<nav>
 		<div class="py-2 px-6 w-full flex xl:hidden justify-between items-center bg-white fixed top-0 z-40 shadow">
 			<div tabindex="0" class="focus:outline-none w-24">
-				<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg2.svg" alt="logo" />
+				<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
 			</div>
 			<div>
 				<button id="theme-toggle-m" aria-label="dark mode" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 mx-5 items-center justify-center mr-3 border-gray-300 text-gray-600"></button>
 				<button id="menu" aria-label="open menu" class="focus:outline-none rounded-md focus:ring-2 focus:ring-gray-700 text-gray-800" onclick="sidebarHandler(true)">
-					<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg3.svg" alt="menu" />
+					<img src="{% static 'images/menu.svg' %}" alt="menu" />
 				</button>
 			</div>
 		</div>
@@ -118,11 +133,11 @@
 							<div class="mt-6 flex w-full items-center justify-between">
 								<div class="flex items-center justify-between w-full">
 									<div class="flex items-center">
-										<img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg2.svg" alt="logo" />
+										<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
 										<p tabindex="0" class="focus:outline-none text-base font-bold text-gray-800 ml-3">Hoàng Văn Giỏi</p>
 									</div>
 									<button id="cross" aria-label="close menu" class="focus:outline-none focus:ring-2 rounded-md text-gray-800" onclick="sidebarHandler(false)">
-										<img class="icon icon-tabler icon-tabler-x" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg4.svg" alt="cross" />
+										<img class="icon icon-tabler icon-tabler-x" src="{% static 'images/x-mark.svg' %}" alt="cross" />
 									</button>
 								</div>
 							</div>
@@ -132,7 +147,7 @@
 										<div class="text-gray-800 pt-8">
 											<div class="flex items-center">
 												<div class="w-6 h-6 text-indigo-700">
-													<img class="icon icon-tabler icon-tabler-grid" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg5.svg" alt="dashboard" />
+													<img class="icon icon-tabler icon-tabler-grid" src="{% static 'images/dashboard.svg' %}" alt="dashboard" />
 												</div>
 												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-indigo-700 xl:text-base text-base ml-3">Dashboard</p>
 											</div>
@@ -145,7 +160,7 @@
 											<div class="flex items-center justify-between">
 												<div class="flex items-center">
 													<div class="w-6 h-6 text-gray-800">
-														<img class="icon icon-tabler icon-tabler-puzzle" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg6.svg" alt="product" />
+														<img class="icon icon-tabler icon-tabler-puzzle" src="{% static 'images/categories.svg' %}" alt="categories" />
 													</div>
 													<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Categories</p>
 												</div>
@@ -158,7 +173,7 @@
 										<div class="text-gray-800 pt-8">
 											<div class="flex items-center">
 												<div class="w-6 h-6 text-gray-800">
-													<img class="icon icon-tabler icon-tabler-compass" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg7.svg" alt="performance" />
+													<img class="icon icon-tabler icon-tabler-compass" src="{% static 'images/home.svg' %}" alt="Home" />
 												</div>
 												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Home</p>
 											</div>
@@ -169,7 +184,7 @@
 									<div class="flex items-center justify-between">
 										<div class="flex items-center">
 											<div class="w-6 h-6 text-gray-800">
-												<img class="icon icon-tabler icon-tabler-code" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg8.svg" alt="deliverables" />
+												<img class="icon icon-tabler icon-tabler-code" src="{% static 'images/deliverables.svg' %}" alt="deliverables" />
 											</div>
 											<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Deliverables</p>
 										</div>
@@ -181,7 +196,7 @@
 							<div class="flex justify-center mb-4 w-full">
 								<div class="relative w-full">
 									<div class="text-gray-500 absolute ml-4 inset-0 m-auto w-4 h-4">
-										<img class="icon icon-tabler icon-tabler-search" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left-aligned-with-icons-svg9.svg" alt="search" />
+										<img class="icon icon-tabler icon-tabler-search" src="{% static 'images/search.svg' %}" alt="search" />
 									</div>
 									<form method="get" action="{% url 'article_search_list_view' %}">
 										<input class="focus:ring-2 focus:ring-gray-700 bg-gray-100 focus:outline-none rounded w-full text-sm text-gray-500 pl-10 py-2" type="text" placeholder="Search" name="q" />

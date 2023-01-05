@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Viewport-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django, {% block keywords %}{% endblock keywords %}">
     <meta name="description" content="Chia sẻ tài liệu, khóa học và tất cả mọi thứ Share, Chia sẻ, Code, Lập trình, Tài liệu, Document, Ebook, Learnning, Python, JavaScript, HTML, CSS, Django, {% block description %}{% endblock description %}">
     <meta name="author" content="Hoang Van Gioi">
@@ -27,9 +25,8 @@
     <title>{% block title %} {% endblock %} | Hoàng Giỏi Blog</title>
 
     <!-- Favicon and Touch Icons-->
-    <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="shortcut icon" type="image/x-icon" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="shortcut icon" type="image/x-icon" sizes="64x64" href="{% static 'favicon.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" sizes="any" href="{% static 'favicon.ico' %}">
+    <link rel="shortcut icon" type="image/svg+xml" sizes="any" href="{% static 'favicon.svg' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
     <link rel="mask-icon" color="#5bbad5" href="{% static 'img/safari-pinned-tab.svg' %}">
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
@@ -37,6 +34,7 @@
     {% elif post.get_absolute_url == request.path %}{% else %}{% endif %}
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+    {% block stylesheets %}{% endblock stylesheets %}
     {% if post.get_absolute_url == request.path %}
     <script async data-ad-client="ca-pub-2146269335848308" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
@@ -58,6 +56,7 @@
 
     {% include "includes/footer.html" %}
     <script src="{% static 'js/navbar.js' %}"></script>
+    {% block script %}{% endblock script %}
 </body>
 
 </html>
