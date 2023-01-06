@@ -11,7 +11,7 @@
 <div aria-label="cards" class="container mx-auto bg-white dark:bg-gray-800 shadow rounded">
 	<div class="relative">
 		{% comment %} <img alt="author-banner-image" src="{{ author_profile_details.profile.banner_image.url }}" /> {% endcomment %}
-		<img tabindex="0" class="focus:outline-none h-56 shadow rounded-t w-full object-cover object-center" src="https://tuk-cdn.s3.amazonaws.com/assets/components/grid_cards/gc_29.png" alt="mountains cover" />
+		<img tabindex="0" class="focus:outline-none h-56 shadow rounded-t w-full object-cover object-center" src="{% static 'images/banner.png' %}" alt="mountains cover" />
 		<div class="inset-0 m-auto w-24 h-24 absolute bottom-0 -mb-12 xl:ml-10 rounded border-2 shadow border-white">
 			<img tabindex="0" class="focus:outline-none w-full h-full overflow-hidden object-cover rounded" src="{{ author_profile_details.profile.avatar_url }}" alt="person" />
 		</div>
