@@ -12,6 +12,8 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.templatetags.static import static
 from django.utils.text import slugify
+from django.db.models.signals import pre_save
+from .utils import unique_slug_generator
 
 
 class UserManager(BaseUserManager):
@@ -119,9 +121,10 @@ class Confirmation(models.Model):
 
 class Profile(models.Model):
 	user            = models.OneToOneField(User, on_delete=models.CASCADE)
+	slug 			=  models.SlugField(unique=True, max_length=100)
 	avatar          = models.ImageField(upload_to='profile_pics')
 	job_title       = models.CharField(max_length=100)
-	bio             = models.CharField(max_length=100, help_text="Short Bio (eg. I love cats and games)")
+	bio             = models.CharField(max_length=250, help_text="Short Bio (eg. I love cats and games)")
 	address         = models.CharField(max_length=100, help_text="Enter Your Address")
 	twitter_url     = models.CharField(max_length=250, default="#", blank=True, null=True, help_text="Enter # if you don't have an account")
 	instagram_url   = models.CharField(max_length=250, default="#", blank=True, null=True, help_text="Enter # if you don't have an account")
@@ -137,3 +140,17 @@ class Profile(models.Model):
 		if self.avatar: 
 			return self.avatar.url
 		return static("images/avatar.webp")
+
+	def save(self, *args, **kwargs):
+		self.slug = slugify(self.user, allow_unicode=False)
+		super(Profile, self).save(*args, **kwargs)
+
+	def get_absolute_url(self):
+		return reverse('profile_public', kwargs={'slug': self.slug})
+
+
+def pre_save_post_receiver(sender, instance, *args, **kwargs):
+	if not instance.slug:
+		instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(pre_save_post_receiver, sender=Profile)
