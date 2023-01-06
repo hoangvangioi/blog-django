@@ -12,7 +12,6 @@ class LatestArticlesFeed(Feed):
 
     def __init__(self, *args, **kwargs):
         super(LatestArticlesFeed, self).__init__(*args, **kwargs)
-        # self.site = Site.objects.get_current()
 
     def title(self, request):
         return _(u"%s latest posts") % (get_current_site(request).name, )
@@ -52,7 +51,6 @@ class CategoryFeed(Feed):
 
     def __init__(self, *args, **kwargs):
         super(CategoryFeed, self).__init__(*args, **kwargs)
-        # self.site = Site.objects.get_current()
 
     def title(self, request):
         return _(u"%s latest posts") % (get_current_site(request).name, )
@@ -89,7 +87,6 @@ class TaggedItemFeed(Feed):
 
     def __init__(self, *args, **kwargs):
         super(TaggedItemFeed, self).__init__(*args, **kwargs)
-        # self.site = Site.objects.get_current()
 
     def title(self, request, author):
         return _("Posts by %(author_name)s - %(site_name)s") %\
