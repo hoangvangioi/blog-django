@@ -2,20 +2,20 @@ from django.contrib.syndication.views import Feed
 from django.urls import reverse
 from articles.models import Article
 from category.models import Category
-from django.contrib.sites.models import Site
 from django.utils.translation import gettext_lazy as _
 from taggit.models import Tag
 from django.template.defaultfilters import escape, linebreaksbr
+from django.contrib.sites.shortcuts import get_current_site
 
 
 class LatestArticlesFeed(Feed):
 
     def __init__(self, *args, **kwargs):
         super(LatestArticlesFeed, self).__init__(*args, **kwargs)
-        self.site = Site.objects.get_current()
+        # self.site = Site.objects.get_current()
 
-    def title(self):
-        return _(u"%s latest posts") % (self.site.name, )
+    def title(self, request):
+        return _(u"%s latest posts") % (get_current_site(request).name, )
 
     def link(self):
         return reverse("feed_articles")
@@ -52,10 +52,10 @@ class CategoryFeed(Feed):
 
     def __init__(self, *args, **kwargs):
         super(CategoryFeed, self).__init__(*args, **kwargs)
-        self.site = Site.objects.get_current()
+        # self.site = Site.objects.get_current()
 
-    def title(self):
-        return _(u"%s latest posts") % (self.site.name, )
+    def title(self, request):
+        return _(u"%s latest posts") % (get_current_site(request).name, )
 
     def link(self):
         return reverse("feed_categories")
@@ -89,11 +89,11 @@ class TaggedItemFeed(Feed):
 
     def __init__(self, *args, **kwargs):
         super(TaggedItemFeed, self).__init__(*args, **kwargs)
-        self.site = Site.objects.get_current()
+        # self.site = Site.objects.get_current()
 
-    def title(self, author):
+    def title(self, request, author):
         return _("Posts by %(author_name)s - %(site_name)s") %\
-            {'author_name': author, 'site_name': self.site.name}
+            {'author_name': author, 'site_name': get_current_site(request).name}
 
     def link(self):
         return reverse('feed_tags')
