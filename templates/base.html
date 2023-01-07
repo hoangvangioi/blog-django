@@ -33,7 +33,7 @@
     {% if '/' == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %}
     {% elif post.get_absolute_url == request.path %}{% else %}{% endif %}
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/tailwind.min.css' %}" />
     {% block stylesheets %}{% endblock stylesheets %}
     {% if post.get_absolute_url == request.path %}
     <script async data-ad-client="ca-pub-2146269335848308" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -55,7 +55,7 @@
     {% block content %} {% endblock content %}
 
     {% include "includes/footer.html" %}
-    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/main.min.js' %}"></script>
     {% block script %}{% endblock script %}
 </body>
 
