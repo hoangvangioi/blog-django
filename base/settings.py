@@ -16,6 +16,7 @@ import dj_database_url
 import django_on_heroku
 from django.contrib.messages import constants as messages
 from django.utils.translation import gettext_lazy as _
+from distutils.util import strtobool
 from dotenv import load_dotenv
 
 load_dotenv()  # take environment variables from .env.
@@ -283,9 +284,9 @@ CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST')
 
 
 # SSL
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = bool(strtobool(os.getenv('SECURE_SSL_REDIRECT', 'True')))
+SESSION_COOKIE_SECURE = bool(strtobool(os.getenv('SESSION_COOKIE_SECURE', 'True')))
+CSRF_COOKIE_SECURE = bool(strtobool(os.getenv('CSRF_COOKIE_SECURE', 'True')))
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
