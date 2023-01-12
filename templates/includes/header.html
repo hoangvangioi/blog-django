@@ -2,37 +2,37 @@
 <div id="progress" class="fixed h-0.5 z-10 top-0 left-0 bg-pink-500 shadow rounded-full"></div>
 
 <header>
-	<nav id="header" class="w-full bg-white hidden xl:block shadow fixed">
+	<nav id="header" class="w-full bg-white dark:bg-gray-900 hidden xl:block shadow fixed">
 		<div class="container px-6 h-16 flex justify-between items-center lg:items-stretch mx-auto">
 			<div class="flex items-center">
 				<a href="{% url 'article_list' %}" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mr-10 flex items-center">
 					<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
-					<h3 class="text-base text-gray-800 font-bold tracking-normal leading-tight mx-3 hidden lg:block">Hoàng Văn Giỏi</h3>
+					<h3 class="text-base text-gray-800 dark:text-white font-bold tracking-normal leading-tight mx-3 hidden lg:block">Hoàng Văn Giỏi</h3>
 				</a>
 				<div class="hidden xl:flex items-center h-full">
-					<a href="{% url 'dashboard_home' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 cursor-pointer h-full flex items-center text-sm text-gray-700 hover:text-indigo-700 focus:text-indigo-700 tracking-normal transition duration-150 ease-in-out">
+					<a href="{% url 'dashboard_home' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 dark:text-white focus:text-indigo-700 tracking-normal transition duration-150 ease-in-out">
 						<span class="mr-2">
-							<img src="{% static 'images/dashboard.svg' %}" alt="Dashboard" />
+							<img src="{% static 'images/dashboard.svg' %}" class="dark:bg-white" alt="Dashboard" />
 						</span>
 						Dashboard
 					</a>
-					<a href="{% url 'categories_list' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 mx-10 tracking-normal transition duration-150 ease-in-out">
+					<a href="{% url 'categories_list' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 dark:text-white mx-10 tracking-normal transition duration-150 ease-in-out">
 						<span class="mr-2">
 							<img src="{% static 'images/categories.svg' %}" alt="Categories" />
 						</span>
 						Categories
 					</a>
-					<a href="{% url 'article_list' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 mr-10 tracking-normal transition duration-150 ease-in-out">
+					<a href="{% url 'article_list' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 dark:text-white mr-10 tracking-normal transition duration-150 ease-in-out">
 						<span class="mr-2">
-							<img src="{% static 'images/home.svg' %}" alt="Home" />
+							<img src="{% static 'images/home.svg' %}" class="dark:bg-white dark:text-white" alt="Home" />
 						</span>
 						Home
 					</a>
-					<a href="javascript:void(0)" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 tracking-normal transition duration-150 ease-in-out">
+					<a href="{% url 'article_list' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 dark:text-white tracking-normal transition duration-150 ease-in-out">
 						<span class="mr-2">
-							<img src="{% static 'images/deliverables.svg' %}" alt="Deliverables" />
+							<img src="{% static 'images/deliverables.svg' %}" alt="Notes" />
 						</span>
-						Deliverables
+						Notes
 					</a>
 				</div>
 			</div>
