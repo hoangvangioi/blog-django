@@ -51,7 +51,6 @@ class MaintenanceModeMiddleware:
         if not request.session.get('bypass_maintenance', False):
             if settings.MAINTENANCE_MODE and path!= reverse("maintenance"):
                 response = redirect(reverse("maintenance"))
-                print(settings.MAINTENANCE_MODE and path!= reverse("maintenance"))
                 return response
 
             if not (settings.MAINTENANCE_MODE) and (path == reverse("maintenance")):
