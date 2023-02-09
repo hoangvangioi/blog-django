@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'category',
     'articles',
     "users",
-    'notes',
     # CKeditor
     'ckeditor_uploader',
     'ckeditor',
@@ -73,8 +72,6 @@ INSTALLED_APPS = [
     "django_comments_ink",
     "django_comments",
     'django_social_share',
-    'django_extensions',
-    'django_browser_reload',
 ]
 
 SITE_ID = int(os.getenv('SITE_ID'))
@@ -92,7 +89,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
     'base.middleware.RestrictStaffToAdminMiddleware',
     'base.middleware.MaintenanceModeMiddleware',
 ]
