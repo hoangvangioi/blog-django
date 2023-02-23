@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'category',
     'articles',
     "users",
+    'contact',
     # CKeditor
     'ckeditor_uploader',
     'ckeditor',
@@ -256,11 +257,11 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 django_on_heroku.settings(locals(), logging=False)
 
 MESSAGE_TAGS = {
-    messages.DEBUG: 'info',
-    messages.INFO: 'info',
-    messages.SUCCESS: 'success',
-    messages.WARNING: 'warning',
-    messages.ERROR: 'danger',
+    messages.DEBUG: 'text-blue-400',
+    messages.INFO: 'text-blue-400',
+    messages.SUCCESS: 'text-green-600',
+    messages.WARNING: 'text-yellow-500',
+    messages.ERROR: 'text-red-600',
 }
 
 CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')

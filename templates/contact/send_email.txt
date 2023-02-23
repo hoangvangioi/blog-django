@@ -1,0 +1,19 @@
+{% load i18n %}{% autoescape off %}
+{% trans "Chào bạn," %}
+
+{% trans "Tôi vừa nhận được một thông điệp từ bạn với nội dung: " %}
+
+{% blocktrans %}Subject: {{subject}} {% endblocktrans %}
+
+{% blocktrans %}Messages: {{message}}{% endblocktrans %}
+
+{% trans "Cảm ơn bạn đã gửi thông điệp đến tôi. " %}
+
+{% trans "Tôi rất xin lỗi vì không thể trả lời bạn ngay bây giờ." %}
+
+{% trans "Tôi hiểu rằng thông điệp của bạn rất quan trọng và tôi sẽ cố gắng để trả lời sớm nhất có thể. " %}
+
+{% trans "Trân trọng," %}
+
+Hoàng Văn Giỏi
+{% endautoescape %}

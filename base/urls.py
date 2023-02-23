@@ -59,6 +59,7 @@ urlpatterns = [
     path('maintenance/', TemplateView.as_view(template_name='503.html', content_type='text/html'), name='maintenance'),
     path('i18n/', include('django.conf.urls.i18n')),
     path('privacy_policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
+    path("contact/", include("contact.urls")),
 ]
 
 
