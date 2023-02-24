@@ -10,12 +10,14 @@
 					<h3 class="text-base text-gray-800 dark:text-white font-bold tracking-normal leading-tight mx-3 hidden lg:block">Hoàng Văn Giỏi</h3>
 				</a>
 				<div class="hidden xl:flex items-center h-full">
+					{% if request.user.is_superuser %}
 					<a href="{% url 'dashboard_home' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 dark:text-white focus:text-indigo-700 tracking-normal transition duration-150 ease-in-out">
 						<span class="mr-2">
 							<img src="{% static 'images/dashboard.svg' %}" class="dark:bg-white" alt="Dashboard" />
 						</span>
 						Dashboard
 					</a>
+					{% endif %}
 					<a href="{% url 'categories_list' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 dark:text-white mx-10 tracking-normal transition duration-150 ease-in-out">
 						<span class="mr-2">
 							<img src="{% static 'images/categories.svg' %}" alt="Categories" />
@@ -27,6 +29,12 @@
 							<img src="{% static 'images/home.svg' %}" class="dark:bg-white dark:text-white" alt="Home" />
 						</span>
 						Home
+					</a>
+					<a href="{% url 'contact' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 dark:text-white mr-10 tracking-normal transition duration-150 ease-in-out">
+						<span class="mr-2">
+							<img src="{% static 'images/home.svg' %}" class="dark:bg-white dark:text-white" alt="Contact" />
+						</span>
+						Contact
 					</a>
 					<a href="{% url 'privacy_policy' %}" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 focus:text-indigo-700 cursor-pointer h-full flex items-center text-sm hover:text-indigo-700 text-gray-800 dark:text-white tracking-normal transition duration-150 ease-in-out">
 						<span class="mr-2">
@@ -142,6 +150,7 @@
 								</div>
 							</div>
 							<ul class="f-m-m">
+								{% if request.user.is_superuser %}
 								<li>
 									<a href="{% url 'dashboard_home' %}" class="cursor-pointer">
 										<div class="text-gray-800 pt-8">
@@ -154,6 +163,7 @@
 										</div>
 									</a>
 								</li>
+								{% endif %}
 								<li>
 									<a href="{% url 'categories_list' %}" class="cursor-pointer">
 										<div class="text-gray-800 pt-8">
@@ -180,15 +190,29 @@
 										</div>
 									</a>
 								</li>
-								<li class="text-gray-800 pt-8 cursor-pointer">
-									<div class="flex items-center justify-between">
-										<div class="flex items-center">
-											<div class="w-6 h-6 text-gray-800">
-												<img class="icon icon-tabler icon-tabler-code" src="{% static 'images/deliverables.svg' %}" alt="deliverables" />
+								<li>
+									<a href="{% url 'contact' %}" class="cursor-pointer">
+										<div class="text-gray-800 pt-8">
+											<div class="flex items-center">
+												<div class="w-6 h-6 text-gray-800">
+													<img class="icon icon-tabler icon-tabler-compass" src="{% static 'images/home.svg' %}" alt="Home" />
+												</div>
+												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Contact</p>
 											</div>
-											<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Deliverables</p>
 										</div>
-									</div>
+									</a>
+								</li>
+								<li class="text-gray-800 pt-8 cursor-pointer">
+									<a href="{% url 'privacy_policy' %}" class="cursor-pointer">
+										<div class="flex items-center justify-between">
+											<div class="flex items-center">
+												<div class="w-6 h-6 text-gray-800">
+													<img class="icon icon-tabler icon-tabler-code" src="{% static 'images/deliverables.svg' %}" alt="deliverables" />
+												</div>
+												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Privacy Policy</p>
+											</div>
+										</div>
+									</a>
 								</li>
 							</ul>
 						</div>
@@ -213,7 +237,10 @@
 										</a>
 									</div>
 									{% else %}
-									<a href="{% url 'login' %}" class="mx-2 my-2 flex items-center bg-gray-100 transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-gray-300 text-gray-600 pl-3 pr-6 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-600">Sign In</a>
+									<div class="flex flex-col items-center justify-between w-full">
+										<a href="{% url 'login' %}" class="w-full mx-2 my-2 flex items-center bg-orange-300 transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-gray-300 text-gray-600 pl-3 pr-6 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600">Sign In</a>
+										<a href="{% url 'register' %}" class="w-full mx-2 my-2 flex items-center bg-orange-300 transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-gray-300 text-gray-600 pl-3 pr-6 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600">Sign Up</a>
+									</div>
 									{% endif %}
 								</div>
 							</div>

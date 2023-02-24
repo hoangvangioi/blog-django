@@ -14,6 +14,8 @@ from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 from django.views.defaults import bad_request
 from django_comments_ink import get_model, signed
+from django.utils.decorators import method_decorator
+from .decorators import superuser_required
 
 from . import forget_me, remember_me
 from .decorators import not_authenticated
@@ -259,6 +261,7 @@ def user_delete_confirm(request, key):
     return user_logout(request)
 
 
+@method_decorator(superuser_required, name='dispatch')
 class DashboardHomeView(LoginRequiredMixin, View):
     """
     Display homepage of the dashboard.
