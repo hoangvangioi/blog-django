@@ -6,19 +6,19 @@ from django.contrib.sites.shortcuts import get_current_site
 
 
 def handler400(request, *args, **kwargs):
-    return render(request, '404.html', status=400)
+    return render(request, 'error/404.html', status=400)
 
 
 def handler403(request, *args, **kwargs):
-    return render(request, '404.html', status=403)
+    return render(request, 'error/404.html', status=403)
 
 
 def handler404(request, *args, **kwargs):
-    return render(request, '404.html', status=404)
+    return render(request, 'error/404.html', status=404)
 
 
 def handler500(request, *args, **kwargs):
-    return render(request, '404.html', status=500)
+    return render(request, 'error/404.html', status=500)
 
 
 html_code = """
@@ -404,7 +404,7 @@ html_code = """
 
 
 class PrivacyPolicyView(TemplateView):
-    template_name = "privacy_policy.html"
+    template_name = "other/privacy_policy.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -413,7 +413,7 @@ class PrivacyPolicyView(TemplateView):
 
 
 class AboutPageView(TemplateView):
-    template_name = "about.html"
+    template_name = "other/about.html"
 
     def get_context_data(self, **kwargs):
 
