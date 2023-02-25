@@ -28,7 +28,7 @@ from .sitemaps import ArticlesSitemap, StaticViewSitemap, CategorySitemap, TagSi
 from django.views.generic import TemplateView
 from .feeds import LatestArticlesFeed, TaggedItemFeed, CategoryFeed
 from . import views
-from .views import PrivacyPolicyView
+from .views import AboutPageView, PrivacyPolicyView
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -60,6 +60,7 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('privacy_policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
     path("contact/", include("contact.urls")),
+    path('about/', AboutPageView.as_view(), name='about'),
 ]
 
 
