@@ -138,3 +138,5 @@ GitHub.sublime-settings
 
 # Data
 datadump.json
+local_settings.py
+local_urls.py
