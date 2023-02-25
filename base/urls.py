@@ -77,3 +77,9 @@ handler500 = 'base.views.handler500'
 admin.site.site_header="Blog Hoàng Giỏi Admin"
 admin.site.site_title="Blog Hoàng Giỏi Admin Panel"
 admin.site.index_title="Welcome to Blog Hoàng Giỏi Admin Panel"
+
+
+try:
+    from .local_urls import *
+except ImportError:
+    pass

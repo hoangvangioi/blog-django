@@ -18,10 +18,6 @@ from django.contrib.messages import constants as messages
 from django.utils.translation import gettext_lazy as _
 from distutils.util import strtobool
 from dotenv import load_dotenv
-try:
-    from .local_settings import *
-except ImportError:
-    pass
 
 
 load_dotenv()  # take environment variables from .env.
@@ -434,3 +430,9 @@ LOGGING = {
         },
     },
 }
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
