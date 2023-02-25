@@ -138,5 +138,20 @@ GitHub.sublime-settings
 
 # Data
 datadump.json
+node_modules
+staticfiles
+src
+package.json
+package-lock.json
+postcss.config.js
+tailwind.config.js
+log.tailwind.css
+base/settings.py
+.gitignore
+locale
+styles.css
+main.js
+tailwind.css
+web-page
 local_settings.py
 local_urls.py

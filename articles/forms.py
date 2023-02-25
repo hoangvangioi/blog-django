@@ -8,7 +8,7 @@ from django.utils.html import format_html
 
 help_text_title = _('Please enter a short title for this article')
 help_text_category = _("Please select a category for this article")
-help_text_tags = _("Please enter one or more tags that describe this article")
+help_text_tags = _("A comma-separated list of tags.")
 help_text_status = _("Please select an article status")
 help_text_keywords = _("Please enter keywords for this article")
 help_text_description = _("Please enter a short description for this article")
@@ -30,13 +30,6 @@ class ArticleForm(forms.ModelForm):
         queryset=Category.objects.all(),
         empty_label="(Select category)",
         help_text=format_html('<p class="mt-3 text-xs leading-3 text-gray-600">{}</p>', help_text_category),
-    )
-
-    tags = forms.CharField(
-        label="Tags",
-        max_length=200,
-        help_text=format_html('<p class="mt-3 text-xs leading-3 text-gray-600">{}</p>', help_text_tags),
-        required=False,
     )
 
     status = forms.ChoiceField(
