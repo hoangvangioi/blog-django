@@ -68,7 +68,7 @@
 						</form>
 					</div>
 					<div class="h-full flex items-center justify-center border-l border-gray-300 px-6">
-						<button aria-label="search" id="search-btn" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 h-full flex items-center justify-center text-gray-400">
+						<button type="button" aria-label="search" id="search-btn" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 h-full flex items-center justify-center text-gray-400">
 							<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search cursor-pointer" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								<path stroke="none" d="M0 0h24v24H0z" />
 								<circle cx="10" cy="10" r="7" />
@@ -76,8 +76,8 @@
 							</svg>
 						</button>
 					</div>
-					<button aria-label="dark mode" id="theme-toggle" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 w-20 h-full flex items-center justify-center border-l border-r border-gray-300 text-gray-400"></button>
-					<button aria-label="dropdown" class="focus:outline-none text-gray-800 border-b-2 focus:text-indigo-700 border-transparent focus:border-indigo-700 flex items-center pl-8 relative cursor-pointer" onclick="dropdownHandler(this)">
+					<button type="button" aria-label="dark mode" id="theme-toggle" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 w-20 h-full flex items-center justify-center border-l border-r border-gray-300 text-gray-400"></button>
+					<span aria-label="dropdown" class="focus:outline-none text-gray-800 border-b-2 focus:text-indigo-700 border-transparent focus:border-indigo-700 flex items-center pl-8 relative cursor-pointer" onclick="dropdownHandler(this)">
 						{% if request.user.is_authenticated %}
 						<ul class="p-2 w-40 border-r bg-white absolute rounded left-0 shadow mt-16 top-0 hidden">
 							<li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
@@ -117,7 +117,7 @@
 						{% else %}
 						<a href="{% url 'login' %}" class="mx-2 my-2 flex items-center bg-gray-100 transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-gray-300 text-gray-600 pl-3 pr-6 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-600">Sign In</a>
 						{% endif %}
-					</button>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -128,15 +128,15 @@
 				<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
 			</div>
 			<div>
-				<button aria-label="search mobile" id="search-btn-m" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 items-center justify-center text-gray-600">
+				<button type="button" aria-label="search mobile" id="search-btn-m" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 items-center justify-center text-gray-600">
 					<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" />
 						<circle cx="10" cy="10" r="7" />
 						<line x1="21" y1="21" x2="15" y2="15" />
 					</svg>
 				</button>
-				<button id="theme-toggle-m" aria-label="dark mode" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 mx-5 items-center justify-center mr-3 border-gray-300 text-gray-600"></button>
-				<button id="menu" aria-label="open menu" class="focus:outline-none rounded-md focus:ring-2 focus:ring-gray-700 text-gray-800" onclick="sidebarHandler(true)">
+				<button type="button" id="theme-toggle-m" aria-label="dark mode" class="focus:outline-none focus:text-indigo-700 hover:text-indigo-700 mx-5 items-center justify-center mr-3 border-gray-300 text-gray-600"></button>
+				<button type="button" id="menu" aria-label="open menu" class="focus:outline-none rounded-md focus:ring-2 focus:ring-gray-700 text-gray-800" onclick="sidebarHandler(true)">
 					<img src="{% static 'images/menu.svg' %}" alt="menu" />
 				</button>
 			</div>
@@ -154,7 +154,7 @@
 										<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
 										<p tabindex="0" class="focus:outline-none text-base font-bold text-gray-800 ml-3">Hoàng Văn Giỏi</p>
 									</div>
-									<button id="cross" aria-label="close menu" class="focus:outline-none focus:ring-2 rounded-md text-gray-800" onclick="sidebarHandler(false)">
+									<button type="button" id="cross" aria-label="close menu" class="focus:outline-none focus:ring-2 rounded-md text-gray-800" onclick="sidebarHandler(false)">
 										<img class="icon icon-tabler icon-tabler-x" src="{% static 'images/x-mark.svg' %}" alt="cross" />
 									</button>
 								</div>
