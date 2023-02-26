@@ -86,7 +86,9 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise
     'django.middleware.locale.LocaleMiddleware', # locale
+    'django.middleware.cache.UpdateCacheMiddleware', # cache
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware', # cache
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -430,6 +432,22 @@ LOGGING = {
         },
     },
 }
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': '127.0.0.1:11211',
+        "LOCATION": os.getenv("MEMCACHED_HOSTS"),
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        }
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+CACHE_MIDDLEWARE_SECONDS = 60 * 60 * 1 # Để xác định bộ nhớ cache hết hạn 
 
 
 try:
