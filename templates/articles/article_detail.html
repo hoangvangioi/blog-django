@@ -1,4 +1,11 @@
-{% extends 'base.html' %}{% load static %} {% load i18n %} {% load comments %} {% load comments_ink %} {% block title %} Trang chủ {% endblock %} {% block stylesheets %}{{ block.super }}<link rel="stylesheet" href="{% static 'css/prism.css' %}">{% endblock stylesheets %} {% block content %}
+{% extends 'base.html' %}{% load static %} {% load i18n %} {% load comments %} {% load comments_ink %} {% block title %} Trang chủ {% endblock %} 
+{% block meta_title_og %} {{article.title}} {% endblock meta_title_og %} 
+{% block meta_title_twitter %} {{article.title}} {% endblock meta_title_twitter %} 
+{% block image_meta_og %}{{ article.featured_image_url }}{% endblock image_meta_og %} 
+{% block image_meta_twitter %}{{ article.featured_image_url }}{% endblock image_meta_twitter %} 
+{% block meta_description_og %} {{article.description}} {% endblock meta_description_og %}
+{% block meta_description_twitter %} {{article.description}} {% endblock meta_description_twitter %}
+{% block stylesheets %}{{ block.super }}<link rel="stylesheet" href="{% static 'css/prism.css' %}">{% endblock stylesheets %} {% block content %}
 
 <section class="bg-white dark:bg-gray-800">
 	<div class="container mx-auto flex flex-wrap py-6 pt-20">

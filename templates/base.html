@@ -11,13 +11,13 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://{{ request.get_host }}{{ request.get_full_path }}" />
-    <meta property="og:title" content="{% block og %}{% endblock og %}">
-    <meta property="og:description" content="{% block description_og %}{% endblock description_og %}">
-    <meta property="og:image" content="{{ post.featured_image_url }}">
+    <meta property="og:title" content="{% block meta_title_og %}{% endblock meta_title_og %}">
+    <meta property="og:description" content="{% block meta_description_og %}{% endblock meta_description_og %}">
+    <meta property="og:image" content="{% block image_meta_og %}{% endblock image_meta_og %}">
 
-    <meta name="twitter:title" content="{% block twitter %}{% endblock twitter %}">
-    <meta name="twitter:description" content="{% block description_twitter %}{% endblock description_twitter %}">
-    <meta name="twitter:image" content="{{ post.featured_image_url }}" />
+    <meta name="twitter:title" content="{% block meta_title_twitter %}{% endblock meta_title_twitter %}">
+    <meta name="twitter:description" content="{% block meta_description_twitter %}{% endblock meta_description_twitter %}">
+    <meta name="twitter:image" content="{% block image_meta_twitter %}{% endblock image_meta_twitter %}" />
     <meta name="twitter:card" content="summary">
 
     <link rel="canonical" href="http://{{ request.get_host }}{{ request.get_full_path }}">
@@ -30,15 +30,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
     <link rel="mask-icon" color="#5bbad5" href="{% static 'img/safari-pinned-tab.svg' %}">
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
-    {% if '/' == request.path or category.get_absolute_url == request.path or '/tag/' in request.path %}
-    {% elif post.get_absolute_url == request.path %}{% else %}{% endif %}
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
     <link rel="stylesheet" href="{% static 'css/tailwind.min.css' %}" />
     {% block stylesheets %}{% endblock stylesheets %}
-    {% if post.get_absolute_url == request.path %}
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308"
-     crossorigin="anonymous"></script>
-    {% endif %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2146269335848308" crossorigin="anonymous"></script>
 </head>
 
 <body class="min-h-screen">
