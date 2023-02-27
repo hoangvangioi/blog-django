@@ -459,7 +459,7 @@ PWA_APP_DESCRIPTION = "My log web app"
 PWA_APP_THEME_COLOR = '#e3e3ee'
 PWA_APP_BACKGROUND_COLOR = '#ffffff'
 PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
+PWA_APP_SCOPE = '.'
 PWA_APP_ORIENTATION = 'any'
 PWA_APP_START_URL = '/'
 PWA_APP_STATUS_BAR_COLOR = 'default'
@@ -498,7 +498,7 @@ PWA_APP_SPLASH_SCREEN = [
         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
     }
 ]
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js/service-worker.js')
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'templates/serviceworker.js')
 
 
 PWA_APP_DIR = 'ltr'
