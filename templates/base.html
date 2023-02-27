@@ -1,4 +1,4 @@
-<!DOCTYPE html> {% load static %}
+<!DOCTYPE html> {% load static pwa %}
 <html lang="vi" translate="no">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="UTF-8">
@@ -29,6 +29,7 @@
     <link rel="shortcut icon" type="image/svg+xml" sizes="any" href="{% static 'favicon.svg' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
     <link rel="mask-icon" color="#5bbad5" href="{% static 'img/safari-pinned-tab.svg' %}">
+    {% progressive_web_app_meta %}
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}" />
     <link type="application/json" href="{% static 'budget.json' %}"> {% block style %}{% endblock style %}
     <link rel="stylesheet" href="{% static 'css/tailwind.min.css' %}" />

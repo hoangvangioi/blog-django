@@ -61,6 +61,7 @@ urlpatterns = [
     path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
     path("contact/", include("contact.urls")),
     path('about/', AboutPageView.as_view(), name='about'),
+    path('', include('pwa.urls')),  # You MUST use an empty string as the URL prefix
 ]
 
 

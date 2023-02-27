@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'articles',
     "users",
     'contact',
+    'pwa',
     # CKeditor
     'ckeditor_uploader',
     'ckeditor',
@@ -451,6 +452,57 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 CACHE_MIDDLEWARE_SECONDS = 60 * 60 * 1 # Để xác định bộ nhớ cache hết hạn 
+
+
+PWA_APP_NAME = 'Hoan Van Gioi'
+PWA_APP_DESCRIPTION = "My log web app"
+PWA_APP_THEME_COLOR = '#e3e3ee'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+
+PWA_APP_ICONS = [
+    {
+        "src": "favicon.ico",
+        "sizes": " 512x512 192x192 144x144 64x64 32x32 24x24 16x16",
+        "type": "image/x-icon",
+        "purpose": "maskable any"
+    },
+    {
+        'src': '/static/images/icons/icon-144x144.png',
+        "sizes": " 512x512 192x192 144x144 64x64 32x32 24x24 16x16",
+        "type": "image/png",
+        "purpose": "maskable any"
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        "src": "favicon.ico",
+        "sizes": " 512x512 192x192 144x144 64x64 32x32 24x24 16x16",
+        "type": "image/x-icon",
+        "purpose": "maskable any"
+    },
+    {
+        'src': '/static/images/icons/icon-144x144.png',
+        "sizes": " 512x512 192x192 144x144 64x64 32x32 24x24 16x16",
+        "type": "image/png",
+        "purpose": "maskable any"
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/images/icons/splash-640x1136.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js/service-worker.js')
+
+
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'vi-VN'
 
 
 try:
