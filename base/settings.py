@@ -440,11 +440,13 @@ LOGGING = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': '127.0.0.1:11211',
-        "LOCATION": os.getenv("MEMCACHED_HOSTS"),
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        # 'LOCATION': 'MEMCACHED_HOSTS',
         'OPTIONS': {
-            'MAX_ENTRIES': 1000
+            'no_delay': True,
+            'ignore_exc': True,
+            'max_pool_size': 4,
+            'use_pooling': True,
         }
     }
 }
@@ -467,13 +469,19 @@ PWA_APP_STATUS_BAR_COLOR = 'default'
 PWA_APP_ICONS = [
     {
         "src": "favicon.ico",
-        "sizes": " 512x512 192x192 144x144 64x64 32x32 24x24 16x16",
+        "sizes": "64x64",
         "type": "image/x-icon",
         "purpose": "maskable any"
     },
     {
+        'src': '/static/images/icons/icon-512x512.png',
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable any"
+    },
+    {
         'src': '/static/images/icons/icon-144x144.png',
-        "sizes": " 512x512 192x192 144x144 64x64 32x32 24x24 16x16",
+        "sizes": "144x144",
         "type": "image/png",
         "purpose": "maskable any"
     }
@@ -481,13 +489,19 @@ PWA_APP_ICONS = [
 PWA_APP_ICONS_APPLE = [
     {
         "src": "favicon.ico",
-        "sizes": " 512x512 192x192 144x144 64x64 32x32 24x24 16x16",
+        "sizes": "64x64",
         "type": "image/x-icon",
         "purpose": "maskable any"
     },
     {
+        'src': '/static/images/icons/icon-512x512.png',
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable any"
+    },
+    {
         'src': '/static/images/icons/icon-144x144.png',
-        "sizes": " 512x512 192x192 144x144 64x64 32x32 24x24 16x16",
+        "sizes": "144x144",
         "type": "image/png",
         "purpose": "maskable any"
     }
