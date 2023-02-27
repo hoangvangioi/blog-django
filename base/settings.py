@@ -440,16 +440,11 @@ LOGGING = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': os.getenv('MEMCACHED_HOSTS'),
-        'OPTIONS': {
-            'no_delay': True,
-            'ignore_exc': True,
-            'max_pool_size': 4,
-            'use_pooling': True,
-        }
     }
 }
+
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
