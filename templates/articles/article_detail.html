@@ -1,4 +1,10 @@
 {% extends 'base.html' %}{% load static %} {% load i18n %} {% load social_share %} {% load comments %} {% load comments_ink %} {% block title %} Trang chủ {% endblock %} 
+{% block keywords %}
+{% if keywords %}{{article.keywords}}{% else %}{{article.title}}{% endif %}
+{% endblock keywords %}
+{% block description %} 
+{% if description %}{{article.description}}{% else %}{{article.body}}{% endif %}
+{% endblock description %}
 {% block meta_title_og %} {{article.title}} {% endblock meta_title_og %} 
 {% block meta_title_twitter %} {{article.title}} {% endblock meta_title_twitter %} 
 {% block image_meta_og %}{{ article.featured_image_url }}{% endblock image_meta_og %} 
