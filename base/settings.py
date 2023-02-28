@@ -294,6 +294,8 @@ SECURE_SSL_REDIRECT = bool(strtobool(os.getenv('SECURE_SSL_REDIRECT', 'True')))
 LANGUAGE_COOKIE_HTTPONLY = bool(strtobool(os.getenv('LANGUAGE_COOKIE_HTTPONLY', 'True')))
 SESSION_COOKIE_HTTPONLY = bool(strtobool(os.getenv('SESSION_COOKIE_HTTPONLY', 'True')))
 CSRF_COOKIE_HTTPONLY = bool(strtobool(os.getenv('CSRF_COOKIE_HTTPONLY', 'True')))
+SECURE_HSTS_PRELOAD = bool(strtobool(os.getenv('SECURE_HSTS_PRELOAD', 'True')))
+SECURE_HSTS_SECONDS = int(os.getenv('SECURE_HSTS_SECONDS', 31536000))
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
