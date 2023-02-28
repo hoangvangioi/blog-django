@@ -18,12 +18,16 @@
 			</a>
 		</li>
 		{% endif %} {% for page_number in page_obj.paginator.page_range %} {% if page_obj.number == page_number %}
-        <span tabindex="0" class="{% if page_number == page_obj.number %}current bg-indigo-700 text-white{% endif %} focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
-        {% elif page_number > page_obj.number|add:'-3' and page_number < page_obj.number|add:'3' %}
-        <a href="?page={{ page_number }}">
-            <span tabindex="0" class="{% if page_number == page_obj.number %}current bg-indigo-700 text-white{% endif %} focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
-        </a>
-        {% endif %} {% endfor %} {% if page_obj.has_next %}
+		<li>
+			<span tabindex="0" class="{% if page_number == page_obj.number %}current bg-indigo-700 text-white{% endif %} focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
+		</li>
+		{% elif page_number > page_obj.number|add:'-3' and page_number < page_obj.number|add:'3' %}
+		<li>
+			<a href="?page={{ page_number }}">
+				<span tabindex="0" class="{% if page_number == page_obj.number %}current bg-indigo-700 text-white{% endif %} focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
+			</a>
+		</li>
+		{% endif %} {% endfor %} {% if page_obj.has_next %}
 		<li>
 			<a href="?page={{page_obj.next_page_number}}">
 				<span tabindex="0" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 p-1 ml-1 sm:ml-3">
