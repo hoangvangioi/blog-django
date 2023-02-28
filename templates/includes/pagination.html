@@ -3,12 +3,12 @@
 	<ul class="flex justify-center items-center">
 		{% if page_obj.has_previous %}
 		<li>
-			<a href="?page=1">
+			<a href="?page=1" aria-label="First">
 				<span tabindex="0" aria-label="backward" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none p-1 flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 mr-1 sm:mr-3">First</span>
 			</a>
 		</li>
 		<li>
-			<a href="?page={{page_obj.previous_page_number}}">
+			<a href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
 				<span tabindex="0" aria-label="backward" role="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none p-1 flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 mr-1 sm:mr-3">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" />
@@ -23,13 +23,13 @@
 		</li>
 		{% elif page_number > page_obj.number|add:'-3' and page_number < page_obj.number|add:'3' %}
 		<li>
-			<a href="?page={{ page_number }}">
+			<a href="?page={{ page_number }}" aria-label="{{ page_number }}">
 				<span tabindex="0" class="{% if page_number == page_obj.number %}current bg-indigo-700 text-white{% endif %} focus:outline-none focus:bg-indigo-700 focus:text-white flex text-indigo-700 dark:text-indigo-400 bg-white dark:bg-gray-700 hover:bg-indigo-600 hover:text-white text-base leading-tight font-bold cursor-pointer shadow transition duration-150 ease-in-out mx-2 sm:mx-4 rounded px-3 py-2">{{page_number}}</span>
 			</a>
 		</li>
 		{% endif %} {% endfor %} {% if page_obj.has_next %}
 		<li>
-			<a href="?page={{page_obj.next_page_number}}">
+			<a href="?page={{page_obj.next_page_number}}" aria-label="Next">
 				<span tabindex="0" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 p-1 ml-1 sm:ml-3">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" />
@@ -39,7 +39,7 @@
 			</a>
 		</li>
         <li>
-			<a href="?page={{ page_obj.paginator.num_pages }}">
+			<a href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
 				<span tabindex="0" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none flex rounded transition duration-150 ease-in-out text-base leading-tight font-bold text-gray-500 hover:text-indigo-700 p-1 ml-1 sm:ml-3">Last</span>
 			</a>
 		</li>
