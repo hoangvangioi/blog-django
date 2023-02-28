@@ -74,7 +74,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django_comments_ink",
     "django_comments",
-    'django_social_share',
 ]
 
 SITE_ID = int(os.getenv('SITE_ID'))
