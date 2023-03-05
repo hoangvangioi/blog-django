@@ -3,7 +3,6 @@ from django.urls import path, re_path
 from . import views
 from .views import (
     DashboardHomeView,
-    AuthorWrittenArticlesView,
     AuthorProfileUpdateView,
     AuthorProfileView,
 )
@@ -31,7 +30,4 @@ urlpatterns = [
 
     # author update profile
     path('author/profile/update/', AuthorProfileUpdateView.as_view(), name='author_profile_update'),
-
-    # /me/articles/written/
-    path("me/articles/written/", AuthorWrittenArticlesView.as_view(), name="written_articles"),
 ]

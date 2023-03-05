@@ -280,12 +280,13 @@ class DashboardHomeView(LoginRequiredMixin, View):
         total_articles_published = len(articles_list.filter(status='published'))
         total_articles_views = sum(article.views for article in articles_list)
 
-        recent_published_articles_list = articles_list.filter(status='published').order_by("-date_published")[:5]
+        written_articles_list = articles_list.filter(status='published').order_by("-date_published")
 
         self.context['total_articles_written'] = total_articles_written
         self.context['total_articles_published'] = total_articles_published
         self.context['total_articles_views'] = total_articles_views
-        self.context['recent_published_articles_list'] = recent_published_articles_list
+        self.context['written_articles_list'] = written_articles_list
+        
 
         return render(request, self.template_name, self.context)
 
@@ -343,34 +344,3 @@ class AuthorProfileUpdateView(LoginRequiredMixin, View):
 
             messages.error(request, f'Invalid data. Please provide valid data.')
             return render(request, self.template_name, self.context_object)
-
-
-class AuthorWrittenArticlesView(LoginRequiredMixin, View):
-    """
-       Displays all articles written by an author.
-    """
-
-    def get(self, request):
-        """
-           Returns all articles written by an author.
-        """
-        template_name = 'author/author_written_article_list.html'
-        context_object = {}
-
-        written_articles = Article.objects.filter(author=request.user.id).order_by('-date_created')
-        total_articles_written = len(written_articles)
-
-        page = request.GET.get('page', 1)
-
-        paginator = Paginator(written_articles, 5)
-        try:
-            written_articles_list = paginator.page(page)
-        except PageNotAnInteger:
-            written_articles_list = paginator.page(1)
-        except EmptyPage:
-            written_articles_list = paginator.page(paginator.num_pages)
-
-        context_object['written_articles_list'] = written_articles_list
-        context_object['total_articles_written'] = total_articles_written
-
-        return render(request, template_name, context_object)

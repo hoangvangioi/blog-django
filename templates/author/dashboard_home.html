@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% load only_hours %} {% block title %} Home {% endblock %} {% block stylesheets %} {{ block.super }}
+{% extends 'base.html' %} {% load static %} {% load only_hours %} {% block title %} Home Dashboard {% endblock %} {% block stylesheets %} {{ block.super }}
 {% endblock stylesheets %} {% block content %}
 <div class="w-full container mx-auto pt-20">
     <div class="flex flex-col items-center py-12">
@@ -6,7 +6,7 @@
     </div>
 </div>
 <div class="container mx-auto">
-	<div class="w-full flex items-center justify-center">
+	<div class="w-full items-center justify-center">
 		<div class="py-4 sm:py-6 md:py-8 bg-white shadow rounded-lg">
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-6 xl:px-10 gap-y-8 gap-x-12 2xl:gap-x-28">
 				<div class="w-full">
@@ -67,8 +67,8 @@
 
     <div class="w-full container mx-auto pt-10">
         <div class="flex flex-col items-center py-12">
-            <span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-3xl">Recent Published Articles</span>
-            <p class="text-lg text-gray-600">List of your recently published articles.</p>
+            <span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-3xl">Recent Written Articles</span>
+            <p class="text-lg text-gray-600">List of all your written articles.</p>
         </div>
     </div>
 
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-        {% if recent_published_articles_list %}
+        {% if written_articles_list %}
         <div class="bg-white dark:bg-gray-800  shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
             <table class="w-full whitespace-nowrap">
                 <thead>
@@ -96,7 +96,7 @@
                     </tr>
                 </thead>
                 <tbody class="w-full">
-                    {% for article in recent_published_articles_list %}
+                    {% for article in written_articles_list %}
                     <tr tabindex="0" class="focus:outline-none h-20 text-sm leading-none text-gray-800 dark:text-white  bg-white dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-900  border-b border-t border-gray-100 dark:border-gray-700 ">
                         <td class="pl-4 cursor-pointer">
                             <div class="flex items-center">
@@ -133,7 +133,7 @@
         </div>
         {% else %}
         <center>
-            <div class="alert alert-info"><b>No Published Articles</b></div>
+            <div class="alert alert-info"><b>No Written Articles</b></div>
         </center>
         {% endif %}
     </div>
