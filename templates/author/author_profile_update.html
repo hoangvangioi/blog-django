@@ -55,7 +55,7 @@
 			</div>
 			<div class="mx-auto pt-4">
 				<div class="container mx-auto">
-					<form class="my-6 w-11/12 mx-auto xl:w-full xl:mx-0">
+					<div class="my-6 w-11/12 mx-auto xl:w-full xl:mx-0">
 						<div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
 							<div class="lg:w-3/4 w-full flex flex-col mb-6">
 								<div class="flex flex-col">
@@ -110,32 +110,15 @@
 								{{ contact_form.github_url.errors }}{{ profile_form.github_url }} 
 							</div>
 						</div>
-
-						{% comment %} <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
-							<div class="lg:w-3/4 w-full flex flex-col mb-6">
-								<div class="flex items-center pb-2">
-									<label for="ZIP" class="text-sm font-bold text-gray-800 dark:text-gray-100">ZIP/Postal Code</label>
-								</div>
-								<input tabindex="0" type="text" name="zip" required id="ZIP" class="bg-transparent border border-red-400 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="86745" />
-								<div class="flex justify-between items-center pt-1 text-red-700">
-									<p class="text-xs">Incorrect Zip Code</p>
-									<img src="{% static 'images/cancel.svg' %}" alt="cancel" />
-								</div>
-							</div>
-							<div class="lg:w-3/4 w-full flex flex-col mb-6">
-								<label for="Country" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Country</label>
-								<input tabindex="0" type="text" id="Country" name="country" required class="border bg-transparent border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-600 dark:text-gray-400" placeholder="United States" />
-							</div>
-						</div> {% endcomment %}
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="container mx-auto w-11/12 xl:w-full">
 			<div class="w-full py-4 sm:px-0 bg-white dark:bg-gray-800 flex justify-end">
-				<button role="button" aria-label="cancel form" class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4 focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">Cancel</button>
-				<button role="button" aria-label="Save form" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-indigo-700 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm" type="submit">Save</button>
+				<a href="{% url 'author_profile_details' %}" aria-label="cancel form" class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4 focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">Cancel</a>
+				<button aria-label="Save form" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-indigo-700 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm" type="submit">Save</button>
 			</div>
 		</div>
 	</form>
