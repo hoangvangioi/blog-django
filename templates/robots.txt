@@ -1,6 +1,5 @@
-User-agent: *
+User-Agent: *
 
-Disallow: /hvg/
-Allow: /
+Allow: *
 
 Sitemap: https://{{ request.get_host }}/sitemap.xml
