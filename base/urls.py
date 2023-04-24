@@ -56,7 +56,7 @@ urlpatterns = [
     path('feed/articles/', LatestArticlesFeed(), name='feed_articles'),
     path('feed/categories/', CategoryFeed(), name= 'feed_categories'),
     path('feed/tags/', TaggedItemFeed(), name='feed_tags'),
-    path('maintenance/', TemplateView.as_view(template_name='503.html', content_type='text/html'), name='maintenance'),
+    path('maintenance/', TemplateView.as_view(template_name='error/503.html', content_type='text/html'), name='maintenance'),
     path('i18n/', include('django.conf.urls.i18n')),
     path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
     path("contact/", include("contact.urls")),
