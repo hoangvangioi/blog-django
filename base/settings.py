@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django_comments_ink",
     "django_comments",
+    'corsheaders',
 ]
 
 SITE_ID = int(os.getenv('SITE_ID'))
@@ -87,6 +88,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise
     'django.middleware.locale.LocaleMiddleware', # locale
     'django.middleware.cache.UpdateCacheMiddleware', # cache
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware', # cache
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -284,8 +286,7 @@ CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
 
 CSRF_COOKIE_DOMAIN = os.getenv('CSRF_COOKIE_DOMAIN')
 
-CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST')
-
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', None).split(',')
 
 # SSL
 SESSION_COOKIE_SECURE = bool(strtobool(os.getenv('SESSION_COOKIE_SECURE', 'True')))
@@ -296,11 +297,6 @@ SESSION_COOKIE_HTTPONLY = bool(strtobool(os.getenv('SESSION_COOKIE_HTTPONLY', 'T
 CSRF_COOKIE_HTTPONLY = bool(strtobool(os.getenv('CSRF_COOKIE_HTTPONLY', 'True')))
 SECURE_HSTS_PRELOAD = bool(strtobool(os.getenv('SECURE_HSTS_PRELOAD', 'True')))
 SECURE_HSTS_SECONDS = int(os.getenv('SECURE_HSTS_SECONDS', 31536000))
-
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_REPLACE_HTTPS_REFERER = True
-
 
 # Define the user model. The difference between 'users.User' and 'auth.User'
 AUTH_USER_MODEL = "users.User"

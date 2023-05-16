@@ -11,6 +11,7 @@ from .views import (
     ArticleUpdateView,
     ArticleDeleteView,
     ArticleListViewAdmin,
+    ArticleListViewAPI
 )
 
 
@@ -39,4 +40,7 @@ urlpatterns = [
 
     # me/article/<str:slug>/delete/
     path('me/article/<str:slug>/delete/', ArticleDeleteView.as_view(), name="article_delete"),
+    
+    # API article view
+    path('api/article/', ArticleListViewAPI.as_view(), name="article_api"),
 ]
