@@ -24,7 +24,7 @@ pymemcache==4.0.0
 python-dotenv==0.21.0
 pytz==2022.4
 redis==4.5.4
-requests==2.28.1
+requests==2.31.0
 six==1.16.0
 sqlparse==0.4.4
 tzdata==2022.1
