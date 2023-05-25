@@ -38,7 +38,9 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('hvg/', admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('admindocs/', include('django.contrib.admindocs.urls')),
+
     # App
     path('', include('articles.urls')),
     path('', include('category.urls')),

@@ -49,6 +49,7 @@ CSRF_FAILURE_VIEW = 'base.views.handler403'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -95,6 +96,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'base.middleware.RestrictStaffToAdminMiddleware',
     'base.middleware.MaintenanceModeMiddleware',
 ]
@@ -274,9 +276,9 @@ CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-FILE_UPLOAD_MAX_MEMORY_SIZE = 200000000000000000000
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 10000
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 200000000000000000000
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 10000
 
 options = DATABASES['default'].get('OPTIONS', {})
 options.pop('sslmode', None)
