@@ -85,6 +85,7 @@ PREPEND_WWW = os.getenv('PREPEND_WWW', default=False)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django_permissions_policy.PermissionsPolicyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', # whitenoise
     'django.middleware.locale.LocaleMiddleware', # locale
@@ -514,6 +515,23 @@ PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'templates/serviceworker.js')
 
 PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'vi-VN'
+
+
+PERMISSIONS_POLICY = {
+    "accelerometer": [],
+    "autoplay": [],
+    "camera": [],
+    "display-capture": [],
+    "encrypted-media": [],
+    "fullscreen": [],
+    "geolocation": [],
+    "gyroscope": [],
+    "magnetometer": [],
+    "microphone": [],
+    "midi": [],
+    "payment": [],
+    "usb": [],
+}
 
 
 try:
