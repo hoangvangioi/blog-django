@@ -522,13 +522,10 @@ PWA_APP_LANG = 'vi-VN'
 CSP_DEFAULT_SRC = ("'self'", )
 
 # style from our domain and bootstrapcdn
-CSP_STYLE_SRC = ("'self'", 
-    "'unsafe-inline'", )
+CSP_STYLE_SRC = ("'self'", )
 
 # scripts from our domain and other domains
 CSP_SCRIPT_SRC = ("'self'",
-    "'unsafe-inline'", 
-    "'unsafe-eval'", 
 	"ajax.cloudflare.com",
 	"static.cloudflareinsights.com",
 	"google-analytics.com",
