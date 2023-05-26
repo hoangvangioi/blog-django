@@ -107,7 +107,9 @@
 	<nav>
 		<div class="py-2 px-6 w-full flex xl:hidden justify-between items-center bg-white fixed top-0 z-40 shadow">
 			<div tabindex="0" class="focus:outline-none w-24">
-				<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
+				<a href="{% url 'article_list' %}" title="Logo">
+					<img src="{% static 'favicon.svg' %}" height="42px" width="42px" alt="logo" />
+				</a>
 			</div>
 			<div>
 				<button type="button" aria-label="search mobile" class="search-btn focus:outline-none focus:text-indigo-700 hover:text-indigo-700 items-center justify-center text-gray-600">
