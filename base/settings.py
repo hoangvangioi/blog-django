@@ -299,6 +299,9 @@ SESSION_COOKIE_HTTPONLY = bool(strtobool(os.getenv('SESSION_COOKIE_HTTPONLY', 'T
 CSRF_COOKIE_HTTPONLY = bool(strtobool(os.getenv('CSRF_COOKIE_HTTPONLY', 'True')))
 SECURE_HSTS_PRELOAD = bool(strtobool(os.getenv('SECURE_HSTS_PRELOAD', 'True')))
 SECURE_HSTS_SECONDS = int(os.getenv('SECURE_HSTS_SECONDS', 31536000))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = bool(strtobool(os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS', 'True')))
+SECURE_BROWSER_XSS_FILTER = bool(strtobool(os.getenv('SECURE_BROWSER_XSS_FILTER', 'True')))
+SECURE_CONTENT_TYPE_NOSNIFF = bool(strtobool(os.getenv('SECURE_CONTENT_TYPE_NOSNIFF', 'True')))
 
 # Define the user model. The difference between 'users.User' and 'auth.User'
 AUTH_USER_MODEL = "users.User"
