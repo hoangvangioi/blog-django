@@ -1,9 +1,30 @@
 from django.contrib import admin
+from django.contrib import messages
+from django.utils.translation import ngettext
 from django.utils.translation import gettext_lazy as _
 from .models import Article
 
 
 # Register your models here.
+
+
+@admin.action(description="Mark selected articles as published")
+def make_published(self, request, queryset):
+    updated = queryset.update(status='published')
+    self.message_user(request, ngettext(
+        '%d article was successfully marked as published.',
+        '%d articles were successfully marked as published.',
+        updated,
+    ) % updated, messages.SUCCESS)
+
+@admin.action(description="Mark selected articles as draft")
+def make_draft(self, request, queryset):
+    updated = queryset.update(status='draft')
+    self.message_user(request, ngettext(
+        '%d article was successfully marked as draft.',
+        '%d articles were successfully marked as draft.',
+        updated,
+    ) % updated, messages.SUCCESS)
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -44,6 +65,7 @@ class ArticleAdmin(admin.ModelAdmin):
         (None, {'fields': (('category', 'tags', ), )}))
 
     sortable_by = ('date_published', )
+    actions = [make_published, make_draft]
     actions_on_top = True
     actions_on_bottom = True
 

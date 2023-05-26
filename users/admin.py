@@ -5,6 +5,8 @@ from django.contrib.auth.forms import (
     UserChangeForm,
     UserCreationForm,
 )
+from django.contrib import messages
+from django.utils.translation import ngettext
 
 from .models import User, Profile
 
@@ -83,3 +85,23 @@ class UserAdmin(AuthUserAdmin):
         "user_permissions",
     )
     inlines = [ProfileInline]
+    actions = ['activate_user','deactivate_user']
+
+    def activate_user(self, request, queryset):
+        updated = queryset.update(is_active=True)
+        self.message_user(request, ngettext(
+            '%d user was successfully marked as Activate.',
+            '%d users were successfully marked as Activate.',
+            updated,
+        ) % updated, messages.SUCCESS)
+    
+    def deactivate_user(self, request, queryset):
+        updated = queryset.update(is_active=False)
+        self.message_user(request, ngettext(
+            '%d user was successfully marked as Deactivate.',
+            '%d users were successfully marked as Deactivate.',
+            updated,
+        ) % updated, messages.SUCCESS)
+
+    activate_user.short_description = u"Activate selected users"
+    deactivate_user.short_description = u"Deactivate selected users"
