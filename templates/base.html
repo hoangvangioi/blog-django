@@ -1,4 +1,4 @@
-<!DOCTYPE html> {% load static pwa %}
+<!DOCTYPE html> {% load static flatpages pwa %}
 <html lang="vi" translate="no">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="UTF-8">
@@ -38,14 +38,6 @@
 </head>
 
 <body class="min-h-screen">
-    <!--[if lt IE 11]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
-        <br />As of January 12, 2016<a href="#outdatedRef01"><sup>[1]</sup></a>, Internet Explorer 10 and older is no longer supported or updated by Microsoft, and are to be considered <strong>unsafe</strong> to use.
-        <br />
-        <br />Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
-        <br />
-        <br />Ref <a name="outdatedRef01">[1]</a>: <a href="https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support">Microsoft: <em>Support for older versions of Internet Explorer ends on January 12, 2016</em></a></p>
-    <![endif]-->
     {% include "includes/header.html" %}
 
     {% block content %} {% endblock content %}
