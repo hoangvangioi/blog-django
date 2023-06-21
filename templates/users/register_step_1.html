@@ -24,24 +24,7 @@
 					Sign in here</a></p>
 			<form method="POST" autocomplete="off">
 				{% csrf_token %}
-				<button aria-label="Continue with google" role="button"
-					class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-10 hover:bg-gray-100">
-					<img src="{% static 'images/google.svg' %}" alt="google">
-					<p class="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
-				</button>
-				<button aria-label="Continue with github" role="button"
-					class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-4 hover:bg-gray-100">
-					<img src="{% static 'images/github.svg' %}" alt="github">
-					<p class="text-base font-medium ml-4 text-gray-700">Continue with Github</p>
-				</button>
-				<button aria-label="Continue with twitter" role="button"
-					class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 p-3 border rounded-lg border-gray-700 flex items-center w-full mt-4 hover:bg-gray-100">
-					<img src="{% static 'images/twitter.svg' %}" alt="twitter">
-					<p class="text-base font-medium ml-4 text-gray-700">Continue with Twitter</p>
-				</button>
-				<div class="w-full flex items-center justify-between py-5">
-					<hr class="w-full bg-gray-400" />
-					<p class="text-base font-medium leading-4 px-2.5 text-gray-500">OR</p>
+				<div class="flex items-center justify-between py-5">
 					<hr class="w-full bg-gray-400" />
 				</div>
 				<div class="{% if 'email' in form.errors %}error{% endif %}">
@@ -53,15 +36,17 @@
 					{{ form.errors.email.0 }}
 				</div>
 				{% endif %} 
-				<div class="{% if 'name' in form.errors %}error{% endif %}">
-					<label for="{{form.name.id_for_label}}" class="text-sm font-medium leading-none text-gray-800"> {{form.name.label}} </label>
-					{{form.name}}
+				<div class="mt-6 w-full">
+					<div class="{% if 'name' in form.errors %}error{% endif %}">
+						<label for="{{form.name.id_for_label}}" class="text-sm font-medium leading-none text-gray-800"> {{form.name.label}} </label>
+						{{form.name}}
+					</div>
+					{% if "name" in form.errors %}
+					<div class="mb-6 helper-text error">
+						{{ form.errors.name.0 }}
+					</div>
+					{% endif %}
 				</div>
-				{% if "name" in form.errors %}
-				<div class="mb-6 helper-text error">
-					{{ form.errors.name.0 }}
-				</div>
-				{% endif %}
 				<div class="mt-8">
 					<button role="button" type="submit"
 					class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">{% trans "Create my account" %}</button>
