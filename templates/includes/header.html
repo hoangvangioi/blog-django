@@ -145,76 +145,56 @@
 							</div>
 							<ul class="f-m-m">
 								{% if request.user.is_superuser %}
-								<li>
+								<li class="border-b-4 border-blue-600 w-9/12 hover:border-blue-500 mx-auto">
 									<a href="{% url 'dashboard_home' %}" class="cursor-pointer">
-										<div class="text-gray-800 pt-8">
+										<div class="text-gray-800 pt-8 mb-1">
 											<div class="flex items-center">
-												<div class="w-6 h-6 text-indigo-700">
-													<img class="icon icon-tabler icon-tabler-grid" src="{% static 'images/dashboard.svg' %}" alt="dashboard" />
-												</div>
 												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-indigo-700 xl:text-base text-base ml-3">Dashboard</p>
 											</div>
 										</div>
 									</a>
 								</li>
 								{% endif %}
-								<li>
+								<li class="border-b-4 border-blue-600 w-9/12 hover:border-blue-500 mx-auto">
 									<a href="{% url 'categories_list' %}" class="cursor-pointer">
-										<div class="text-gray-800 pt-8">
-											<div class="flex items-center justify-between">
-												<div class="flex items-center">
-													<div class="w-6 h-6 text-gray-800">
-														<img class="icon icon-tabler icon-tabler-puzzle" src="{% static 'images/categories.svg' %}" alt="categories" />
-													</div>
-													<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Categories</p>
-												</div>
+										<div class="text-gray-800 pt-8 mb-1">
+											<div class="flex items-center">
+												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Categories</p>
 											</div>
 										</div>
 									</a>
 								</li>
-								<li>
+								<li class="border-b-4 border-blue-600 w-9/12 hover:border-blue-500 mx-auto">
 									<a href="{% url 'article_list' %}" class="cursor-pointer">
-										<div class="text-gray-800 pt-8">
+										<div class="text-gray-800 pt-8 mb-1">
 											<div class="flex items-center">
-												<div class="w-6 h-6 text-gray-800">
-													<img class="icon icon-tabler icon-tabler-compass" src="{% static 'images/home.svg' %}" alt="Home" />
-												</div>
 												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Home</p>
 											</div>
 										</div>
 									</a>
 								</li>
-								<li>
+								<li class="border-b-4 border-blue-600 w-9/12 hover:border-blue-500 mx-auto">
 									<a href="{% url 'contact' %}" class="cursor-pointer">
-										<div class="text-gray-800 pt-8">
+										<div class="text-gray-800 pt-8 mb-1">
 											<div class="flex items-center">
-												<div class="w-6 h-6 text-gray-800">
-													<img class="icon icon-tabler icon-tabler-compass" src="{% static 'images/home.svg' %}" alt="Contact" />
-												</div>
 												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Contact</p>
 											</div>
 										</div>
 									</a>
 								</li>
-								<li>
+								<li class="border-b-4 border-blue-600 w-9/12 hover:border-blue-500 mx-auto">
 									<a href="{% url 'about' %}" class="cursor-pointer">
-										<div class="text-gray-800 pt-8">
+										<div class="text-gray-800 pt-8 mb-1">
 											<div class="flex items-center">
-												<div class="w-6 h-6 text-gray-800">
-													<img class="icon icon-tabler icon-tabler-compass" src="{% static 'images/home.svg' %}" alt="About" />
-												</div>
 												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">About</p>
 											</div>
 										</div>
 									</a>
 								</li>
-								<li class="text-gray-800 pt-8 cursor-pointer">
+								<li class="border-b-4 border-blue-600 w-9/12 hover:border-blue-500 mx-auto">
 									<a href="{% url 'privacy_policy' %}" class="cursor-pointer">
-										<div class="flex items-center justify-between">
+										<div class="text-gray-800 pt-8 mb-1">
 											<div class="flex items-center">
-												<div class="w-6 h-6 text-gray-800">
-													<img class="icon icon-tabler icon-tabler-code" src="{% static 'images/deliverables.svg' %}" alt="deliverables" />
-												</div>
 												<p tabindex="0" class="focus:outline-none focus:text-indigo-600 text-gray-800 xl:text-base text-base ml-3">Privacy Policy</p>
 											</div>
 										</div>
