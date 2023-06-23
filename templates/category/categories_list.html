@@ -1,18 +1,17 @@
 {% extends 'base.html' %} {% load static %} {% block title %} Categories {% endblock title %} {% block content %}
-<!-- Text Header -->
-<div class="w-full container mx-auto pt-20">
-	<div class="flex flex-col items-center py-12">
-		<span class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl"> CATEGORIES </span>
-	</div>
-</div>
 
-<div class="bg-white dark:bg-gray-900 px-4 xl:px-4 py-14">
+<div class="bg-white dark:bg-gray-800 px-4 xl:px-4 py-8">
+	<div class="w-full container mx-auto pt-10">
+		<div class="flex flex-col items-center pt-10">
+			<span class="font-bold text-gray-800 uppercase hover:text-gray-700 dark:text-gray-100 text-4xl"> CATEGORIES </span>
+		</div>
+	</div>
 	<div class="mx-auto container">
 		<div tabindex="0" aria-label="Group of cards" class="focus:outline-none mt-12 lg:mt-24">
 			{% if categories %}
 			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mx-4 sm:mx-0">
 				{% for category in categories %}
-				<div tabindex="0" class="focus:outline-none shadow-lg" aria-label="card 5">
+				<div tabindex="0" class="focus:outline-none shadow-lg border-2 dark:border-gray-700 border-indigo-700" aria-label="card 5">
 					<a href="{{ category.get_absolute_url }}">
 						<img tabindex="0" role="img" aria-label="worker" class="focus:outline-none w-full" src="{{ category.image_url }}" alt="category" />
 						<div class="py-2 px-4 w-full flex justify-between bg-indigo-700">
