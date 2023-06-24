@@ -9,7 +9,6 @@ django-cloudinary-storage==0.3.0
 django-comments-ink==0.3.0
 django-contrib-comments==2.2.0
 django-cors-headers==4.0.0
-django-csp==3.7
 django-js-asset==2.0.0
 django-on-heroku==1.1.2
 django-permissions-policy==4.15.0

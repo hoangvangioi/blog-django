@@ -18,10 +18,8 @@ def js(obj):
 @register.inclusion_tag('pwa.html', takes_context=True)
 def progressive_web_app_meta(context):
     # Pass all PWA_* settings into the template
-    rv = {
+    return {
         setting_name: getattr(app_settings, setting_name)
         for setting_name in dir(app_settings)
         if setting_name.startswith('PWA_')
     }
-    rv['CSP_NONCE'] = context['CSP_NONCE']
-    return rv

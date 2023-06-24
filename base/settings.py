@@ -100,7 +100,6 @@ MIDDLEWARE = [
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'base.middleware.RestrictStaffToAdminMiddleware',
     'base.middleware.MaintenanceModeMiddleware',
-    'csp.middleware.CSPMiddleware',
 ]
 
 
@@ -123,7 +122,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
 				'category.context_processors.category_links',
-                'csp.context_processors.nonce',
             ],
         },
     },
@@ -517,56 +515,6 @@ PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'templates/serviceworker.js')
 
 PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'vi-VN'
-
-
-# default source as self
-CSP_DEFAULT_SRC = ("'self'", )
-
-# style from our domain and bootstrapcdn
-CSP_STYLE_SRC = ("'self'", )
-
-# scripts from our domain and other domains
-CSP_SCRIPT_SRC = ("'self'",
-	"ajax.cloudflare.com",
-	"static.cloudflareinsights.com",
-	"google-analytics.com",
-	"ssl.google-analytics.com",
-	"googletagservices.com",
-	"pagead2.googlesyndication.com",
-    "partner.googleadservices.com",
-    "adservice.google.com.vn",
-    "adservice.google.com",
-    "tpc.googlesyndication.com", 
-)
-
-# images from our domain and other domains
-CSP_IMG_SRC = ("'self'",
-	"res.cloudinary.com",
-	"google-analytics.com",
-    "pagead2.googlesyndication.com",
-	"googleads.g.doubleclick.net")
-
-# loading manifest, workers, frames, etc
-CSP_FONT_SRC = ("'self'", )
-CSP_CONNECT_SRC = ("'self'",
-    "google-analytics.com",
-    "pagead2.googlesyndication.com", 
-    "partner.googleadservices.com",
-    "adservice.google.com.vn", )
-
-CSP_OBJECT_SRC = ("'self'", )
-CSP_BASE_URI = ("'self'", )
-CSP_FRAME_ANCESTORS = ("'self'", )
-CSP_FORM_ACTION = ("'self'", )
-CSP_INCLUDE_NONCE_IN = ('script-src', )
-CSP_MANIFEST_SRC = ("'self'", )
-CSP_WORKER_SRC = ("'self'", )
-CSP_MEDIA_SRC = ("'self'", "res.cloudinary.com")
-CSP_FRAME_SRC = ("'self'", 
-    "googleads.g.doubleclick.net", 
-    "tpc.googlesyndication.com", 
-    "www.google.com", 
-)
 
 
 PERMISSIONS_POLICY = {

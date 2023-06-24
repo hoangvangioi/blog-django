@@ -35,7 +35,7 @@
     <link rel="icon" sizes="{{ icon.size }}" href="{{ icon.src }}">
     {% endwith %}
 
-    <script type="text/javascript" nonce="{{CSP_NONCE}}">
+    <script type="text/javascript">
         // Initialize the service worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/serviceworker.js', {
