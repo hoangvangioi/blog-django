@@ -15,7 +15,6 @@ import os
 from distutils.util import strtobool
 
 import dj_database_url
-import django_on_heroku
 from celery.schedules import crontab
 from django.contrib.messages import constants as messages
 from django.utils.translation import gettext_lazy as _
@@ -264,8 +263,6 @@ EMAIL_PORT = 587
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# Activate Django-Heroku.
-django_on_heroku.settings(locals(), logging=False)
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'text-blue-400',
