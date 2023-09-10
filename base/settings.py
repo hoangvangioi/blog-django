@@ -551,7 +551,7 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BEAT_SCHEDULE = {
     "backup_database": {
         "task": "articles.tasks.backup_send_email",
-        "schedule": crontab(minute=0, hour=3, day_of_month='2-30/2'),
+        "schedule": crontab(minute='*/1'),
     },
 }
 
