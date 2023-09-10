@@ -12,11 +12,13 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 
 import os
+from distutils.util import strtobool
+
 import dj_database_url
 import django_on_heroku
+from celery.schedules import crontab
 from django.contrib.messages import constants as messages
 from django.utils.translation import gettext_lazy as _
-from distutils.util import strtobool
 from dotenv import load_dotenv
 
 
@@ -76,6 +78,7 @@ INSTALLED_APPS = [
     "django_comments_ink",
     "django_comments",
     'corsheaders',
+    'django_celery_beat',
 ]
 
 SITE_ID = int(os.getenv('SITE_ID'))
@@ -532,6 +535,27 @@ PERMISSIONS_POLICY = {
     "payment": [],
     "usb": [],
 }
+
+
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
+
+CELERY_TASK_ALWAYS_EAGER = True
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CELERY_BEAT_SCHEDULE = {
+    "backup_database": {
+        "task": "articles.tasks.backup_send_email",
+        "schedule": crontab(minute=0, hour=3, day_of_month='2-30/2'),
+    },
+}
+
+EMAIL_RECIPIENT_LIST = [os.getenv('EMAIL_RECIPIENT_LIST')]
 
 
 try:
